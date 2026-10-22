@@ -53,6 +53,21 @@ getting to the actual question. See [CHALLENGE.md](CHALLENGE.md).
 
 ## Try it right now
 
+For the possession model developed in this checkout, its blocked validation results,
+research notes and reproduction commands, see **[MODEL.md](MODEL.md)**.
+
+```bash
+source .venv-ball/bin/activate
+python -m possession.run       # load the saved model and generate the submission
+python -m possession.compare   # compare held-out predictions with the baselines
+```
+
+The saved model is [models/possession_model.joblib](models/possession_model.joblib).
+Its nested held-out public score is **0.6429 spellF1 / 0.8919 macroF1**. External
+datasets and downloaded checkpoints have been removed; running the model uses
+the challenge assets in this directory. Fresh setup, retraining and the official
+scorer commands are in [MODEL.md](MODEL.md).
+
 The scorer, a 5-minute ground truth and four working baselines are in this repository. No
 enrolment, no download, no data:
 

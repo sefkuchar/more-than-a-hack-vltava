@@ -1,0 +1,74 @@
+{
+  "results": {
+    "duration_baseline": {
+      "spell_f1_mean": 0.6266666666666667,
+      "macro_f1": 0.8780037541743808,
+      "n_pred_spells": 13
+    },
+    "anchor_only": {
+      "spell_f1_mean": 0.575,
+      "macro_f1": 0.8776789501514979,
+      "n_pred_spells": 15
+    },
+    "anchor_then_snap": {
+      "spell_f1_mean": 0.5875,
+      "macro_f1": 0.8761777387329199,
+      "n_pred_spells": 15
+    }
+  },
+  "global_anchor_frames": [
+    9234,
+    4997
+  ],
+  "public_anchor_frames": [
+    722,
+    531
+  ],
+  "folds": [
+    {
+      "fold": 0,
+      "eligible_anchor_frames_full_context": 1253,
+      "eligible_anchor_frames_heldout": 368,
+      "baseline_spells_full_context": 10,
+      "anchor_spells_full_context": 12,
+      "snap_changed_boundaries_full_context": 2
+    },
+    {
+      "fold": 1,
+      "eligible_anchor_frames_full_context": 1253,
+      "eligible_anchor_frames_heldout": 172,
+      "baseline_spells_full_context": 15,
+      "anchor_spells_full_context": 17,
+      "snap_changed_boundaries_full_context": 3
+    },
+    {
+      "fold": 2,
+      "eligible_anchor_frames_full_context": 1253,
+      "eligible_anchor_frames_heldout": 408,
+      "baseline_spells_full_context": 13,
+      "anchor_spells_full_context": 15,
+      "snap_changed_boundaries_full_context": 2
+    },
+    {
+      "fold": 3,
+      "eligible_anchor_frames_full_context": 1253,
+      "eligible_anchor_frames_heldout": 274,
+      "baseline_spells_full_context": 15,
+      "anchor_spells_full_context": 17,
+      "snap_changed_boundaries_full_context": 4
+    },
+    {
+      "fold": 4,
+      "eligible_anchor_frames_full_context": 1253,
+      "eligible_anchor_frames_heldout": 31,
+      "baseline_spells_full_context": 13,
+      "anchor_spells_full_context": 15,
+      "snap_changed_boundaries_full_context": 3
+    }
+  ],
+  "source_sha256": "6c8623d7d599604fa64110bee784a5b488274853450f1645bbb55170367bca7d",
+  "feature_sha256": "c87c85c5e71bc3393ab27d786cd9d907fa6303d864c7e25e92e275329662d4e0",
+  "prior_sha256": "76e94ca6791a4c90b293bb12ec3818ee6344f047e86fb78bc51c1ef255fb6ddb",
+  "cache_sha256": "5af6229dc1ea8c059dd078f93f6eb75d613dc1b5fafa0bf6e21e2d81fd11ab24",
+  "protocol": "Singlepredefinedtwo-cameraagreementcontrolmask,sustained8frames. Tactical1.5/3m+stable>.2, broadcast1.5/3m+ballerror<2m. SamefoldpLive>pDgate. Anchoredlogp0/-12,temperature5,exactexternaldurationDP. Secondpredeclaredoutputappliesunchangedphysicalboundarysnap. No parametersearch; no GTtiming inanchors."
+}

@@ -1,0 +1,39 @@
+{
+  "protocol": "Five contiguous held-out minutes, 10s embargo; train only groups entirely inside allowed training frames; soft class counts; same-fold full-context decoding at25Hz",
+  "grouping": "Fixed nonoverlapping groups of12/25 frames; mean of77 features; no labels in group construction",
+  "group_targets": "Each class repeated with weight count/3; mixed-label groups remain soft; minleaf rescales105rawframes/groupwidth",
+  "decoder": "External duration temperature5; optional unchanged contact-onset snap",
+  "results": [
+    {
+      "group_frames": 12,
+      "method": "duration",
+      "spell_f1_mean": 0.5333333333333333,
+      "macro_f1": 0.8669073814072622,
+      "n_pred_spells": 13
+    },
+    {
+      "group_frames": 12,
+      "method": "contact_snap",
+      "spell_f1_mean": 0.5733333333333334,
+      "macro_f1": 0.8729022000510346,
+      "n_pred_spells": 13
+    },
+    {
+      "group_frames": 25,
+      "method": "duration",
+      "spell_f1_mean": 0.5066666666666666,
+      "macro_f1": 0.866792265191485,
+      "n_pred_spells": 13
+    },
+    {
+      "group_frames": 25,
+      "method": "contact_snap",
+      "spell_f1_mean": 0.5428571428571428,
+      "macro_f1": 0.8649287923269355,
+      "n_pred_spells": 11
+    }
+  ],
+  "feature_sha256": "c87c85c5e71bc3393ab27d786cd9d907fa6303d864c7e25e92e275329662d4e0",
+  "source_sha256": "794b0f124a8d76e163a9fe23e3911b9ff87e6c7a11dcc9a96d5310d8f9875fd0",
+  "caveat": "Repeated exploration on17publicpossessions; group edges constrain the initial boundary resolution."
+}

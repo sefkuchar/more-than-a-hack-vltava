@@ -1,0 +1,52 @@
+{
+  "method": "external_duration_gmm2",
+  "emission_temperature": 5,
+  "parameters": [
+    {
+      "group": "possession",
+      "count": 401,
+      "mean_duration_seconds": 7.148827930174564,
+      "median_duration_seconds": 3.92,
+      "weights": [
+        0.5109965138729733,
+        0.48900348612702677
+      ],
+      "log_frame_means": [
+        5.016212261591441,
+        4.138312687466109
+      ],
+      "log_frame_sigmas": [
+        1.104970510055549,
+        1.2737095007925325
+      ]
+    },
+    {
+      "group": "dead",
+      "count": 99,
+      "mean_duration_seconds": 25.70787878787879,
+      "median_duration_seconds": 19.04,
+      "weights": [
+        0.7276727683906667,
+        0.27232723160933325
+      ],
+      "log_frame_means": [
+        6.264813559459326,
+        5.733568472704107
+      ],
+      "log_frame_sigmas": [
+        0.9443973971011418,
+        0.9887801689009744
+      ]
+    }
+  ],
+  "input_sha256": {
+    "experiments/external_duration.py": "d6552790db82d5f3d2493ea49930057004d4ae5effb1bf66c9221dcc5c135aa0",
+    "experiments/duration_model.py": "58460520a536493a0ed7c45e542898a1e92e8295b3fac9d36891a01412e4c1bc",
+    "data/external/idsse/J03WOH_arrays.npz": "26182d65fd52ee3df65010335a0538d1c59c283c91e9d0d3dac6b3bc39a09b0a",
+    "experiments/cache/booster_ensemble.npz": "5af6229dc1ea8c059dd078f93f6eb75d613dc1b5fafa0bf6e21e2d81fd11ab24",
+    "evaluation/gt/BAR-ATH_possession_gt_public.csv": "e596a9af9626c623bb94be6fd350e12ee9a75c76a696cfadca3bc01735e92487"
+  },
+  "spell_f1_mean": 0.6266666666666667,
+  "macro_f1": 0.8780037541743808,
+  "n_pred_spells": 13
+}

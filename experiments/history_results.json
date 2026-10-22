@@ -1,0 +1,23 @@
+[
+  {
+    "method": "history",
+    "penalty": 8,
+    "spell_f1_mean": 0.5371428571428571,
+    "macro_f1": 0.8486593155950907,
+    "n_pred_spells": 18
+  },
+  {
+    "method": "history",
+    "penalty": 16,
+    "spell_f1_mean": 0.5575757575757576,
+    "macro_f1": 0.8455392007592301,
+    "n_pred_spells": 16
+  },
+  {
+    "method": "history",
+    "penalty": 32,
+    "spell_f1_mean": 0.5333333333333333,
+    "macro_f1": 0.856800775679255,
+    "n_pred_spells": 13
+  }
+]

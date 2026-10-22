@@ -1,0 +1,20 @@
+{
+  "protocol": "External J03WOH both halves, clean/corrupt ball, 200 pretraining updates; 50 fold-specific adaptation updates; 5 contiguous minutes/10s embargo/isolated duration decoding",
+  "external_frames_5Hz": 54886,
+  "source_sha256": "7b289e95b159984d3a6123e442597139ebaf0f7aaf4934d0a63fdc01e6fea273",
+  "feature_sha256": "c87c85c5e71bc3393ab27d786cd9d907fa6303d864c7e25e92e275329662d4e0",
+  "results": [
+    {
+      "method": "temporal_transfer",
+      "spell_f1_mean": 0.48888888888888893,
+      "macro_f1": 0.8411630356353609,
+      "n_pred_spells": 10
+    },
+    {
+      "method": "equal_hist_transfer",
+      "spell_f1_mean": 0.5481481481481482,
+      "macro_f1": 0.8824712243235676,
+      "n_pred_spells": 10
+    }
+  ]
+}

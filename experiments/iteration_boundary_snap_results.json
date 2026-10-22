@@ -1,0 +1,50 @@
+{
+  "results": [
+    {
+      "iterations": 60,
+      "changed_heldout_frames": 0,
+      "spell_f1_mean": 0.5733333333333333,
+      "macro_f1": 0.8742622463923144,
+      "n_pred_spells": 13
+    },
+    {
+      "iterations": 90,
+      "changed_heldout_frames": 20,
+      "spell_f1_mean": 0.6133333333333335,
+      "macro_f1": 0.8773691667318181,
+      "n_pred_spells": 13
+    },
+    {
+      "iterations": 120,
+      "changed_heldout_frames": 20,
+      "spell_f1_mean": 0.64,
+      "macro_f1": 0.8804004595766904,
+      "n_pred_spells": 13
+    },
+    {
+      "iterations": 150,
+      "changed_heldout_frames": 38,
+      "spell_f1_mean": 0.64,
+      "macro_f1": 0.8724202126320213,
+      "n_pred_spells": 13
+    },
+    {
+      "iterations": 180,
+      "changed_heldout_frames": 38,
+      "spell_f1_mean": 0.64,
+      "macro_f1": 0.8719760039041976,
+      "n_pred_spells": 13
+    }
+  ],
+  "source_input_sha256": {
+    "experiments/iteration_boundary_snap.py": "e994237395ab1389b38966056f36e6a23216bb0cc96c47c69b7300f0b0b27d49",
+    "experiments/physical_boundary_snap.py": "f400a7844965733d6fc4f55be9cfafcd43fe9b885816888db31fda1a9548ddc5",
+    "possession/duration.py": "bc1867c97796106389ccbed56ebd2a2401b3c76a7f9d246f439c7dcbc37a9e23",
+    "cache": "38ad7e19e14af68cf46c4f67731a0d12e688d8eee87a5a3b9adf08f5a567804e",
+    "priors": "76e94ca6791a4c90b293bb12ec3818ee6344f047e86fb78bc51c1ef255fb6ddb",
+    "features": "c87c85c5e71bc3393ab27d786cd9d907fa6303d864c7e25e92e275329662d4e0",
+    "labels": "bda559851bad48e556896b357b9727b474f325877c83ed925a0af28f674f05bd"
+  },
+  "selection_optimism": true,
+  "protocol": "Unchanged physical onsets/snap applied to full same-fold duration decoding before heldout core extraction; no new models or physical parameters."
+}

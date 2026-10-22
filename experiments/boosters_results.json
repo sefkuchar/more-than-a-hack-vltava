@@ -1,0 +1,105 @@
+{
+  "results": [
+    {
+      "method": "catboost",
+      "penalty": 16,
+      "spell_f1_mean": 0.567741935483871,
+      "macro_f1": 0.816854069929074,
+      "n_pred_spells": 14
+    },
+    {
+      "method": "catboost",
+      "penalty": 32,
+      "spell_f1_mean": 0.5599999999999999,
+      "macro_f1": 0.8069424004929706,
+      "n_pred_spells": 13
+    },
+    {
+      "method": "xgboost",
+      "penalty": 16,
+      "spell_f1_mean": 0.5733333333333333,
+      "macro_f1": 0.8741383092351608,
+      "n_pred_spells": 13
+    },
+    {
+      "method": "xgboost",
+      "penalty": 32,
+      "spell_f1_mean": 0.5733333333333333,
+      "macro_f1": 0.8741383092351608,
+      "n_pred_spells": 13
+    }
+  ],
+  "versions": {
+    "catboost": "1.2.10",
+    "xgboost": "3.2.0"
+  },
+  "source_fingerprints": {
+    "experiments/boosters.py": "3416d06ea625deba7a0ef0188f967537f486ee4cc33debc882e7022562518c6d",
+    "possession/features.py": "56ac029f1ed867c314befb651c84f3c952bbc14eae40c542f2bf10807be6e8ae",
+    "possession/model.py": "82b22fb14af5825836a7c3c67fd8667f2cc13277a5fda30a3e5745003b29b33e",
+    "possession/decode.py": "58b98987d4b79b5ab9f1b41f61ed0ec8b95f42793177c4799194867868cd57c0",
+    "experiments/align_broadcast.py": "340cb854ba163c072629e3a73649e989d4064955dd2a7d83e19e2d50d70f4e30",
+    "feature_matrix": "c87c85c5e71bc3393ab27d786cd9d907fa6303d864c7e25e92e275329662d4e0",
+    "labels": "bda559851bad48e556896b357b9727b474f325877c83ed925a0af28f674f05bd"
+  },
+  "stride": 3,
+  "embargo_frames": 250,
+  "folds": 5,
+  "feature_count": 77,
+  "parameters": {
+    "catboost": {
+      "iterations": 300,
+      "learning_rate": 0.05,
+      "depth": 4,
+      "l2_leaf_reg": 10,
+      "loss_function": "MultiClass",
+      "thread_count": 4,
+      "random_seed": 0,
+      "verbose": false,
+      "allow_writing_files": false
+    },
+    "xgboost": {
+      "objective": "multi:softprob",
+      "base_score": null,
+      "booster": null,
+      "callbacks": null,
+      "colsample_bylevel": null,
+      "colsample_bynode": null,
+      "colsample_bytree": 0.8,
+      "device": null,
+      "early_stopping_rounds": null,
+      "enable_categorical": false,
+      "eval_metric": null,
+      "feature_types": null,
+      "feature_weights": null,
+      "gamma": null,
+      "grow_policy": null,
+      "importance_type": null,
+      "interaction_constraints": null,
+      "learning_rate": 0.05,
+      "max_bin": null,
+      "max_cat_threshold": null,
+      "max_cat_to_onehot": null,
+      "max_delta_step": null,
+      "max_depth": 3,
+      "max_leaves": null,
+      "min_child_weight": 10,
+      "missing": NaN,
+      "monotone_constraints": null,
+      "multi_strategy": null,
+      "n_estimators": 200,
+      "n_jobs": 4,
+      "num_parallel_tree": null,
+      "random_state": 0,
+      "reg_alpha": null,
+      "reg_lambda": 10,
+      "sampling_method": null,
+      "scale_pos_weight": null,
+      "subsample": 0.8,
+      "tree_method": "hist",
+      "validate_parameters": null,
+      "verbosity": null,
+      "num_class": 3
+    }
+  }
+}

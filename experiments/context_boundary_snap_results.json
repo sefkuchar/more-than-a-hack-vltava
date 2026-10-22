@@ -1,0 +1,47 @@
+{
+  "results": [
+    {
+      "method": "latent",
+      "changed_heldout_frames": 20,
+      "spell_f1_mean": 0.64,
+      "macro_f1": 0.8870729755727381,
+      "n_pred_spells": 13
+    },
+    {
+      "method": "ball_target",
+      "changed_heldout_frames": 20,
+      "spell_f1_mean": 0.64,
+      "macro_f1": 0.8811434573192564,
+      "n_pred_spells": 13
+    },
+    {
+      "method": "base_latent",
+      "changed_heldout_frames": 20,
+      "spell_f1_mean": 0.64,
+      "macro_f1": 0.883969515939354,
+      "n_pred_spells": 13
+    },
+    {
+      "method": "base_latent_ball",
+      "changed_heldout_frames": 20,
+      "spell_f1_mean": 0.64,
+      "macro_f1": 0.8830948086778841,
+      "n_pred_spells": 13
+    }
+  ],
+  "source_input_sha256": {
+    "latent_context_validation.npz": "985424f586370dae794c5a29ad01ab7f9c90237391e34a847efac166d22f41fc",
+    "ball_possession_validation_target.npz": "ccdcb6603e10f9eeebfabe3984689891938ecb34a1586b2d96935ce247098633",
+    "context_ensemble_validation.npz": "b66a9fa94835ab2d7814a5fa4f21e14fca4a51d0251db66cacb599628cb17f60",
+    "experiments/context_boundary_snap.py": "56a3000f3fd62addcdf1701092f4cf71e205aefc1277946444cafc958f736f63",
+    "experiments/physical_boundary_snap.py": "f400a7844965733d6fc4f55be9cfafcd43fe9b885816888db31fda1a9548ddc5",
+    "possession/duration.py": "bc1867c97796106389ccbed56ebd2a2401b3c76a7f9d246f439c7dcbc37a9e23",
+    "possession/features.py": "56ac029f1ed867c314befb651c84f3c952bbc14eae40c542f2bf10807be6e8ae",
+    "experiments/align_broadcast.py": "340cb854ba163c072629e3a73649e989d4064955dd2a7d83e19e2d50d70f4e30",
+    "features": "c87c85c5e71bc3393ab27d786cd9d907fa6303d864c7e25e92e275329662d4e0",
+    "labels": "bda559851bad48e556896b357b9727b474f325877c83ed925a0af28f674f05bd",
+    "prior": "76e94ca6791a4c90b293bb12ec3818ee6344f047e86fb78bc51c1ef255fb6ddb"
+  },
+  "selection_optimism": true,
+  "protocol": "Same fixed physical onsets/snap for each complete label-excluded fold context before retaining heldout core. No refitting or parameter search."
+}

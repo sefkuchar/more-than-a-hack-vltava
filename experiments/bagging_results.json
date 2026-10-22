@@ -1,0 +1,16 @@
+[
+  {
+    "method": "interleaved_ensemble",
+    "penalty": 16,
+    "spell_f1_mean": 0.575,
+    "macro_f1": 0.8734480515438813,
+    "n_pred_spells": 15
+  },
+  {
+    "method": "interleaved_ensemble",
+    "penalty": 32,
+    "spell_f1_mean": 0.6133333333333334,
+    "macro_f1": 0.8762309486544954,
+    "n_pred_spells": 13
+  }
+]
