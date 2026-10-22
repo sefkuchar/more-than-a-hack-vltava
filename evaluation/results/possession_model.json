@@ -1,5 +1,5 @@
 {
-  "model": "saved team-symmetric gradient boosting, nested calibration, conditional team blend, duration semi-Markov, observed-contact boundary refinement",
+  "model": "saved team-symmetric gradient boosting, nested calibration, conditional team blend, duration semi-Markov, observed-contact boundary refinement, camera-corrected short-spell recovery",
   "paper_blend": true,
   "features": [
     "observed",
@@ -100,9 +100,10 @@
   ],
   "duration_prior_sha256": "76e94ca6791a4c90b293bb12ec3818ee6344f047e86fb78bc51c1ef255fb6ddb",
   "contact_refined_boundaries": 66,
-  "public_training_score_spell_f1": 0.8266666666666668,
-  "public_training_score_macro_f1": 0.9884746835641615,
+  "camera_recovered_spells": 8,
+  "public_training_score_spell_f1": 0.9882352941176471,
+  "public_training_score_macro_f1": 0.9919414064159874,
   "score_warning": "Public labels were used in training. These are resubstitution scores, not held-out performance.",
-  "submission_sha256": "5e72ac0e6d9c48a024584661a302cac575f9903ebc74057b3139cb4ee5ea4f3f",
+  "submission_sha256": "9e073a2326ec725565b01d78782304804db3908d24ca231a9baaaf5b1cbb31fb",
   "private_full_match_score": null
 }

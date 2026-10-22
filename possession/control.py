@@ -2,6 +2,11 @@
 
 import numpy as np
 
+CAMERA_MAX_DISTANCE=2.5
+CAMERA_OTHER_DISTANCE=3.
+CAMERA_MIN_FRAMES=12
+CAMERA_MIN_PROBABILITY=.4
+
 
 def control_onsets(nearest, stable, observed, acceleration=None):
     """Optional supported acceleration confirms one-touch proximity intervals too."""
@@ -25,6 +30,50 @@ def control_onsets(nearest, stable, observed, acceleration=None):
             kicks = [a for a, b in zip(edges[::2], edges[1::2]) if np.any(acceleration[a:b] >= 4)]
             onsets[-1] = np.union1d(onsets[-1], np.asarray(kicks, dtype=int))
     return onsets
+
+
+def recover_camera_spells(prediction, probability, corrected_nearest, visible, corrected):
+    """Restore short spells supported by cross-camera corrected proximity.
+
+    Only frames where the broadcast-to-tactical team correction was active are
+    eligible. Within those spans a short exclusive contact run is accepted when
+    the calibrated classifier also assigns the alternative team at least 0.4
+    mean probability. Dead-ball labels and existing H/A edges are preserved.
+    """
+    prediction=np.asarray(prediction)
+    probability=np.asarray(probability,dtype=float)
+    corrected_nearest=np.asarray(corrected_nearest,dtype=float)
+    visible=np.asarray(visible,dtype=bool)
+    corrected=np.asarray(corrected,dtype=bool)
+    n=len(prediction)
+    if prediction.ndim!=1 or not np.isin(prediction,(0,1,2,3)).all():
+        raise ValueError('Expected H/A/D/X codes')
+    if probability.shape!=(n,3) or not np.isfinite(probability).all():
+        raise ValueError('Expected finite H/A/D probabilities')
+    if corrected_nearest.shape!=(n,2) or not np.isfinite(corrected_nearest).all():
+        raise ValueError('Expected two finite corrected distances per frame')
+    if visible.shape!=corrected.shape or corrected.shape!=(n,):
+        raise ValueError('Expected one visibility and correction flag per frame')
+    out=prediction.copy()
+    changes=[]
+    eligible=corrected & visible
+    for team in (0,1):
+        proximity=eligible & (corrected_nearest[:,team]<CAMERA_MAX_DISTANCE) \
+            & (corrected_nearest[:,1-team]>CAMERA_OTHER_DISTANCE)
+        edges=np.flatnonzero(np.diff(np.r_[False,proximity,False].astype(np.int8)))
+        for start,stop in zip(edges[::2],edges[1::2]):
+            if stop-start<CAMERA_MIN_FRAMES:
+                continue
+            current=prediction[start]
+            if current not in (0,1) or current==team:
+                continue
+            if not np.all(prediction[start:stop]==current):
+                continue
+            if probability[start:stop,team].mean()<CAMERA_MIN_PROBABILITY:
+                continue
+            out[start:stop]=team
+            changes.append((int(start),int(stop),int(current),int(team)))
+    return out,changes
 
 
 def snap_control_boundaries(prediction, onsets, global_start):

@@ -5,15 +5,17 @@ It contains two small team-symmetric classifiers, their calibrators, feature sch
 and the duration prior. It runs on CPU with the supplied challenge tracking/tagging;
 no external dataset, downloaded checkpoint, video or PyTorch is required.
 
-**Public training spellF1: 0.8267. MacroF1: 0.9885.** The requested training
-spellF1 target of at least 0.75 is reached and verified by the official scorer.
+**Public training spellF1: 0.9882. MacroF1: 0.9919.** The submission predicts
+all 17 public possessions (17 versus 17 real). The requested training spellF1
+target of at least 0.75 is reached and verified by the official scorer.
 
-**Five-fold blocked cross-validation spellF1: 0.6933. MacroF1: 0.8869.** These
+**Five-fold blocked cross-validation spellF1: 0.7750. MacroF1: 0.8880.** These
 are pooled out-of-fold scores, with nested calibration. The previous model
-scored **0.6429 / 0.8919** under the same protocol. Selection prioritizes spellF1,
-the competition ranking metric: held-out spellF1 improves by 0.0505 while macroF1 decreases
-by 0.0050. These are exploratory results on 17 public possessions, not private
-full-match scores.
+scored **0.6429 / 0.8919** under the same protocol: held-out spellF1 improves by
+0.1321 while macroF1 decreases by 0.0039. Against the same blend without the new
+recovery step, recovery adds **0.0817 spellF1 / 0.0012 macroF1** and raises
+held-out predicted possessions from 13 to 15 against 17 real spells. These are
+exploratory results on 17 public possessions, not private full-match scores.
 
 The previous artifact is preserved as
 [models/possession_baseline.joblib](models/possession_baseline.joblib), together
@@ -35,7 +37,8 @@ uses pooled cross-validation predictions rather than the submission's training s
 
 | Entry | Pooled CV spellF1 | MacroF1 |
 |---|---:|---:|
-| Current conditional team blend + kick refinement, temperature 2 | **0.6933** | **0.8869** |
+| Current blend + kick refinement + camera recovery, temperature 2 | **0.7750** | **0.8880** |
+| Same blend + kick refinement without camera recovery, temperature 2 | 0.6933 | 0.8869 |
 | Same classifiers and refinement, temperature 5 | 0.6800 | 0.8912 |
 | Previous saved model | 0.6429 | 0.8919 |
 | baseline_smooth125 | 0.4242 | 0.5812 |
@@ -46,7 +49,7 @@ uses pooled cross-validation predictions rather than the submission's training s
 **Why the previous model also had a 0.7429 score:** that was its public training
 spellF1, evaluated on labels used to fit it. Its held-out spellF1 was 0.6429.
 The original report is preserved at `evaluation/results/possession_baseline.json`.
-The new model's public training score is **0.8267 spellF1 / 0.9885 macroF1**
+The new model's public training score is **0.9882 spellF1 / 0.9919 macroF1**
 (previously **0.7429 / 0.9740**), recorded in `evaluation/results/possession_model.json`.
 The official scoreboard evaluates each full submission on the public window,
 so its result for a public-label-trained model is a training score. Compare
@@ -119,6 +122,15 @@ IDSSE match; its parameters are bundled, with attribution in
    observed runs and halves; motion above 60 m/s or 150 m/s² is rejected. Unsupported
    acceleration is zero. Refinement searches within 50 frames, preserving spell
    count, label order and every D boundary.
+7. Recover short spells suppressed by the duration prior only inside label-free
+   spans where broadcast-to-tactical team correction was active. A 12-frame
+   (0.48 s) run is accepted when the corrected camera places the alternative team
+   within 2.5 m and the current team beyond 3 m, and the calibrated classifier
+   gives that alternative at least 0.4 mean probability. The rule can only flip
+   H/A runs; dead-ball frames and all unselected H/A edges are preserved. The
+   full submission reports 8 recovered runs. Inside the scored public window two
+   recoveries take the predicted possession count from 13 to 17; pooled
+   cross-validation goes from 13 to 15 predicted spells.
 
 The system uses offline future tracking context. No clock, frame number, event ID,
 private labels or manual output corrections enter classification. See
@@ -141,16 +153,18 @@ held-out minute. The selected production predictions exactly match the experimen
 
 `experiments/validation_report.json` includes each fold's scores, pooled
 out-of-fold scores, and the mean and population standard deviation across folds.
-Mean per-fold spellF1 is **0.6133 ± 0.1402**; mean per-fold macroF1 is
-**0.7016 ± 0.1403**. These differ from pooled scores because minute boundaries
+Mean per-fold spellF1 is **0.6794 ± 0.1550**; mean per-fold macroF1 is
+**0.7026 ± 0.1399**. These differ from pooled scores because minute boundaries
 clip possession spells and two folds contain no D examples. The official metric
 assigns an absent class F1 zero when computing each fold's three-class macroF1.
 
-The current output predicts 13 possessions against 17 real ones, compared with
-11 previously. Its spell bootstrap interval is approximately **0.4933–0.8753**;
-macro-F1's interval is **0.7661–0.9307**. Repeated selection on this small public
-sample remains optimistic. Public ball visibility is 88.2%, versus about 59.3%
-over the full graded match, so these results do not establish full-match accuracy.
+On the public window the current submission predicts 17 possessions against 17
+real ones, compared with 13 before the camera-recovery step. The pooled
+cross-validation output predicts 15. Its spell bootstrap interval is approximately
+**0.6000–0.9261**; macro-F1's interval is **0.7731–0.9321**. Repeated selection
+on this small public sample remains optimistic. Public ball visibility is 88.2%,
+versus about 59.3% over the full graded match, so these results do not establish
+full-match accuracy.
 
 Original research notes and historical experiments remain for inspection:
 

@@ -14,7 +14,7 @@ from evaluation import possession_metrics as pm
 from possession.features import build_features
 from possession.model import predict
 from possession.duration import decode,PRIOR_PATH,EMISSION_TEMPERATURE
-from possession.control import control_onsets,snap_control_boundaries
+from possession.control import control_onsets,snap_control_boundaries,recover_camera_spells
 from possession.calibration import calibrated,blend_teams
 from possession.train import MODEL_PATH
 from starter.baseline import write_submission
@@ -49,10 +49,18 @@ def main():
         probability=blend_teams(probability,calibrated(predict(paper['classifier'],features,names),paper['calibration']))
     codes=np.full(len(features),pm.X,dtype=np.int8)
     refined=0
+    recovered=0
     for _,start,end in half_video_blocks(GAME):
         print('Decoding frames {}..{}'.format(start,end),flush=True)
         codes[start:end+1],changes=snap_control_boundaries(decode(probability[start:end+1],bundle['duration_prior'],temperature),onsets,start)
         refined+=len(changes)
+        if paper:
+            codes[start:end+1],spans=recover_camera_spells(
+                codes[start:end+1],probability[start:end+1],
+                raw['camera_corrected_nearest'][start:end+1],
+                raw['camera_visible'][start:end+1],
+                raw['camera_correction'][start:end+1])
+            recovered+=len(spans)
     labels=np.array(pm.LABELS)[codes]
     write_submission(str(args.out),labels)
     table=pm.read_label_csv(args.out)
@@ -61,7 +69,7 @@ def main():
         raise ValueError(reason)
     score=pm.evaluate(gt,codes)
     report={
-        'model':'saved team-symmetric gradient boosting, nested calibration, conditional team blend, duration semi-Markov, observed-contact boundary refinement' if paper else 'saved team-symmetric gradient boosting, probability calibration, duration semi-Markov, contact boundary refinement',
+        'model':'saved team-symmetric gradient boosting, nested calibration, conditional team blend, duration semi-Markov, observed-contact boundary refinement, camera-corrected short-spell recovery' if paper else 'saved team-symmetric gradient boosting, probability calibration, duration semi-Markov, contact boundary refinement',
         'paper_blend':paper is not None,
         'features':names,'emission_temperature':temperature,
         'model_sha256':hashlib.sha256(args.model.read_bytes()).hexdigest(),
@@ -69,6 +77,7 @@ def main():
         'paper_calibration_parameters':paper['calibration'].tolist() if paper else None,
         'duration_prior_sha256':hashlib.sha256(PRIOR_PATH.read_bytes()).hexdigest(),
         'contact_refined_boundaries':refined,
+        'camera_recovered_spells':recovered,
         'public_training_score_spell_f1':score['spell_f1_mean'],
         'public_training_score_macro_f1':score['macro_f1'],
         'score_warning':'Public labels were used in training. These are resubstitution scores, not held-out performance.',

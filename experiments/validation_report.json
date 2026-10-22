@@ -4,23 +4,23 @@
     "n_splits": 5,
     "embargo_frames": 250,
     "pooled_out_of_fold": {
-      "spell_f1_mean": 0.6933333333333334,
-      "macro_f1": 0.8868610188290035
+      "spell_f1_mean": 0.775,
+      "macro_f1": 0.8880455038465055
     },
     "mean_per_fold": {
-      "spell_f1_mean": 0.6133333333333334,
-      "macro_f1": 0.7015864967071199
+      "spell_f1_mean": 0.6793650793650794,
+      "macro_f1": 0.702577338226028
     },
     "std_per_fold": {
-      "spell_f1_mean": 0.14017805327980262,
-      "macro_f1": 0.14034099908399375
+      "spell_f1_mean": 0.15495185737936865,
+      "macro_f1": 0.1399372169686071
     },
     "std_convention": "Population standard deviation (ddof=0)",
     "aggregation_note": "Pooled scores use the official metric on all out-of-fold predictions. Fold means score each minute separately: spells are clipped at fold edges, and absent H/A/D classes have F1 zero under the official macro metric."
   },
   "protocol": "5-fold blocked cross-validation: contiguous minute folds; 250-frame training embargo on both sides; each fold decoded with its own label-excluded model; nested blocked probability calibration",
   "method": "team-symmetric base/cross-camera classifiers, nested probability calibration, equal conditional H/A blend retaining base D probability",
-  "decoder": "calibrated probabilities, external duration semi-Markov at25Hz, then observed-contact refinement of existing H/A boundaries with SG7 acceleration-confirmed contact candidates",
+  "decoder": "calibrated probabilities, external duration semi-Markov at25Hz, then observed-contact refinement of existing H/A boundaries with SG7 acceleration-confirmed contact candidates and camera-corrected short-spell recovery",
   "emission_temperature": 2.0,
   "duration_prior_sha256": "76e94ca6791a4c90b293bb12ec3818ee6344f047e86fb78bc51c1ef255fb6ddb",
   "features": 85,
@@ -87,6 +87,7 @@
         "regularized_objective": 0.46535667746064435
       },
       "contact_refined_boundaries_full_context": 4,
+      "camera_recovered_spells_full_context": 2,
       "paper_calibration_parameters": [
         -0.5081499586284073,
         -0.07230067530302504
@@ -180,6 +181,7 @@
         "regularized_objective": 0.5182473927503386
       },
       "contact_refined_boundaries_full_context": 5,
+      "camera_recovered_spells_full_context": 1,
       "paper_calibration_parameters": [
         -0.5425891585043157,
         0.160417759614192
@@ -217,21 +219,21 @@
       "held_out_last_frame": 15684,
       "training_frames": 1834,
       "metrics": {
-        "spell_f1_mean": 0.5142857142857143,
-        "macro_f1": 0.6424961192843369,
+        "spell_f1_mean": 0.8444444444444444,
+        "macro_f1": 0.6474503268788775,
         "n_gt_spells": 4,
-        "n_pred_spells": 3,
+        "n_pred_spells": 5,
         "per_class": {
           "H": {
-            "precision": 0.9510086455331412,
-            "recall": 0.9705882352941176,
-            "f1": 0.960698689956332,
+            "precision": 0.9492242595204513,
+            "recall": 0.9897058823529412,
+            "f1": 0.9690424766018717,
             "support": 680
           },
           "A": {
-            "precision": 0.9751861042183623,
-            "recall": 0.9585365853658536,
-            "f1": 0.9667896678966789,
+            "precision": 0.9911504424778761,
+            "recall": 0.9560975609756097,
+            "f1": 0.973308504034761,
             "support": 820
           },
           "D": {
@@ -273,6 +275,7 @@
         "regularized_objective": 0.5119004406115771
       },
       "contact_refined_boundaries_full_context": 6,
+      "camera_recovered_spells_full_context": 1,
       "paper_calibration_parameters": [
         -0.42810382888395987,
         0.27363675345422533
@@ -366,6 +369,7 @@
         "regularized_objective": 0.5145117245490513
       },
       "contact_refined_boundaries_full_context": 6,
+      "camera_recovered_spells_full_context": 1,
       "paper_calibration_parameters": [
         -0.44873915054701596,
         1.2666906452503781
@@ -459,6 +463,7 @@
         "regularized_objective": 0.6627583144754878
       },
       "contact_refined_boundaries_full_context": 4,
+      "camera_recovered_spells_full_context": 2,
       "paper_calibration_parameters": [
         -0.8406570155674381,
         0.15475300015466906
@@ -492,26 +497,26 @@
     }
   ],
   "model": {
-    "spell_f1_mean": 0.6933333333333334,
-    "macro_f1": 0.8868610188290035,
+    "spell_f1_mean": 0.775,
+    "macro_f1": 0.8880455038465055,
     "n_gt_spells": 17,
-    "n_pred_spells": 13,
-    "spell_bootstrap_low": 0.49333333333333335,
-    "spell_bootstrap_high": 0.875268817204301,
-    "bootstrap_low": 0.7660936243507045,
-    "bootstrap_high": 0.9306983763019223
+    "n_pred_spells": 15,
+    "spell_bootstrap_low": 0.6,
+    "spell_bootstrap_high": 0.9260606060606058,
+    "bootstrap_low": 0.7730607937477425,
+    "bootstrap_high": 0.9320988060431699
   },
   "per_class": {
     "H": {
-      "precision": 0.90870062965083,
-      "recall": 0.9192240880138969,
-      "f1": 0.9139320667818077,
+      "precision": 0.908520946138501,
+      "recall": 0.9229878401852925,
+      "f1": 0.9156972569294844,
       "support": 3454
     },
     "A": {
-      "precision": 0.8962386511024644,
-      "recall": 0.8044237485448196,
-      "f1": 0.8478527607361963,
+      "precision": 0.901218450826806,
+      "recall": 0.8036476523088864,
+      "f1": 0.8496410256410256,
       "support": 2577
     },
     "D": {
@@ -523,44 +528,44 @@
   },
   "spell_f1": {
     "0.3": {
-      "precision": 0.8461538461538461,
-      "recall": 0.6470588235294118,
-      "f1": 0.7333333333333334,
-      "n_matched": 11,
+      "precision": 0.8666666666666667,
+      "recall": 0.7647058823529411,
+      "f1": 0.8125,
+      "n_matched": 13,
       "n_spurious": 2,
-      "n_missed": 6
+      "n_missed": 4
     },
     "0.4": {
-      "precision": 0.8461538461538461,
-      "recall": 0.6470588235294118,
-      "f1": 0.7333333333333334,
-      "n_matched": 11,
+      "precision": 0.8666666666666667,
+      "recall": 0.7647058823529411,
+      "f1": 0.8125,
+      "n_matched": 13,
       "n_spurious": 2,
-      "n_missed": 6
+      "n_missed": 4
     },
     "0.5": {
-      "precision": 0.8461538461538461,
-      "recall": 0.6470588235294118,
-      "f1": 0.7333333333333334,
-      "n_matched": 11,
+      "precision": 0.8666666666666667,
+      "recall": 0.7647058823529411,
+      "f1": 0.8125,
+      "n_matched": 13,
       "n_spurious": 2,
-      "n_missed": 6
+      "n_missed": 4
     },
     "0.6": {
-      "precision": 0.7692307692307693,
-      "recall": 0.5882352941176471,
-      "f1": 0.6666666666666667,
-      "n_matched": 10,
+      "precision": 0.8,
+      "recall": 0.7058823529411765,
+      "f1": 0.7500000000000001,
+      "n_matched": 12,
       "n_spurious": 3,
-      "n_missed": 7
+      "n_missed": 5
     },
     "0.7": {
-      "precision": 0.6923076923076923,
-      "recall": 0.5294117647058824,
-      "f1": 0.5999999999999999,
-      "n_matched": 9,
+      "precision": 0.7333333333333333,
+      "recall": 0.6470588235294118,
+      "f1": 0.6875,
+      "n_matched": 11,
       "n_spurious": 4,
-      "n_missed": 8
+      "n_missed": 6
     }
   },
   "caveats": [
@@ -590,5 +595,5 @@
       "n_pred_spells": 26
     }
   },
-  "prediction_sha256": "6d4e10d35bfab552ea8b3a44c5b98d6af407f8203a2791d45f2f2b04c60f4dca"
+  "prediction_sha256": "7edcfccf14825192a562c94f4462f5e2301ef7c63597db3bf07bc19036ad1b17"
 }
