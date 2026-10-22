@@ -182,4 +182,7 @@ def build_features(data_dir=None, arrays=None, use_tags=True, broadcast=False, h
                                     observed=observed, boundary=boundary, ball_speed=ball_speed)
     if paper_evidence:
         raw['kick_accel'] = kick_accel
+        raw['camera_corrected_nearest'] = br['corrected_nearest']
+        raw['camera_visible'] = br['broadcast_frame'] >= 0
+        raw['camera_correction'] = br['team_correction_fraction'] > 0
     return features, names_out, raw

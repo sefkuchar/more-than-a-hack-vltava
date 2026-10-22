@@ -6,7 +6,7 @@ import numpy as np
 
 from possession.decode import viterbi
 from possession.duration import duration_decode,decode
-from possession.control import control_onsets,snap_control_boundaries
+from possession.control import control_onsets,snap_control_boundaries,recover_camera_spells
 from possession.model import swap_teams,fit_model,predict
 from possession.physics import selfcheck as physics_selfcheck
 from possession.calibration import blend_teams
@@ -74,6 +74,27 @@ def main():
     mirror,_=snap_control_boundaries(swapped,onsets[::-1],0)
     assert np.array_equal(mirror,np.where(refined<2,1-refined,refined))
     assert not len(snap_control_boundaries(np.empty(0,np.int8),onsets,0)[0])
+    camera_prediction=np.ones(40,np.int8)
+    camera_probability=np.tile([.4,.55,.05],(40,1))
+    corrected_nearest=np.full((40,2),10.)
+    corrected_nearest[10:25]=[1.,5.]
+    camera_visible=np.ones(40,bool)
+    camera_corrected=np.zeros(40,bool);camera_corrected[10:25]=True
+    recovered,changes=recover_camera_spells(camera_prediction,camera_probability,
+        corrected_nearest,camera_visible,camera_corrected)
+    assert changes==[(10,25,1,0)] and np.all(recovered[10:25]==0)
+    assert np.array_equal(recover_camera_spells(camera_prediction,camera_probability,
+        corrected_nearest,camera_visible,np.zeros(40,bool))[0],camera_prediction)
+    assert np.array_equal(recover_camera_spells(camera_prediction,camera_probability,
+        corrected_nearest,camera_visible,np.r_[np.ones(10,bool),np.zeros(30,bool)])[0],
+        camera_prediction)
+    dead=camera_prediction.copy();dead[15]=2
+    assert np.array_equal(recover_camera_spells(dead,camera_probability,
+        corrected_nearest,camera_visible,camera_corrected)[0],dead)
+    mirrored_prediction=np.where(camera_prediction<2,1-camera_prediction,camera_prediction)
+    mirror,_=recover_camera_spells(mirrored_prediction,camera_probability[:,[1,0,2]],
+        corrected_nearest[:,::-1],camera_visible,camera_corrected)
+    assert np.array_equal(mirror,np.where(recovered<2,1-recovered,recovered))
     names=['contact_H','contact_A','distance_margin','motion']
     x=rng.normal(size=(150,4));y=np.tile(np.arange(3),50)
     assert np.array_equal(swap_teams(swap_teams(x,names),names),x)

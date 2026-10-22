@@ -11,7 +11,7 @@ from evaluation import possession_metrics as pm
 from possession.duration import decode,PRIOR_PATH,EMISSION_TEMPERATURE
 from possession.features import build_features
 from possession.model import fit_model,predict
-from possession.control import control_onsets,snap_control_boundaries
+from possession.control import control_onsets,snap_control_boundaries,recover_camera_spells
 from possession.calibration import blocked_calibration,calibrated,blend_teams
 from possession.train import MODEL_TEMPERATURE
 from starter.baseline import write_submission
@@ -61,13 +61,20 @@ def main():
             paper_details={'paper_calibration_parameters':paper_parameters.tolist(),
                            'paper_inner_calibration':paper_calibration}
         decoded,changes=snap_control_boundaries(decode(probability,temperature=temperature),onsets,start)
+        recovered=0
+        if not args.baseline:
+            decoded,spans=recover_camera_spells(
+                decoded,probability,raw['camera_corrected_nearest'][start:stop],
+                raw['camera_visible'][start:stop],raw['camera_correction'][start:stop])
+            recovered=len(spans)
         prediction[start+a:start+b]=decoded[a:b]
         fold_score=pm.evaluate(y[ids],decoded[ids])
         folds.append({'fold':fold,'held_out_first_frame':start+a,
             'held_out_last_frame':start+b-1,'training_frames':len(sample),
             'metrics':{k:fold_score[k] for k in (*metric_names,'n_gt_spells','n_pred_spells','per_class')},
             'calibration_parameters':parameters.tolist(),'inner_calibration':calibration,
-            'contact_refined_boundaries_full_context':len(changes),**paper_details})
+            'contact_refined_boundaries_full_context':len(changes),
+            'camera_recovered_spells_full_context':recovered,**paper_details})
         print('Cross-validation fold',fold+1,{k:fold_score[k] for k in metric_names},flush=True)
     score=pm.evaluate(gt,prediction,bootstrap_n=1000)
     fold_scores=np.array([[fold['metrics'][k] for k in metric_names] for fold in folds])
@@ -82,7 +89,7 @@ def main():
     report={'validation_type':'blocked_cross_validation','cross_validation':cv,
         'protocol':'5-fold blocked cross-validation: contiguous minute folds; 250-frame training embargo on both sides; each fold decoded with its own label-excluded model; nested blocked probability calibration',
         'method':'team-symmetric gradient boosting with nested probability calibration' if args.baseline else 'team-symmetric base/cross-camera classifiers, nested probability calibration, equal conditional H/A blend retaining base D probability',
-        'decoder':'calibrated probabilities, external duration semi-Markov at25Hz, then observed-contact refinement of existing H/A boundaries' + ('' if args.baseline else ' with SG7 acceleration-confirmed contact candidates'),
+        'decoder':'calibrated probabilities, external duration semi-Markov at25Hz, then observed-contact refinement of existing H/A boundaries' + ('' if args.baseline else ' with SG7 acceleration-confirmed contact candidates and camera-corrected short-spell recovery'),
         'emission_temperature':temperature,
         'duration_prior_sha256':hashlib.sha256(PRIOR_PATH.read_bytes()).hexdigest(),
         'features':len(names) if args.baseline else len(paper_names),'folds':folds,'model':{k:score[k] for k in fields},
