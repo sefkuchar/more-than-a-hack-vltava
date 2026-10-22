@@ -1,133 +1,158 @@
-# Best possession model
+# Possession model
 
-The saved model is **[models/possession_model.joblib](models/possession_model.joblib)**.
-It contains the trained classifier, probability calibrator, feature schema and
-fitted duration prior. No external dataset or downloaded checkpoint is needed.
+The saved default is **[models/possession_model.joblib](models/possession_model.joblib)**.
+It contains two small team-symmetric classifiers, their calibrators, feature schemas
+and the duration prior. It runs on CPU with the supplied challenge tracking/tagging;
+no external dataset, downloaded checkpoint, video or PyTorch is required.
 
-**Held-out public spellF1: 0.6429. MacroF1: 0.8919.** The strongest bundled baseline
-scores 0.4242 spellF1 on the same public sample. The requested 0.65 milestone was
-not reached; the original iteration goal is paused. Private full-match performance
-is unknown. The organiser's 0.2433 baseline refers to that private full match.
+**Public training spellF1: 0.8267. MacroF1: 0.9885.** The requested training
+spellF1 target of at least 0.75 is reached and verified by the official scorer.
 
-## Run from this directory
+**Five-fold blocked cross-validation spellF1: 0.6933. MacroF1: 0.8869.** These
+are pooled out-of-fold scores, with nested calibration. The previous model
+scored **0.6429 / 0.8919** under the same protocol. Selection prioritizes spellF1,
+the competition ranking metric: held-out spellF1 improves by 0.0505 while macroF1 decreases
+by 0.0050. These are exploratory results on 17 public possessions, not private
+full-match scores.
 
-The existing environment is local to this repository:
+The previous artifact is preserved as
+[models/possession_baseline.joblib](models/possession_baseline.joblib), together
+with its metadata, held-out predictions and full submission.
+
+## Run and compare
 
 ```bash
 source .venv-ball/bin/activate
 export OPENBLAS_NUM_THREADS=4 OMP_NUM_THREADS=4
 python -m possession.run
-```
-
-This loads the saved model and writes:
-
-- `evaluation/results/possession_model.csv`: all 199,319 frame labels.
-- `evaluation/results/possession_model.json`: checksums and public training scores.
-
-It needs the supplied tactical ATD, tactical metadata, Smart Tagging and broadcast
-ATD under `data/`. Video is unnecessary. The fitted model is small and runs on CPU;
-PyTorch and GPU access are unnecessary for the selected pipeline.
-
-## Run the comparator
-
-```bash
 python -m possession.compare
+python evaluation/validate_submission.py evaluation/results/possession_model.csv
 ```
 
-This uses the official metric library to compare the saved **held-out** predictions
-in `experiments/validation_predictions.csv` against all four bundled baselines.
-Expected scores:
+The default run writes all 199,319 frame labels to
+`evaluation/results/possession_model.csv`, plus a JSON report. The comparator
+uses pooled cross-validation predictions rather than the submission's training score.
 
-| Entry | Public spellF1 | MacroF1 |
+| Entry | Pooled CV spellF1 | MacroF1 |
 |---|---:|---:|
-| Held-out model | **0.6429** | **0.8919** |
+| Current conditional team blend + kick refinement, temperature 2 | **0.6933** | **0.8869** |
+| Same classifiers and refinement, temperature 5 | 0.6800 | 0.8912 |
+| Previous saved model | 0.6429 | 0.8919 |
 | baseline_smooth125 | 0.4242 | 0.5812 |
 | baseline_smooth50 | 0.3256 | 0.6207 |
 | baseline_smooth25 | 0.2868 | 0.6200 |
 | baseline_raw | 0.0378 | 0.5972 |
 
-The original submission validator and scoreboard also work:
+**Why the previous model also had a 0.7429 score:** that was its public training
+spellF1, evaluated on labels used to fit it. Its held-out spellF1 was 0.6429.
+The original report is preserved at `evaluation/results/possession_baseline.json`.
+The new model's public training score is **0.8267 spellF1 / 0.9885 macroF1**
+(previously **0.7429 / 0.9740**), recorded in `evaluation/results/possession_model.json`.
+The official scoreboard evaluates each full submission on the public window,
+so its result for a public-label-trained model is a training score. Compare
+models using `possession.compare` and `experiments/validation_report.json`.
+
+To run the preserved previous model:
 
 ```bash
-python evaluation/validate_submission.py evaluation/results/possession_model.csv
-python evaluation/run_evaluation.py --gt public --no-detail
+python -m possession.run --model models/possession_baseline.joblib --out evaluation/results/possession_baseline.csv
 ```
 
-The original scoreboard scores the full submission on the public sample. That
-submission's classifier was trained on the public labels, so its displayed public
-score is a **training score**. Use `possession.compare` for the held-out comparison.
-
-## Fresh environment and reproduction
-
-All installation paths below remain inside the current directory:
+## Reproduction
 
 ```bash
 python3 -m venv .venv-ball
 .venv-ball/bin/python -m pip install -r requirements-model.txt
 source .venv-ball/bin/activate
 export OPENBLAS_NUM_THREADS=4 OMP_NUM_THREADS=4
-```
-
-Python 3.11+ is required; development used Python 3.14. Dependencies are pinned.
-The saved classifier requires scikit-learn 1.8.0.
-
-```bash
-python -m possession.train       # rebuild models/possession_model.joblib
-python -m possession.validate    # recompute nested held-out predictions and report
-python -m possession.run         # generate the full submission from the saved model
+python -m possession.selfcheck
+python -m possession.train
+python -m possession.validate
+python -m possession.run
 python -m possession.compare
 ```
 
-Training and validation use only the allowed public possession labels and the
-provided challenge inputs. Raw external data is unnecessary for these commands.
-The model metadata is in `models/possession_model.json`; validation details and
-bootstrap intervals are in `experiments/validation_report.json`.
+Python 3.11+ is required; development used Python 3.14. Dependencies are pinned,
+and saved classifiers require scikit-learn 1.8.0. Default artifacts use format 2;
+format 1 remains supported for the previous model.
 
-## Method
+`python -m possession.train --baseline` rebuilds the previous model separately;
+`python -m possession.validate --baseline` writes separate baseline validation
+outputs. Paper ablations reproduce with:
 
-1. Build 77 physical, tracking-quality, temporal and automatic-tagging features.
-   Distances exclude dummy goalkeeper observations with missing speed. Ball
-   interpolation carries explicit missingness flags.
-2. Align broadcast tracking to tactical tracking using player geometry. Reliability
-   gates reject replays and mismatched views. No possession labels enter alignment.
-3. Fit shallow histogram gradient boosting with H/A team swapping during training
-   and symmetric probability averaging at prediction time.
-4. Calibrate probabilities with two parameters: a shared log-probability scale and
-   a dead-ball intercept. Fit them on inner blocked held-out training predictions,
-   minimizing regularized log loss. No outer held-out labels fit the calibrator.
-5. Decode each half independently with an exact 25-Hz semi-Markov duration model,
-   using emission temperature 5 and censored-edge survival probabilities. The small
-   duration parameters were learned from an unrelated public IDSSE match and are
-   retained inside the model artifact. Source/license attribution remains in
-   [external-training-data.md](research/external-training-data.md).
-6. Refine existing H/A boundaries to nearby sustained observed-contact onsets:
-   new-team distance below 1.5 m, opponent beyond 3 m, motion stability above 0.2,
-   at least eight frames, search within 50 frames. This preserves spell count,
-   label sequence and every dead-ball boundary. It never inserts a possession.
+```bash
+python -m experiments.object_context
+python -m experiments.paper_evidence
+python -m experiments.paper_boundaries
+python -m experiments.temperature_pool
+```
+
+All feature construction and training use allowed public labels and supplied
+challenge inputs. The duration prior was originally fitted on an unrelated public
+IDSSE match; its parameters are bundled, with attribution in
+[external-training-data.md](research/external-training-data.md).
+
+## Selected method
+
+1. Keep the original 77 physical, tracking-quality, temporal and automatic-tagging
+   features. Dummy goalkeeper observations with missing speed are excluded.
+   Interpolated ball positions retain explicit missingness flags.
+2. Reuse label-free broadcast alignment and mutual nearest-player geometry to
+   correct tactical team assignments. Add eight soft features: mapped observed
+   ball, team-correction fraction, corrected H/A contact and its 25/101-frame means.
+   The second classifier therefore receives 85 features.
+3. Fit the original shallow histogram gradient booster on 77 features and a second
+   on 85, with team-swapped training and symmetric prediction for both.
+4. Fit each model's two-parameter calibrator from inner blocked held-out training
+   predictions. Preserve the original model's D probability; average the two
+   models' conditional H/A probabilities and multiply by the original live mass.
+   This adapts the papers' separate live/dead and team-possession reasoning without
+   training a new temporal network.
+5. Decode each half with the unchanged exact 25-Hz semi-Markov duration model,
+   saved emission temperature 2 and censored-edge survival probabilities. Legacy
+   models without a temperature field retain 5. The smaller temperature allows
+   classifier-supported short spells to overcome the duration prior more readily.
+6. Refine only existing H/A boundaries to nearby new-team contact onsets. Retain
+   the original eight-frame sustained co-motion rule. Also accept exclusive
+   proximity intervals containing observed-ball acceleration at least 4 m/s²,
+   using seven-frame degree-two Savitzky-Golay derivatives. Derivatives stay inside
+   observed runs and halves; motion above 60 m/s or 150 m/s² is rejected. Unsupported
+   acceleration is zero. Refinement searches within 50 frames, preserving spell
+   count, label order and every D boundary.
 
 The system uses offline future tracking context. No clock, frame number, event ID,
-private labels or manually corrected output labels enter classification.
+private labels or manual output corrections enter classification. See
+[paper-combination-results.md](research/paper-combination-results.md) for all four
+paper reviews, unsuccessful feature additions and the selected combination.
+The follow-up [training-target experiments](research/training-target-results.md)
+cover stronger learners, spell weighting, posterior spell-risk decoding and the
+temperature change that clears 0.75 without changing the classifiers.
 
 ## Validation and limits
 
-The five-minute public sample is divided into five contiguous one-minute folds,
-with a ten-second training embargo on each side. Each outer fold fits its own
-classifier. Its calibrator uses inner held-out predictions from the remaining
-training data, with both embargoes enforced. That same outer model predicts,
-decodes and refines the full context before its held-out minute is retained.
+The earlier term "held-out" referred to the test minute within each of these
+five folds: this was already cross-validation, not a single train/test split.
 
-There are only **17 public possessions**. The possession bootstrap interval is
-approximately **0.4286–0.8276**. Many configurations were compared on this sample;
-selection optimism remains. Ball visibility is 88.2% in this sample versus about
-59.3% over the full graded match, so the public result does not establish full-match
-accuracy.
+Five contiguous one-minute outer folds each exclude their labels and a ten-second
+training embargo on both sides. Each classifier's calibrator uses inner held-out
+predictions from allowed training frames, with both embargoes enforced. The same
+outer model supplies the complete public context before decoding and retaining its
+held-out minute. The selected production predictions exactly match the experiment.
 
-External datasets, downloaded research checkpoints, experiment caches and known
-task-created temporary downloads outside this directory were removed. Historical
-experiment scripts/reports remain for inspection; experiments that used those
-external assets require downloading them again. The selected model does not.
+`experiments/validation_report.json` includes each fold's scores, pooled
+out-of-fold scores, and the mean and population standard deviation across folds.
+Mean per-fold spellF1 is **0.6133 ± 0.1402**; mean per-fold macroF1 is
+**0.7016 ± 0.1403**. These differ from pooled scores because minute boundaries
+clip possession spells and two folds contain no D examples. The official metric
+assigns an absent class F1 zero when computing each fold's three-class macroF1.
 
-Research notes:
+The current output predicts 13 possessions against 17 real ones, compared with
+11 previously. Its spell bootstrap interval is approximately **0.4933–0.8753**;
+macro-F1's interval is **0.7661–0.9307**. Repeated selection on this small public
+sample remains optimistic. Public ball visibility is 88.2%, versus about 59.3%
+over the full graded match, so these results do not establish full-match accuracy.
+
+Original research notes and historical experiments remain for inspection:
 
 - [Verified possession methods](research/verified-possession-methods.md)
 - [Ball Radar review](research/ballradar-review.md)

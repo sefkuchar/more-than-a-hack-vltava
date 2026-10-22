@@ -8,7 +8,7 @@ from scipy.ndimage import uniform_filter1d, minimum_filter1d
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from games import GAME, GAMES, require, source_frames
+from games import GAME, GAMES, require, source_frames, half_video_blocks
 from starter.baseline import team_of_each_track
 from starter.load_smart_tagging import load as load_tags
 
@@ -64,7 +64,9 @@ def history(values, window):
     return (sums[i+1]-sums[np.maximum(0,i+1-window)])/count[:,None]
 
 
-def build_features(data_dir=None, arrays=None, use_tags=True, broadcast=False, history_features=False):
+def build_features(data_dir=None, arrays=None, use_tags=True, broadcast=False, history_features=False, paper_evidence=False):
+    if paper_evidence and not broadcast:
+        raise ValueError('Paper evidence requires aligned broadcast tracking')
     players, ball, teams = tracking(data_dir) if arrays is None else arrays
     n = len(ball)
     observed = np.isfinite(ball).all(axis=1)
@@ -160,8 +162,24 @@ def build_features(data_dir=None, arrays=None, use_tags=True, broadcast=False, h
         add('broadcast_ball_error', np.nan_to_num(np.linalg.norm(br['ball']-ball, axis=1), nan=30).clip(0,30))
         for r in (5, 12, 25, 50):
             add('broadcast_contact_mean_'+str(r), rolling(bc, r))
+    if paper_evidence:
+        from possession.physics import ball_motion
+        kick_accel = np.zeros(n, dtype=np.float32)
+        for _, start, end in half_video_blocks(GAME):
+            _, acceleration, _ = ball_motion(ball[start:end+1])
+            kick_accel[start:end+1] = acceleration
+        mapped = (br['broadcast_frame'] >= 0) & observed
+        corrected_contact = np.exp(-.5 * (br['corrected_nearest']/1.5)**2) * mapped[:, None]
+        add('camera_mapped_ball', mapped)
+        add('camera_team_correction', br['team_correction_fraction'])
+        add('camera_contact', corrected_contact)
+        for r in (12, 50):
+            add('camera_contact_mean_'+str(r), rolling(corrected_contact, r))
     features = np.concatenate(columns, axis=1).astype(np.float32)
     assert np.isfinite(features).all(), 'Nonfinite features'
-    return features, names_out, dict(ball=ball, nearest=nearest, contact=contact,
+    raw = dict(ball=ball, nearest=nearest, contact=contact,
                                     moving=moving, mean_speed=mean_speed, tags=tags,
                                     observed=observed, boundary=boundary, ball_speed=ball_speed)
+    if paper_evidence:
+        raw['kick_accel'] = kick_accel
+    return features, names_out, raw

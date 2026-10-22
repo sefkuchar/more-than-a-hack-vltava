@@ -1,0 +1,69 @@
+{
+  "results": {
+    "public_training_context": {
+      "5.0": {
+        "spell_f1_mean": 0.742857142857143,
+        "macro_f1": 0.9809943252362316,
+        "n_pred_spells": 11
+      },
+      "2.0": {
+        "spell_f1_mean": 0.8266666666666668,
+        "macro_f1": 0.9884746835641615,
+        "n_pred_spells": 13
+      },
+      "1.0": {
+        "spell_f1_mean": 0.8625,
+        "macro_f1": 0.989594274145784,
+        "n_pred_spells": 15
+      },
+      "10.0": {
+        "spell_f1_mean": 0.6153846153846153,
+        "macro_f1": 0.9738683950814108,
+        "n_pred_spells": 9
+      },
+      "consensus": {
+        "spell_f1_mean": 0.8266666666666668,
+        "macro_f1": 0.9884746835641615,
+        "n_pred_spells": 13
+      }
+    },
+    "held_out": {
+      "5.0": {
+        "spell_f1_mean": 0.6799999999999999,
+        "macro_f1": 0.8911713007289886,
+        "n_pred_spells": 13
+      },
+      "2.0": {
+        "spell_f1_mean": 0.6933333333333334,
+        "macro_f1": 0.8868610188290035,
+        "n_pred_spells": 13
+      },
+      "1.0": {
+        "spell_f1_mean": 0.5371428571428571,
+        "macro_f1": 0.8790532112400178,
+        "n_pred_spells": 18
+      },
+      "10.0": {
+        "spell_f1_mean": 0.5279999999999999,
+        "macro_f1": 0.8820122777913341,
+        "n_pred_spells": 8
+      },
+      "consensus": {
+        "spell_f1_mean": 0.6799999999999999,
+        "macro_f1": 0.8910109653902719,
+        "n_pred_spells": 13
+      }
+    }
+  },
+  "temperatures": [
+    5.0,
+    2.0,
+    1.0,
+    10.0
+  ],
+  "method": "Fixed temperature pool; unique-path medoid using mean official spellF1 as an MBR-inspired span utility. No labels in consensus.",
+  "selection_target": "Public training spellF1 >=.75; held-out scores separately reported, not an untouched test set.",
+  "caveat": "Training diagnostics decode the full public7500context, not the whole half; final artifact requires official full submission score.",
+  "source_sha256": "fd0140650e9dc069deea080202a4cd6e934484c399f4abfdfb2c91b326a22f2d",
+  "model_sha256": "fa0acdefd42af065fd505cfe24249dcef1c49fe634ce19054ae86f2509e7c6fa"
+}

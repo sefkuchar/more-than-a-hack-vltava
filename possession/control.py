@@ -1,19 +1,29 @@
-"""Refine existing ownership changes with observed physical contact onsets."""
+"""Refine existing ownership changes with sustained contact or observed kick onsets."""
 
 import numpy as np
 
 
-def control_onsets(nearest, stable, observed):
+def control_onsets(nearest, stable, observed, acceleration=None):
+    """Optional supported acceleration confirms one-touch proximity intervals too."""
     nearest, stable = np.asarray(nearest), np.asarray(stable)
     observed = np.asarray(observed, dtype=bool)
     if nearest.shape != (len(observed), 2) or stable.shape != nearest.shape:
         raise ValueError('Expected per-team distances/stability and one visibility flag per frame')
+    if acceleration is not None:
+        acceleration = np.asarray(acceleration)
+        if acceleration.shape != observed.shape or not np.isfinite(acceleration).all():
+            raise ValueError('Expected finite supported ball acceleration per frame')
     onsets = []
     for team in (0, 1):
-        contact = observed & (nearest[:, team] < 1.5) & (nearest[:, 1-team] > 3) & (stable[:, team] > .2)
+        proximity = observed & (nearest[:, team] < 1.5) & (nearest[:, 1-team] > 3)
+        contact = proximity & (stable[:, team] > .2)
         edges = np.diff(np.r_[False, contact, False].astype(np.int8))
         starts, stops = np.flatnonzero(edges == 1), np.flatnonzero(edges == -1)
         onsets.append(starts[stops - starts >= 8])
+        if acceleration is not None:
+            edges = np.flatnonzero(np.diff(np.r_[False, proximity, False].astype(np.int8)))
+            kicks = [a for a, b in zip(edges[::2], edges[1::2]) if np.any(acceleration[a:b] >= 4)]
+            onsets[-1] = np.union1d(onsets[-1], np.asarray(kicks, dtype=int))
     return onsets
 
 

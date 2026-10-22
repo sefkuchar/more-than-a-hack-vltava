@@ -1,0 +1,233 @@
+{
+  "protocol": "5 contiguous minute folds; 250-frame training embargo on both sides; each fold decoded with its own label-excluded model",
+  "method": "team-symmetric gradient boosting with nested probability calibration",
+  "decoder": "calibrated probabilities, external duration semi-Markov at25Hz, then observed-contact refinement of existing H/A boundaries",
+  "emission_temperature": 5.0,
+  "duration_prior_sha256": "76e94ca6791a4c90b293bb12ec3818ee6344f047e86fb78bc51c1ef255fb6ddb",
+  "features": 77,
+  "folds": [
+    {
+      "fold": 0,
+      "held_out_first_frame": 11185,
+      "held_out_last_frame": 12684,
+      "training_frames": 1917,
+      "calibration_parameters": [
+        -0.48633833406737137,
+        -0.07556285558846498
+      ],
+      "inner_calibration": {
+        "folds": [
+          {
+            "inner_fold": 1,
+            "training_frames": 1417,
+            "calibration_frames": 1250
+          },
+          {
+            "inner_fold": 2,
+            "training_frames": 1250,
+            "calibration_frames": 1500
+          },
+          {
+            "inner_fold": 3,
+            "training_frames": 1250,
+            "calibration_frames": 1500
+          },
+          {
+            "inner_fold": 4,
+            "training_frames": 1334,
+            "calibration_frames": 1500
+          }
+        ],
+        "calibration_frames": 5750,
+        "regularized_objective": 0.46535667746064435
+      },
+      "contact_refined_boundaries_full_context": 2
+    },
+    {
+      "fold": 1,
+      "held_out_first_frame": 12685,
+      "held_out_last_frame": 14184,
+      "training_frames": 1834,
+      "calibration_parameters": [
+        -0.5859486525624465,
+        0.10530307249043869
+      ],
+      "inner_calibration": {
+        "folds": [
+          {
+            "inner_fold": 0,
+            "training_frames": 1417,
+            "calibration_frames": 1250
+          },
+          {
+            "inner_fold": 2,
+            "training_frames": 1334,
+            "calibration_frames": 1250
+          },
+          {
+            "inner_fold": 3,
+            "training_frames": 1167,
+            "calibration_frames": 1500
+          },
+          {
+            "inner_fold": 4,
+            "training_frames": 1250,
+            "calibration_frames": 1500
+          }
+        ],
+        "calibration_frames": 5500,
+        "regularized_objective": 0.5182473927503386
+      },
+      "contact_refined_boundaries_full_context": 3
+    },
+    {
+      "fold": 2,
+      "held_out_first_frame": 14185,
+      "held_out_last_frame": 15684,
+      "training_frames": 1834,
+      "calibration_parameters": [
+        -0.5331146431993876,
+        0.32924064727010666
+      ],
+      "inner_calibration": {
+        "folds": [
+          {
+            "inner_fold": 0,
+            "training_frames": 1250,
+            "calibration_frames": 1500
+          },
+          {
+            "inner_fold": 1,
+            "training_frames": 1334,
+            "calibration_frames": 1250
+          },
+          {
+            "inner_fold": 3,
+            "training_frames": 1334,
+            "calibration_frames": 1250
+          },
+          {
+            "inner_fold": 4,
+            "training_frames": 1250,
+            "calibration_frames": 1500
+          }
+        ],
+        "calibration_frames": 5500,
+        "regularized_objective": 0.5119004406115771
+      },
+      "contact_refined_boundaries_full_context": 3
+    },
+    {
+      "fold": 3,
+      "held_out_first_frame": 15685,
+      "held_out_last_frame": 17184,
+      "training_frames": 1834,
+      "calibration_parameters": [
+        -0.4718689546187803,
+        1.228154227538607
+      ],
+      "inner_calibration": {
+        "folds": [
+          {
+            "inner_fold": 0,
+            "training_frames": 1250,
+            "calibration_frames": 1500
+          },
+          {
+            "inner_fold": 1,
+            "training_frames": 1167,
+            "calibration_frames": 1500
+          },
+          {
+            "inner_fold": 2,
+            "training_frames": 1334,
+            "calibration_frames": 1250
+          },
+          {
+            "inner_fold": 4,
+            "training_frames": 1417,
+            "calibration_frames": 1250
+          }
+        ],
+        "calibration_frames": 5500,
+        "regularized_objective": 0.5145117245490513
+      },
+      "contact_refined_boundaries_full_context": 4
+    },
+    {
+      "fold": 4,
+      "held_out_first_frame": 17185,
+      "held_out_last_frame": 18684,
+      "training_frames": 1917,
+      "calibration_parameters": [
+        -0.913934092412372,
+        0.06733074531302381
+      ],
+      "inner_calibration": {
+        "folds": [
+          {
+            "inner_fold": 0,
+            "training_frames": 1334,
+            "calibration_frames": 1500
+          },
+          {
+            "inner_fold": 1,
+            "training_frames": 1250,
+            "calibration_frames": 1500
+          },
+          {
+            "inner_fold": 2,
+            "training_frames": 1250,
+            "calibration_frames": 1500
+          },
+          {
+            "inner_fold": 3,
+            "training_frames": 1417,
+            "calibration_frames": 1250
+          }
+        ],
+        "calibration_frames": 5750,
+        "regularized_objective": 0.6627583144754878
+      },
+      "contact_refined_boundaries_full_context": 3
+    }
+  ],
+  "model": {
+    "spell_f1_mean": 0.6428571428571427,
+    "macro_f1": 0.8919037386538128,
+    "n_gt_spells": 17,
+    "n_pred_spells": 11,
+    "spell_bootstrap_low": 0.42857142857142855,
+    "spell_bootstrap_high": 0.8275862068965518,
+    "bootstrap_low": 0.7820472010068202,
+    "bootstrap_high": 0.9363621672327884
+  },
+  "caveats": [
+    "Only 17 public possessions; this protocol does not establish full-match performance.",
+    "Features and hyperparameters were compared on this same small sample, so selection optimism remains.",
+    "Fold boundaries can clip or merge predicted spells; no random frame validation was used."
+  ],
+  "baselines": {
+    "baseline_raw": {
+      "spell_f1_mean": 0.03783783783783784,
+      "macro_f1": 0.5972272933830406,
+      "n_pred_spells": 131
+    },
+    "baseline_smooth125": {
+      "spell_f1_mean": 0.4242424242424242,
+      "macro_f1": 0.5811854685843337,
+      "n_pred_spells": 16
+    },
+    "baseline_smooth25": {
+      "spell_f1_mean": 0.28679245283018867,
+      "macro_f1": 0.6199906269077847,
+      "n_pred_spells": 36
+    },
+    "baseline_smooth50": {
+      "spell_f1_mean": 0.3255813953488372,
+      "macro_f1": 0.6207331924027959,
+      "n_pred_spells": 26
+    }
+  },
+  "prediction_sha256": "ade02054c3c4559358caa8292fbda9686fd4e3c14efa141af5d5de6f0375ab2b"
+}

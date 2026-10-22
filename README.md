@@ -59,12 +59,17 @@ research notes and reproduction commands, see **[MODEL.md](MODEL.md)**.
 ```bash
 source .venv-ball/bin/activate
 python -m possession.run       # load the saved model and generate the submission
-python -m possession.compare   # compare held-out predictions with the baselines
+python -m possession.compare   # compare cross-validation predictions with the baselines
 ```
 
 The saved model is [models/possession_model.joblib](models/possession_model.joblib).
-Its nested held-out public score is **0.6429 spellF1 / 0.8919 macroF1**. External
-datasets and downloaded checkpoints have been removed; running the model uses
+Its public training score is **0.8267 spellF1 / 0.9885 macroF1**; its nested
+five-fold blocked cross-validation score is **0.6933 spellF1 / 0.8869 macroF1**
+(pooled out-of-fold predictions), using a
+paper-inspired conditional team ensemble and kick-confirmed boundary refinement.
+The previous model is preserved as `models/possession_baseline.joblib`
+(held-out **0.6429 / 0.8919**; its **0.7429** spellF1 was a public training score).
+External datasets and downloaded checkpoints have been removed; running the model uses
 the challenge assets in this directory. Fresh setup, retraining and the official
 scorer commands are in [MODEL.md](MODEL.md).
 

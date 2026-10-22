@@ -68,13 +68,15 @@ def prior_tables(prior,length):
     return np.array([density[0],density[0],density[1]]),np.array([survival[0],survival[0],survival[1]])
 
 
-def decode(probability,prior=None):
+def decode(probability,prior=None,temperature=EMISSION_TEMPERATURE):
     p=np.asarray(probability,dtype=float)
     if p.ndim!=2 or p.shape[1]!=3 or not np.isfinite(p).all() or np.any((p<0)|(p>1)):
         raise ValueError('Expected finite H/A/D probabilities')
+    if not np.isfinite(temperature) or temperature<=0:
+        raise ValueError('Expected a positive finite emission temperature')
     if not len(p):
         return np.empty(0,np.int8)
     prior=json.loads(PRIOR_PATH.read_text()) if prior is None else prior
     density,survival=prior_tables(prior,len(p))
-    return duration_decode(np.log(p.clip(1e-5,1))/EMISSION_TEMPERATURE,
+    return duration_decode(np.log(p.clip(1e-5,1))/temperature,
                            density,survival,np.arange(len(p)+1))
