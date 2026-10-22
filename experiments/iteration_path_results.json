@@ -1,0 +1,60 @@
+{
+  "results": [
+    {
+      "iterations": 60,
+      "spell_f1_mean": 0.5733333333333333,
+      "macro_f1": 0.8742622463923144,
+      "n_pred_spells": 13
+    },
+    {
+      "iterations": 90,
+      "spell_f1_mean": 0.6000000000000001,
+      "macro_f1": 0.8749797972104435,
+      "n_pred_spells": 13
+    },
+    {
+      "iterations": 120,
+      "spell_f1_mean": 0.6266666666666667,
+      "macro_f1": 0.8780037541743808,
+      "n_pred_spells": 13
+    },
+    {
+      "iterations": 150,
+      "spell_f1_mean": 0.6266666666666667,
+      "macro_f1": 0.8721788998205153,
+      "n_pred_spells": 13
+    },
+    {
+      "iterations": 180,
+      "spell_f1_mean": 0.6266666666666667,
+      "macro_f1": 0.8717346910062949,
+      "n_pred_spells": 13
+    }
+  ],
+  "parameters": {
+    "learning_rate": 0.07,
+    "l2_regularization": 10,
+    "max_depth": 3,
+    "max_leaf_nodes": 7,
+    "min_samples_leaf": 35,
+    "random_state": 0,
+    "warm_start": true
+  },
+  "baseline120_max_probability_difference": 0.0,
+  "source_input_sha256": {
+    "experiments/iteration_path.py": "c7a591df97fa753d1ee0d7eb33a6a1fd0621f8c762b1797c476ef1d155a42f47",
+    "possession/features.py": "56ac029f1ed867c314befb651c84f3c952bbc14eae40c542f2bf10807be6e8ae",
+    "possession/model.py": "82b22fb14af5825836a7c3c67fd8667f2cc13277a5fda30a3e5745003b29b33e",
+    "experiments/duration_model.py": "f13907b0be63fa635f7ed689340b25f9e4d82227d0809dd30d62910fb4dae83f",
+    "experiments/align_broadcast.py": "340cb854ba163c072629e3a73649e989d4064955dd2a7d83e19e2d50d70f4e30",
+    "features": "c87c85c5e71bc3393ab27d786cd9d907fa6303d864c7e25e92e275329662d4e0",
+    "labels": "bda559851bad48e556896b357b9727b474f325877c83ed925a0af28f674f05bd",
+    "priors": "0929da521f613fb7983a87fdb1dfc5459e341dfe5a4cc98d625ceee45bb6f7fd"
+  },
+  "decoder": "external duration exact25Hz",
+  "temperature": 5,
+  "folds": 5,
+  "embargo": 250,
+  "stride": 3,
+  "selection_optimism": true
+}

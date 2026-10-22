@@ -1,0 +1,52 @@
+{
+  "results": [
+    {
+      "method": "current_contact",
+      "feature_count": 80,
+      "added": [
+        "neural_contact_H",
+        "neural_contact_A",
+        "neural_contact_entropy"
+      ],
+      "feature_sha256": "a3efa9330127b6680cb0f9a261676389d370bbd8a7ca3c8eff91cf8fc00387a6",
+      "spell_f1_mean": 0.6,
+      "macro_f1": 0.8806377277213082,
+      "n_pred_spells": 11
+    },
+    {
+      "method": "ball_current_contact",
+      "feature_count": 87,
+      "added": [
+        "reconstructed_distance_H",
+        "reconstructed_distance_A",
+        "reconstructed_contact_H",
+        "reconstructed_contact_A",
+        "reconstructed_disagreement",
+        "reconstructed_spread",
+        "reconstructed_anchor_fraction",
+        "neural_contact_H",
+        "neural_contact_A",
+        "neural_contact_entropy"
+      ],
+      "feature_sha256": "7096f6f12364e59021d832170f28db0e89f40a1a3781ba2d73f9438eccc9c46f",
+      "spell_f1_mean": 0.5857142857142856,
+      "macro_f1": 0.8747990276550883,
+      "n_pred_spells": 11
+    }
+  ],
+  "input_source_sha256": {
+    "experiments/contact_ablation.py": "ca0ff483c0494e7d9ef58a6e18a767e4d745135d5cb01dbb37b71f97565b2f6b",
+    "possession/features.py": "56ac029f1ed867c314befb651c84f3c952bbc14eae40c542f2bf10807be6e8ae",
+    "possession/model.py": "82b22fb14af5825836a7c3c67fd8667f2cc13277a5fda30a3e5745003b29b33e",
+    "experiments/duration_model.py": "f13907b0be63fa635f7ed689340b25f9e4d82227d0809dd30d62910fb4dae83f",
+    "experiments/align_broadcast.py": "340cb854ba163c072629e3a73649e989d4064955dd2a7d83e19e2d50d70f4e30",
+    "extra_cache": "42e5fa3b70f3ed5c3ef00035c833d5b205c3deac60f3da4c6d6edae467a81e33",
+    "labels": "bda559851bad48e556896b357b9727b474f325877c83ed925a0af28f674f05bd",
+    "priors": "0929da521f613fb7983a87fdb1dfc5459e341dfe5a4cc98d625ceee45bb6f7fd"
+  },
+  "decoder": "external duration exact25Hz",
+  "temperature": 5,
+  "folds": 5,
+  "embargo": 250,
+  "stride": 3
+}

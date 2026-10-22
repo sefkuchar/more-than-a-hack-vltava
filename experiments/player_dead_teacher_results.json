@@ -1,0 +1,67 @@
+{
+  "method": "external_player_only_dead_teacher",
+  "teacher_parameters": {
+    "categorical_features": "from_dtype",
+    "class_weight": null,
+    "early_stopping": "auto",
+    "interaction_cst": null,
+    "l2_regularization": 50,
+    "learning_rate": 0.07,
+    "loss": "log_loss",
+    "max_bins": 255,
+    "max_depth": 3,
+    "max_features": 1.0,
+    "max_iter": 150,
+    "max_leaf_nodes": 7,
+    "min_samples_leaf": 50,
+    "monotonic_cst": null,
+    "n_iter_no_change": 10,
+    "random_state": 0,
+    "scoring": "loss",
+    "tol": 1e-07,
+    "validation_fraction": 0.1,
+    "verbose": 0,
+    "warm_start": false
+  },
+  "teacher_inputs": "player positions and speed only; team-symmetric summaries; no ball, tags, labels, clock",
+  "shifted_context_frames": [
+    0,
+    -10,
+    10,
+    -20,
+    20,
+    -50,
+    50,
+    -100,
+    100,
+    -500,
+    500,
+    -1000,
+    1000,
+    -2000,
+    2000
+  ],
+  "external_train_frames": 5489,
+  "external_class_counts": [
+    2876,
+    2613
+  ],
+  "diagnostic_after_teacher_fit": {
+    "dead_f1": 0.8166915052160953,
+    "dead_roc_auc": 0.9428692621591259
+  },
+  "source_input_sha256": {
+    "experiments/player_dead_teacher.py": "5e046185e644ccbae7100a6ea8b3a8d84ac7fd9d13d17e283e0c211e8d804bfe",
+    "possession/features.py": "56ac029f1ed867c314befb651c84f3c952bbc14eae40c542f2bf10807be6e8ae",
+    "possession/model.py": "82b22fb14af5825836a7c3c67fd8667f2cc13277a5fda30a3e5745003b29b33e",
+    "experiments/duration_model.py": "f13907b0be63fa635f7ed689340b25f9e4d82227d0809dd30d62910fb4dae83f",
+    "experiments/align_broadcast.py": "340cb854ba163c072629e3a73649e989d4064955dd2a7d83e19e2d50d70f4e30",
+    "external_arrays": "26182d65fd52ee3df65010335a0538d1c59c283c91e9d0d3dac6b3bc39a09b0a",
+    "teacher_train_features": "e9afde0d5f33af7c3ee85277ad0fbec3aede04204b11ad2af95f5e843180b88b",
+    "teacher_train_labels": "14fcbe355f0c09d8ef73bc0c1e2a1e4a5233964c576e6e73b3173ee914bd4d26",
+    "target_features": "d8146e9bc31a8da80700636c45716b10f85d1f01797657cec36182292c4ad7a2"
+  },
+  "spell_f1_mean": 0.6064516129032258,
+  "macro_f1": 0.8402197095922888,
+  "n_pred_spells": 14
+}

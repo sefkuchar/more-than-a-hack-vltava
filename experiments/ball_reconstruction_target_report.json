@@ -1,0 +1,103 @@
+{
+  "protocol": "Target first half excluding public window and 10s context; raw observed ball only; second-half test; nonoverlapping test windows; no possession inputs",
+  "epochs": 12,
+  "seed": 7,
+  "torch": "2.14.1",
+  "device": "mps",
+  "length": 61,
+  "stride": 4,
+  "training_starts": 1968,
+  "training_loss_m": [
+    7.853958117961883,
+    7.56460582613945,
+    7.248529142141342,
+    7.332603216171265,
+    7.201571321487426,
+    7.017205035686493,
+    6.990276139974594,
+    6.834830558300018,
+    6.771194469928742,
+    6.942565768957138,
+    6.723462837934494,
+    6.625785714387893
+  ],
+  "scores": {
+    "1s": {
+      "model": {
+        "windows": 177,
+        "ADE_m": 1.2130895457362052,
+        "mean_window_max_error_m": 1.5589811466844743
+      },
+      "interpolation_or_centroid": {
+        "windows": 177,
+        "ADE_m": 0.8441833170909582,
+        "mean_window_max_error_m": 1.1938190757702132
+      },
+      "constant_velocity_or_centroid": {
+        "windows": 177,
+        "ADE_m": 1.722128557556935,
+        "mean_window_max_error_m": 3.589385079630351
+      }
+    },
+    "5s": {
+      "model": {
+        "windows": 177,
+        "ADE_m": 5.042475212765279,
+        "mean_window_max_error_m": 9.54590383020498
+      },
+      "interpolation_or_centroid": {
+        "windows": 177,
+        "ADE_m": 6.486458264817458,
+        "mean_window_max_error_m": 12.123989534832663
+      },
+      "constant_velocity_or_centroid": {
+        "windows": 177,
+        "ADE_m": 16.80086682846317,
+        "mean_window_max_error_m": 36.07957924237359
+      }
+    },
+    "90percent": {
+      "model": {
+        "windows": 177,
+        "ADE_m": 6.907830659279042,
+        "mean_window_max_error_m": 14.398150907397945
+      },
+      "interpolation_or_centroid": {
+        "windows": 177,
+        "ADE_m": 13.025004592992492,
+        "mean_window_max_error_m": 24.296060247946595
+      },
+      "constant_velocity_or_centroid": {
+        "windows": 177,
+        "ADE_m": 27.443877589231157,
+        "mean_window_max_error_m": 58.01847042875775
+      }
+    },
+    "hidden": {
+      "model": {
+        "windows": 177,
+        "ADE_m": 8.444153920405329,
+        "mean_window_max_error_m": 16.776551252031055
+      },
+      "interpolation_or_centroid": {
+        "windows": 177,
+        "ADE_m": 19.774846898633882,
+        "mean_window_max_error_m": 28.20538593012061
+      },
+      "constant_velocity_or_centroid": {
+        "windows": 177,
+        "ADE_m": 19.774846898633882,
+        "mean_window_max_error_m": 28.20538593012061
+      }
+    }
+  },
+  "checkpoint_sha256": "6367cb451556d65b39c3a81aef6f7304e155a46f7f0be7b37eef24f384e0a0e2",
+  "source_checkpoint_sha256": "f50386512437d21d4d4785c3586f9cea34caf53af1e4722d315c14caee008ab8",
+  "code_sha256": "e13ee5085cdf9aad8f78cbf2d1d95af75ea981d09d070cd0e7c62d021aa91324",
+  "caveats": [
+    "One external match; neither match-disjoint generalization nor target possession spellF1.",
+    "90percent denotes one centered contiguous gap, not random frame masking.",
+    "Fully hidden baseline is player centroid; interpolation is undefined without anchors."
+  ],
+  "evaluation_code_sha256": "9cd98f21e6c84019cdc696a5e49faf45529c82fd5674ae9376d3582bf17713a0"
+}

@@ -1,0 +1,113 @@
+{
+  "results": [
+    {
+      "method": "no_broadcast",
+      "feature_count": 62,
+      "removed": [
+        "broadcast_visible",
+        "broadcast_distance_H",
+        "broadcast_distance_A",
+        "broadcast_contact_H",
+        "broadcast_contact_A",
+        "broadcast_quality",
+        "broadcast_ball_error",
+        "broadcast_contact_mean_5_H",
+        "broadcast_contact_mean_5_A",
+        "broadcast_contact_mean_12_H",
+        "broadcast_contact_mean_12_A",
+        "broadcast_contact_mean_25_H",
+        "broadcast_contact_mean_25_A",
+        "broadcast_contact_mean_50_H",
+        "broadcast_contact_mean_50_A"
+      ],
+      "spell_f1_mean": 0.39999999999999997,
+      "macro_f1": 0.7194826435266783,
+      "n_pred_spells": 13
+    },
+    {
+      "method": "no_tags",
+      "feature_count": 74,
+      "removed": [
+        "restart",
+        "phase_H",
+        "phase_A"
+      ],
+      "spell_f1_mean": 0.6133333333333334,
+      "macro_f1": 0.8765687796499056,
+      "n_pred_spells": 13
+    },
+    {
+      "method": "no_ball_motion",
+      "feature_count": 59,
+      "removed": [
+        "ball_speed",
+        "boundary",
+        "trajectory_turn",
+        "ball_speed_mean_5",
+        "boundary_min_5",
+        "stationary_5",
+        "ball_speed_mean_12",
+        "boundary_min_12",
+        "stationary_12",
+        "ball_speed_mean_25",
+        "boundary_min_25",
+        "stationary_25",
+        "ball_speed_mean_50",
+        "boundary_min_50",
+        "stationary_50",
+        "ball_speed_mean_125",
+        "boundary_min_125",
+        "stationary_125"
+      ],
+      "spell_f1_mean": 0.5625,
+      "macro_f1": 0.7537351075507153,
+      "n_pred_spells": 15
+    },
+    {
+      "method": "no_short_smoothing",
+      "feature_count": 55,
+      "removed": [
+        "contact_mean_5_H",
+        "contact_mean_5_A",
+        "visibility_5",
+        "motion_5",
+        "ball_speed_mean_5",
+        "boundary_min_5",
+        "stationary_5",
+        "stable_contact_mean_5_H",
+        "stable_contact_mean_5_A",
+        "contact_mean_12_H",
+        "contact_mean_12_A",
+        "visibility_12",
+        "motion_12",
+        "ball_speed_mean_12",
+        "boundary_min_12",
+        "stationary_12",
+        "stable_contact_mean_12_H",
+        "stable_contact_mean_12_A",
+        "broadcast_contact_mean_5_H",
+        "broadcast_contact_mean_5_A",
+        "broadcast_contact_mean_12_H",
+        "broadcast_contact_mean_12_A"
+      ],
+      "spell_f1_mean": 0.6133333333333334,
+      "macro_f1": 0.8760375182895174,
+      "n_pred_spells": 13
+    }
+  ],
+  "source_input_sha256": {
+    "experiments/feature_ablation.py": "60b02356dfd57011e72c995632ff509f37ff47d9e6e3d8c65f41ad520a2744ea",
+    "possession/features.py": "56ac029f1ed867c314befb651c84f3c952bbc14eae40c542f2bf10807be6e8ae",
+    "possession/model.py": "82b22fb14af5825836a7c3c67fd8667f2cc13277a5fda30a3e5745003b29b33e",
+    "experiments/duration_model.py": "f13907b0be63fa635f7ed689340b25f9e4d82227d0809dd30d62910fb4dae83f",
+    "experiments/align_broadcast.py": "340cb854ba163c072629e3a73649e989d4064955dd2a7d83e19e2d50d70f4e30",
+    "features": "c87c85c5e71bc3393ab27d786cd9d907fa6303d864c7e25e92e275329662d4e0",
+    "labels": "bda559851bad48e556896b357b9727b474f325877c83ed925a0af28f674f05bd",
+    "priors": "0929da521f613fb7983a87fdb1dfc5459e341dfe5a4cc98d625ceee45bb6f7fd"
+  },
+  "decoder": "external duration exact25Hz",
+  "temperature": 5,
+  "folds": 5,
+  "embargo": 250,
+  "stride": 3
+}

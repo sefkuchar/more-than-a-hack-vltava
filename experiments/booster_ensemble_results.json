@@ -1,0 +1,21 @@
+{
+  "results": [
+    {
+      "method": "hist_xgb",
+      "penalty": 32,
+      "spell_f1_mean": 0.6000000000000001,
+      "macro_f1": 0.8762565153770042,
+      "n_pred_spells": 13
+    },
+    {
+      "method": "hist_xgb_cat",
+      "penalty": 32,
+      "spell_f1_mean": 0.6,
+      "macro_f1": 0.8803018125230273,
+      "n_pred_spells": 13
+    }
+  ],
+  "source_sha256": "b47897b37424c931ed36fae9fd578e9475055d0cdcd7f0c403acfcb78d45d193",
+  "feature_sha256": "c87c85c5e71bc3393ab27d786cd9d907fa6303d864c7e25e92e275329662d4e0",
+  "label_sha256": "bda559851bad48e556896b357b9727b474f325877c83ed925a0af28f674f05bd"
+}

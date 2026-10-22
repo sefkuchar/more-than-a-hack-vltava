@@ -1,0 +1,182 @@
+{
+  "results": {
+    "uncalibrated_snap": {
+      "spell_f1_mean": 0.64,
+      "macro_f1": 0.8804004595766904,
+      "n_pred_spells": 13
+    },
+    "nested_probability_calibrated_snap": {
+      "spell_f1_mean": 0.6428571428571427,
+      "macro_f1": 0.8919037386538128,
+      "n_pred_spells": 11
+    }
+  },
+  "folds": [
+    {
+      "outer_fold": 0,
+      "log_scale": -0.48633833406737137,
+      "scale": 0.6148737393841134,
+      "dead_intercept": -0.07556285558846498,
+      "calibration_frames": 5750,
+      "regularized_objective": 0.46535667746064435,
+      "calibration_log_loss_before": 0.5176233603777102,
+      "calibration_log_loss_after": 0.46293433025736325,
+      "inner_folds": [
+        {
+          "inner_fold": 1,
+          "train_frames": 1417,
+          "calibration_frames": 1250
+        },
+        {
+          "inner_fold": 2,
+          "train_frames": 1250,
+          "calibration_frames": 1500
+        },
+        {
+          "inner_fold": 3,
+          "train_frames": 1250,
+          "calibration_frames": 1500
+        },
+        {
+          "inner_fold": 4,
+          "train_frames": 1334,
+          "calibration_frames": 1500
+        }
+      ]
+    },
+    {
+      "outer_fold": 1,
+      "log_scale": -0.5859486525624465,
+      "scale": 0.5565776125109545,
+      "dead_intercept": 0.10530307249043869,
+      "calibration_frames": 5500,
+      "regularized_objective": 0.5182473927503386,
+      "calibration_log_loss_before": 0.6238829754967741,
+      "calibration_log_loss_after": 0.5147031471451818,
+      "inner_folds": [
+        {
+          "inner_fold": 0,
+          "train_frames": 1417,
+          "calibration_frames": 1250
+        },
+        {
+          "inner_fold": 2,
+          "train_frames": 1334,
+          "calibration_frames": 1250
+        },
+        {
+          "inner_fold": 3,
+          "train_frames": 1167,
+          "calibration_frames": 1500
+        },
+        {
+          "inner_fold": 4,
+          "train_frames": 1250,
+          "calibration_frames": 1500
+        }
+      ]
+    },
+    {
+      "outer_fold": 2,
+      "log_scale": -0.5331146431993876,
+      "scale": 0.5867745272796655,
+      "dead_intercept": 0.32924064727010666,
+      "calibration_frames": 5500,
+      "regularized_objective": 0.5119004406115771,
+      "calibration_log_loss_before": 0.6069108124125521,
+      "calibration_log_loss_after": 0.5079743343454927,
+      "inner_folds": [
+        {
+          "inner_fold": 0,
+          "train_frames": 1250,
+          "calibration_frames": 1500
+        },
+        {
+          "inner_fold": 1,
+          "train_frames": 1334,
+          "calibration_frames": 1250
+        },
+        {
+          "inner_fold": 3,
+          "train_frames": 1334,
+          "calibration_frames": 1250
+        },
+        {
+          "inner_fold": 4,
+          "train_frames": 1250,
+          "calibration_frames": 1500
+        }
+      ]
+    },
+    {
+      "outer_fold": 3,
+      "log_scale": -0.4718689546187803,
+      "scale": 0.6238352582906993,
+      "dead_intercept": 1.228154227538607,
+      "calibration_frames": 5500,
+      "regularized_objective": 0.5145117245490513,
+      "calibration_log_loss_before": 0.7027039745973758,
+      "calibration_log_loss_after": 0.4972014933795115,
+      "inner_folds": [
+        {
+          "inner_fold": 0,
+          "train_frames": 1250,
+          "calibration_frames": 1500
+        },
+        {
+          "inner_fold": 1,
+          "train_frames": 1167,
+          "calibration_frames": 1500
+        },
+        {
+          "inner_fold": 2,
+          "train_frames": 1334,
+          "calibration_frames": 1250
+        },
+        {
+          "inner_fold": 4,
+          "train_frames": 1417,
+          "calibration_frames": 1250
+        }
+      ]
+    },
+    {
+      "outer_fold": 4,
+      "log_scale": -0.913934092412372,
+      "scale": 0.4009437674076838,
+      "dead_intercept": 0.06733074531302381,
+      "calibration_frames": 5750,
+      "regularized_objective": 0.6627583144754878,
+      "calibration_log_loss_before": 0.971944713447912,
+      "calibration_log_loss_after": 0.6543602249301076,
+      "inner_folds": [
+        {
+          "inner_fold": 0,
+          "train_frames": 1334,
+          "calibration_frames": 1500
+        },
+        {
+          "inner_fold": 1,
+          "train_frames": 1250,
+          "calibration_frames": 1500
+        },
+        {
+          "inner_fold": 2,
+          "train_frames": 1250,
+          "calibration_frames": 1500
+        },
+        {
+          "inner_fold": 3,
+          "train_frames": 1417,
+          "calibration_frames": 1250
+        }
+      ]
+    }
+  ],
+  "changed_oof_frames": 115,
+  "source_sha256": "6a5d7e36e40356d52943f7e31511f74e35da32970ff4b33b59abde6464573e16",
+  "feature_sha256": "c87c85c5e71bc3393ab27d786cd9d907fa6303d864c7e25e92e275329662d4e0",
+  "prior_sha256": "76e94ca6791a4c90b293bb12ec3818ee6344f047e86fb78bc51c1ef255fb6ddb",
+  "cache_sha256": "5af6229dc1ea8c059dd078f93f6eb75d613dc1b5fafa0bf6e21e2d81fd11ab24",
+  "protocol": "Strictnestedoutertrain+innerheldminute+250embargo. Onlyinnerheldrowsinsideoutertrain supplycalibratorlabels. exp(a*logp+b*I_D); a=exp(loga), logaboundslog.25..log4,b[-2,2];meanlogloss+.01*(loga\u00b2+b\u00b2),L-BFGS-Binitial0,0. SharedHA scale preserves teamsymmetry. Applyouterp,sameT5duration+fixedcontactsnap. No outertimingbias/grid/featurechanges. Outerlabelisolationmaskcheckpassed."
+}

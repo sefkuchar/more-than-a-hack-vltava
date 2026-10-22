@@ -1,0 +1,44 @@
+[
+  {
+    "method": "forest",
+    "penalty": 8,
+    "spell_f1_mean": 0.4114285714285715,
+    "macro_f1": 0.6817319199936837,
+    "n_pred_spells": 18
+  },
+  {
+    "method": "forest",
+    "penalty": 16,
+    "spell_f1_mean": 0.33548387096774196,
+    "macro_f1": 0.6862870604024728,
+    "n_pred_spells": 14
+  },
+  {
+    "method": "forest",
+    "penalty": 32,
+    "spell_f1_mean": 0.32,
+    "macro_f1": 0.6763164401857681,
+    "n_pred_spells": 13
+  },
+  {
+    "method": "ensemble",
+    "penalty": 8,
+    "spell_f1_mean": 0.525,
+    "macro_f1": 0.8427382762188671,
+    "n_pred_spells": 15
+  },
+  {
+    "method": "ensemble",
+    "penalty": 16,
+    "spell_f1_mean": 0.5419354838709678,
+    "macro_f1": 0.8292241544694171,
+    "n_pred_spells": 14
+  },
+  {
+    "method": "ensemble",
+    "penalty": 32,
+    "spell_f1_mean": 0.5379310344827586,
+    "macro_f1": 0.8347191028261111,
+    "n_pred_spells": 12
+  }
+]
