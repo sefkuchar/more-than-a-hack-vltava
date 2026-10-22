@@ -8,9 +8,12 @@ from possession.decode import viterbi
 from possession.duration import duration_decode,decode
 from possession.control import control_onsets,snap_control_boundaries
 from possession.model import swap_teams,fit_model,predict
+from possession.physics import selfcheck as physics_selfcheck
+from possession.calibration import blend_teams
 
 
 def main():
+    physics_selfcheck()
     rng=np.random.RandomState(2)
     for n in (1,2,5):
         for cost in (0,1.7):
@@ -42,11 +45,28 @@ def main():
         expected=max(duration_objective(s) for s in itertools.product(range(3),repeat=n))
         assert np.isclose(duration_objective(actual),expected)
     assert len(decode(np.empty((0,3))))==0
+    probability=rng.dirichlet(np.ones(3),6)
+    assert np.array_equal(decode(probability),decode(probability,temperature=5.))
+    decoded=decode(probability,temperature=2.)
+    mirrored=decode(probability[:,[1,0,2]],temperature=2.)
+    assert np.array_equal(mirrored,np.where(decoded<2,1-decoded,decoded))
+    for invalid in (0.,-1.,np.inf,np.nan):
+        try:
+            decode(probability,temperature=invalid)
+        except ValueError:
+            pass
+        else:
+            raise AssertionError('Invalid temperature accepted')
     nearest=np.full((40,2),10.)
     stable=np.zeros((40,2));observed=np.ones(40,bool)
     nearest[10:20,0]=.5;stable[10:20,0]=.8
     onsets=control_onsets(nearest,stable,observed)
     assert np.array_equal(onsets[0],[10]) and not len(onsets[1])
+    impulse_stability=np.zeros_like(stable)
+    acceleration=np.zeros(40);acceleration[12]=8
+    assert not control_onsets(nearest,impulse_stability,observed)[0].size
+    assert np.array_equal(control_onsets(nearest,impulse_stability,observed,acceleration)[0],[10])
+    assert not control_onsets(nearest,impulse_stability,np.zeros(40,bool),acceleration)[0].size
     original=np.r_[np.ones(15,np.int8),np.zeros(15,np.int8),np.full(10,2,np.int8)]
     refined,changes=snap_control_boundaries(original,onsets,0)
     assert changes==[(15,10)] and np.array_equal(refined,np.r_[np.ones(10),np.zeros(20),np.full(10,2)])
@@ -62,7 +82,14 @@ def main():
     q=predict(m,swap_teams(x,names),names)[:,[1,0,2]]
     assert np.allclose(p,q)
     assert np.allclose(p.sum(axis=1),1)
-    print('PASS: exhaustive decoder optima, contact refinement and symmetry, empty sequences, swap involution, symmetric probabilities')
+    other=rng.dirichlet(np.ones(3),len(p))
+    blended=blend_teams(p,other)
+    assert np.array_equal(blended[:,2],p[:,2]) and np.allclose(blended.sum(axis=1),1)
+    assert np.allclose(blend_teams(p,p),p)
+    assert np.allclose(blend_teams(p[:,[1,0,2]],other[:,[1,0,2]]),blended[:,[1,0,2]])
+    assert np.allclose(blend_teams(np.array([[.2,.8,0.],[0.,0.,1.]]),np.array([[0.,0.,1.],[.1,.9,0.]])).sum(axis=1),1)
+    assert blend_teams(np.empty((0,3)),np.empty((0,3))).shape==(0,3)
+    print('PASS: decoder optima, observed/gap-safe physics, sustained/impulse contact refinement, conditional team blending, team symmetry and empty inputs')
 
 
 if __name__=='__main__':

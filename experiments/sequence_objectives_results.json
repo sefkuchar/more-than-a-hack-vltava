@@ -1,0 +1,104 @@
+{
+  "results": {
+    "training_reference": {
+      "spell_f1_mean": 0.742857142857143,
+      "macro_f1": 0.9809943252362316,
+      "n_pred_spells": 11
+    },
+    "training_fixed_dead_map": {
+      "spell_f1_mean": 0.742857142857143,
+      "macro_f1": 0.9809943252362316,
+      "n_pred_spells": 11
+    },
+    "training_directed_contact": {
+      "spell_f1_mean": 0.742857142857143,
+      "macro_f1": 0.9809943252362316,
+      "n_pred_spells": 11
+    },
+    "training_posterior_spell_risk": {
+      "spell_f1_mean": 0.8266666666666668,
+      "macro_f1": 0.9871302619421923,
+      "n_pred_spells": 13
+    },
+    "heldout_reference": {
+      "spell_f1_mean": 0.6799999999999999,
+      "macro_f1": 0.8911713007289886,
+      "n_pred_spells": 13
+    },
+    "heldout_fixed_dead_map": {
+      "spell_f1_mean": 0.6799999999999999,
+      "macro_f1": 0.8911713007289886,
+      "n_pred_spells": 13
+    },
+    "heldout_directed_contact": {
+      "spell_f1_mean": 0.6799999999999999,
+      "macro_f1": 0.8911713007289886,
+      "n_pred_spells": 13
+    },
+    "heldout_posterior_spell_risk": {
+      "spell_f1_mean": 0.6933333333333334,
+      "macro_f1": 0.8862861906155984,
+      "n_pred_spells": 13
+    }
+  },
+  "details": [
+    {
+      "fold": -1,
+      "posterior_samples": 32,
+      "risk_candidate": 7,
+      "expected_spell_f1": 0.9606716778591778,
+      "changed_contact_frames_full_context": 0
+    },
+    {
+      "fold": 0,
+      "posterior_samples": 32,
+      "risk_candidate": 19,
+      "expected_spell_f1": 0.9288548951048953,
+      "changed_contact_frames_full_context": 0
+    },
+    {
+      "fold": 1,
+      "posterior_samples": 32,
+      "risk_candidate": 3,
+      "expected_spell_f1": 0.9411334808186343,
+      "changed_contact_frames_full_context": 0
+    },
+    {
+      "fold": 2,
+      "posterior_samples": 32,
+      "risk_candidate": 12,
+      "expected_spell_f1": 0.9727032930107529,
+      "changed_contact_frames_full_context": 0
+    },
+    {
+      "fold": 3,
+      "posterior_samples": 32,
+      "risk_candidate": 0,
+      "expected_spell_f1": 0.9604699718963833,
+      "changed_contact_frames_full_context": 0
+    },
+    {
+      "fold": 4,
+      "posterior_samples": 32,
+      "risk_candidate": 3,
+      "expected_spell_f1": 0.9028503764753765,
+      "changed_contact_frames_full_context": 0
+    }
+  ],
+  "protocol": "Training uses the saved full-public-fit classifier. Heldout uses cached 5 minute folds with 250-frame embargo and nested calibration; each fold decodes all 7500 frames before retaining its own minute. No labels enter inference objectives.",
+  "methods": {
+    "fixed_dead_map": "Exact H/A semi-Markov MAP constrained to reference D; complete duration density at D boundaries, survival only at public window edges.",
+    "directed_contact": "Same fixed-D MAP with log(2) new-team transition reward at existing sustained-or-SG7 kick onsets; no hard insertion or threshold sweep.",
+    "posterior_spell_risk": "32 exact semi-Markov H/A posterior samples, then select MAP or sampled sequence maximizing posterior expected official spellF1; all candidates receive unchanged physical refinement."
+  },
+  "source_sha256": "2bf5d8243eb2053ec331fda036b80751c9dc1e487d4ca2f220c753b719bec5a8",
+  "model_sha256": "2b6efa10b60b33bfea4061268a3bb055d9e6a0f83f70c8d62a761b30414c91e4",
+  "cache_sha256": "400361575eecd51310a5852792730c39366574d0ba39fae3b4c6134582f9e41d",
+  "label_sha256": "bda559851bad48e556896b357b9727b474f325877c83ed925a0af28f674f05bd",
+  "limits": [
+    "Public training scores are resubstitution, not generalization.",
+    "Method selection reuses the same 17 public spells.",
+    "Posterior risk is a 32-sample approximation with fixed D, so it cannot recover an incorrectly dead possession.",
+    "No manual labels or target segment timestamps enter decoding."
+  ]
+}

@@ -1,0 +1,2369 @@
+{
+  "protocol": "Five contiguous folds, 250-frame outer/inner embargo, stride3, matching learner in every inner calibration; each fold predicts/decodes full public7500 context before heldout rows retained.",
+  "variants_predeclared": {
+    "larger": {
+      "weighted": false,
+      "max_depth": 4,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 15
+    },
+    "sqrt_spells": {
+      "weighted": true,
+      "max_depth": 3,
+      "max_leaf_nodes": 7,
+      "min_samples_leaf": 35
+    },
+    "larger_sqrt_spells": {
+      "weighted": true,
+      "max_depth": 4,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 15
+    }
+  },
+  "weighting": "Existing sqrt(250/allowed contiguous segment length), clipped.3..5, sampled weights normalized to mean1; includes H/A/D, masks censor segments.",
+  "full_fit_warning": "Public-context resubstitution diagnostic only; not held-out and not the full-match artifact/official run.",
+  "results": {
+    "larger": {
+      "full_public_fit_context": {
+        "spell_f1_mean": 0.8266666666666668,
+        "macro_f1": 0.9878075003392599,
+        "n_pred_spells": 13,
+        "per_class": {
+          "H": {
+            "precision": 0.9976239976239977,
+            "recall": 0.972495657209033,
+            "f1": 0.9848995748423984,
+            "support": 3454
+          },
+          "A": {
+            "precision": 0.9657766077472734,
+            "recall": 0.9965075669383003,
+            "f1": 0.9809014514896867,
+            "support": 2577
+          },
+          "D": {
+            "precision": 0.9959294436906377,
+            "recall": 0.9993192648059904,
+            "f1": 0.9976214746856948,
+            "support": 1469
+          }
+        },
+        "spell_f1": {
+          "0.3": {
+            "precision": 1.0,
+            "recall": 0.7647058823529411,
+            "f1": 0.8666666666666666,
+            "n_matched": 13,
+            "n_spurious": 0,
+            "n_missed": 4
+          },
+          "0.4": {
+            "precision": 1.0,
+            "recall": 0.7647058823529411,
+            "f1": 0.8666666666666666,
+            "n_matched": 13,
+            "n_spurious": 0,
+            "n_missed": 4
+          },
+          "0.5": {
+            "precision": 0.9230769230769231,
+            "recall": 0.7058823529411765,
+            "f1": 0.8000000000000002,
+            "n_matched": 12,
+            "n_spurious": 1,
+            "n_missed": 5
+          },
+          "0.6": {
+            "precision": 0.9230769230769231,
+            "recall": 0.7058823529411765,
+            "f1": 0.8000000000000002,
+            "n_matched": 12,
+            "n_spurious": 1,
+            "n_missed": 5
+          },
+          "0.7": {
+            "precision": 0.9230769230769231,
+            "recall": 0.7058823529411765,
+            "f1": 0.8000000000000002,
+            "n_matched": 12,
+            "n_spurious": 1,
+            "n_missed": 5
+          }
+        }
+      },
+      "full_public_fit_learners": [
+        {
+          "feature_count": 77,
+          "parameters": [
+            -0.5277632377406885,
+            0.09952631686352745
+          ],
+          "inner_calibration": {
+            "calibration_frames": 7500,
+            "objective": 0.437127392867359,
+            "folds": [
+              {
+                "inner_fold": 0,
+                "calibration_frames": 1500,
+                "training_frames": 1917,
+                "weight_min": 1.0,
+                "weight_max": 1.0,
+                "training_rows_sha256": "fc5752ddb8f7cbab7dd17202a0fd8194a7da10405895a14eef572b2dd07568e3"
+              },
+              {
+                "inner_fold": 1,
+                "calibration_frames": 1500,
+                "training_frames": 1834,
+                "weight_min": 1.0,
+                "weight_max": 1.0,
+                "training_rows_sha256": "96b6b083df338fb812865132dfb2ab8757db11ec334faeca53022f54b98d6b90"
+              },
+              {
+                "inner_fold": 2,
+                "calibration_frames": 1500,
+                "training_frames": 1834,
+                "weight_min": 1.0,
+                "weight_max": 1.0,
+                "training_rows_sha256": "2583e907c459f30d32303858af54e1dce14595a062e90c590c18ed7e97913a4b"
+              },
+              {
+                "inner_fold": 3,
+                "calibration_frames": 1500,
+                "training_frames": 1834,
+                "weight_min": 1.0,
+                "weight_max": 1.0,
+                "training_rows_sha256": "86edd967017ee38a669142f65e6942ae13a77bec9125e93b6e4901ba85030805"
+              },
+              {
+                "inner_fold": 4,
+                "calibration_frames": 1500,
+                "training_frames": 1917,
+                "weight_min": 1.0,
+                "weight_max": 1.0,
+                "training_rows_sha256": "4963db451a6cbd0919f31fa0160f96ba0f78c792e9d574a94f9a6c200c13dcd0"
+              }
+            ]
+          },
+          "training_frames": 2500,
+          "weight_min": 1.0,
+          "weight_max": 1.0,
+          "training_rows_sha256": "cd859a5293ab54ee5a0d4fff8dffce860a72b2b2f585c76f8d7435835c5fb70c"
+        },
+        {
+          "feature_count": 85,
+          "parameters": [
+            -0.5708257732267596,
+            -0.023596361092220478
+          ],
+          "inner_calibration": {
+            "calibration_frames": 7500,
+            "objective": 0.4440553540755511,
+            "folds": [
+              {
+                "inner_fold": 0,
+                "calibration_frames": 1500,
+                "training_frames": 1917,
+                "weight_min": 1.0,
+                "weight_max": 1.0,
+                "training_rows_sha256": "fc5752ddb8f7cbab7dd17202a0fd8194a7da10405895a14eef572b2dd07568e3"
+              },
+              {
+                "inner_fold": 1,
+                "calibration_frames": 1500,
+                "training_frames": 1834,
+                "weight_min": 1.0,
+                "weight_max": 1.0,
+                "training_rows_sha256": "96b6b083df338fb812865132dfb2ab8757db11ec334faeca53022f54b98d6b90"
+              },
+              {
+                "inner_fold": 2,
+                "calibration_frames": 1500,
+                "training_frames": 1834,
+                "weight_min": 1.0,
+                "weight_max": 1.0,
+                "training_rows_sha256": "2583e907c459f30d32303858af54e1dce14595a062e90c590c18ed7e97913a4b"
+              },
+              {
+                "inner_fold": 3,
+                "calibration_frames": 1500,
+                "training_frames": 1834,
+                "weight_min": 1.0,
+                "weight_max": 1.0,
+                "training_rows_sha256": "86edd967017ee38a669142f65e6942ae13a77bec9125e93b6e4901ba85030805"
+              },
+              {
+                "inner_fold": 4,
+                "calibration_frames": 1500,
+                "training_frames": 1917,
+                "weight_min": 1.0,
+                "weight_max": 1.0,
+                "training_rows_sha256": "4963db451a6cbd0919f31fa0160f96ba0f78c792e9d574a94f9a6c200c13dcd0"
+              }
+            ]
+          },
+          "training_frames": 2500,
+          "weight_min": 1.0,
+          "weight_max": 1.0,
+          "training_rows_sha256": "cd859a5293ab54ee5a0d4fff8dffce860a72b2b2f585c76f8d7435835c5fb70c"
+        }
+      ],
+      "model_cache": "experiments/cache/rare_spell_models_larger.joblib",
+      "model_sha256": "833981755a49404c85dca1cca20cf9fcbe6fae16a62993502b6668142b6de01a",
+      "held_out": {
+        "spell_f1_mean": 0.5548387096774194,
+        "macro_f1": 0.844731608489662,
+        "n_pred_spells": 14,
+        "per_class": {
+          "H": {
+            "precision": 0.859504132231405,
+            "recall": 0.903300521134916,
+            "f1": 0.8808582721626199,
+            "support": 3454
+          },
+          "A": {
+            "precision": 0.8551136363636364,
+            "recall": 0.8176173845556849,
+            "f1": 0.83594524895854,
+            "support": 2577
+          },
+          "D": {
+            "precision": 0.8357041251778093,
+            "recall": 0.7998638529611981,
+            "f1": 0.817391304347826,
+            "support": 1469
+          }
+        },
+        "spell_f1": {
+          "0.3": {
+            "precision": 0.7857142857142857,
+            "recall": 0.6470588235294118,
+            "f1": 0.7096774193548386,
+            "n_matched": 11,
+            "n_spurious": 3,
+            "n_missed": 6
+          },
+          "0.4": {
+            "precision": 0.7857142857142857,
+            "recall": 0.6470588235294118,
+            "f1": 0.7096774193548386,
+            "n_matched": 11,
+            "n_spurious": 3,
+            "n_missed": 6
+          },
+          "0.5": {
+            "precision": 0.6428571428571429,
+            "recall": 0.5294117647058824,
+            "f1": 0.5806451612903226,
+            "n_matched": 9,
+            "n_spurious": 5,
+            "n_missed": 8
+          },
+          "0.6": {
+            "precision": 0.42857142857142855,
+            "recall": 0.35294117647058826,
+            "f1": 0.3870967741935484,
+            "n_matched": 6,
+            "n_spurious": 8,
+            "n_missed": 11
+          },
+          "0.7": {
+            "precision": 0.42857142857142855,
+            "recall": 0.35294117647058826,
+            "f1": 0.3870967741935484,
+            "n_matched": 6,
+            "n_spurious": 8,
+            "n_missed": 11
+          }
+        }
+      },
+      "folds": [
+        {
+          "fold": 0,
+          "learners": [
+            {
+              "feature_count": 77,
+              "parameters": [
+                -0.48427438911468845,
+                0.0726508186851848
+              ],
+              "inner_calibration": {
+                "calibration_frames": 5750,
+                "objective": 0.4542377526092439,
+                "folds": [
+                  {
+                    "inner_fold": 1,
+                    "calibration_frames": 1250,
+                    "training_frames": 1417,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "60db12dc34f4325a1913ffabd9d1893fa5bceb1c06c6f8cc48d3393b56b7fd21"
+                  },
+                  {
+                    "inner_fold": 2,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "06d23fa4be628518e0c27963896ccdfbd838d36e0b05420772b365ff1bd2f909"
+                  },
+                  {
+                    "inner_fold": 3,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "6a19237b1c481ea6fdee348f298c696da3c4e465ced98eaf9b8f94590d80c25c"
+                  },
+                  {
+                    "inner_fold": 4,
+                    "calibration_frames": 1500,
+                    "training_frames": 1334,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "2c859f935a136d9f1aa32675d6b8e06637981e60ef063290498c156d43dcb8e1"
+                  }
+                ]
+              },
+              "training_frames": 1917,
+              "weight_min": 1.0,
+              "weight_max": 1.0,
+              "training_rows_sha256": "fc5752ddb8f7cbab7dd17202a0fd8194a7da10405895a14eef572b2dd07568e3"
+            },
+            {
+              "feature_count": 85,
+              "parameters": [
+                -0.4697037285252548,
+                0.1615087192864933
+              ],
+              "inner_calibration": {
+                "calibration_frames": 5750,
+                "objective": 0.4565207569479394,
+                "folds": [
+                  {
+                    "inner_fold": 1,
+                    "calibration_frames": 1250,
+                    "training_frames": 1417,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "60db12dc34f4325a1913ffabd9d1893fa5bceb1c06c6f8cc48d3393b56b7fd21"
+                  },
+                  {
+                    "inner_fold": 2,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "06d23fa4be628518e0c27963896ccdfbd838d36e0b05420772b365ff1bd2f909"
+                  },
+                  {
+                    "inner_fold": 3,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "6a19237b1c481ea6fdee348f298c696da3c4e465ced98eaf9b8f94590d80c25c"
+                  },
+                  {
+                    "inner_fold": 4,
+                    "calibration_frames": 1500,
+                    "training_frames": 1334,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "2c859f935a136d9f1aa32675d6b8e06637981e60ef063290498c156d43dcb8e1"
+                  }
+                ]
+              },
+              "training_frames": 1917,
+              "weight_min": 1.0,
+              "weight_max": 1.0,
+              "training_rows_sha256": "fc5752ddb8f7cbab7dd17202a0fd8194a7da10405895a14eef572b2dd07568e3"
+            }
+          ],
+          "refined_boundaries_full_context": 2
+        },
+        {
+          "fold": 1,
+          "learners": [
+            {
+              "feature_count": 77,
+              "parameters": [
+                -0.6189605883790923,
+                0.021001130061939852
+              ],
+              "inner_calibration": {
+                "calibration_frames": 5500,
+                "objective": 0.5257409354233614,
+                "folds": [
+                  {
+                    "inner_fold": 0,
+                    "calibration_frames": 1250,
+                    "training_frames": 1417,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "60db12dc34f4325a1913ffabd9d1893fa5bceb1c06c6f8cc48d3393b56b7fd21"
+                  },
+                  {
+                    "inner_fold": 2,
+                    "calibration_frames": 1250,
+                    "training_frames": 1334,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "b85aa2842d054d1966b5665a7e19d83f0d58e94f6b9fcaf4f4be14630f2f5e7d"
+                  },
+                  {
+                    "inner_fold": 3,
+                    "calibration_frames": 1500,
+                    "training_frames": 1167,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "60e7af598ec8c55e3d1e2abf44e4ea5a16b46ab8baa7f9e7b1e492f4efdb5efe"
+                  },
+                  {
+                    "inner_fold": 4,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "ff97f9d2607728d893e25486779db75cdd80f296395c176c9546f33d3a360f9d"
+                  }
+                ]
+              },
+              "training_frames": 1834,
+              "weight_min": 1.0,
+              "weight_max": 1.0,
+              "training_rows_sha256": "96b6b083df338fb812865132dfb2ab8757db11ec334faeca53022f54b98d6b90"
+            },
+            {
+              "feature_count": 85,
+              "parameters": [
+                -0.5944142598449347,
+                0.13036493828813073
+              ],
+              "inner_calibration": {
+                "calibration_frames": 5500,
+                "objective": 0.5156299309601101,
+                "folds": [
+                  {
+                    "inner_fold": 0,
+                    "calibration_frames": 1250,
+                    "training_frames": 1417,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "60db12dc34f4325a1913ffabd9d1893fa5bceb1c06c6f8cc48d3393b56b7fd21"
+                  },
+                  {
+                    "inner_fold": 2,
+                    "calibration_frames": 1250,
+                    "training_frames": 1334,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "b85aa2842d054d1966b5665a7e19d83f0d58e94f6b9fcaf4f4be14630f2f5e7d"
+                  },
+                  {
+                    "inner_fold": 3,
+                    "calibration_frames": 1500,
+                    "training_frames": 1167,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "60e7af598ec8c55e3d1e2abf44e4ea5a16b46ab8baa7f9e7b1e492f4efdb5efe"
+                  },
+                  {
+                    "inner_fold": 4,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "ff97f9d2607728d893e25486779db75cdd80f296395c176c9546f33d3a360f9d"
+                  }
+                ]
+              },
+              "training_frames": 1834,
+              "weight_min": 1.0,
+              "weight_max": 1.0,
+              "training_rows_sha256": "96b6b083df338fb812865132dfb2ab8757db11ec334faeca53022f54b98d6b90"
+            }
+          ],
+          "refined_boundaries_full_context": 2
+        },
+        {
+          "fold": 2,
+          "learners": [
+            {
+              "feature_count": 77,
+              "parameters": [
+                -0.4955551373860752,
+                0.25240346045743334
+              ],
+              "inner_calibration": {
+                "calibration_frames": 5500,
+                "objective": 0.48226585990952786,
+                "folds": [
+                  {
+                    "inner_fold": 0,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "06d23fa4be628518e0c27963896ccdfbd838d36e0b05420772b365ff1bd2f909"
+                  },
+                  {
+                    "inner_fold": 1,
+                    "calibration_frames": 1250,
+                    "training_frames": 1334,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "b85aa2842d054d1966b5665a7e19d83f0d58e94f6b9fcaf4f4be14630f2f5e7d"
+                  },
+                  {
+                    "inner_fold": 3,
+                    "calibration_frames": 1250,
+                    "training_frames": 1334,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "bc8525a81a82106c6b49de9743dfdb3c17c7a6e52272ba0f1bc25338456e950f"
+                  },
+                  {
+                    "inner_fold": 4,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "9167d2d6b1b008cdf4e9506c8256577493c5135ff9836d21eba86067450e110b"
+                  }
+                ]
+              },
+              "training_frames": 1834,
+              "weight_min": 1.0,
+              "weight_max": 1.0,
+              "training_rows_sha256": "2583e907c459f30d32303858af54e1dce14595a062e90c590c18ed7e97913a4b"
+            },
+            {
+              "feature_count": 85,
+              "parameters": [
+                -0.48526254449889816,
+                0.17807480683546292
+              ],
+              "inner_calibration": {
+                "calibration_frames": 5500,
+                "objective": 0.46955549543851727,
+                "folds": [
+                  {
+                    "inner_fold": 0,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "06d23fa4be628518e0c27963896ccdfbd838d36e0b05420772b365ff1bd2f909"
+                  },
+                  {
+                    "inner_fold": 1,
+                    "calibration_frames": 1250,
+                    "training_frames": 1334,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "b85aa2842d054d1966b5665a7e19d83f0d58e94f6b9fcaf4f4be14630f2f5e7d"
+                  },
+                  {
+                    "inner_fold": 3,
+                    "calibration_frames": 1250,
+                    "training_frames": 1334,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "bc8525a81a82106c6b49de9743dfdb3c17c7a6e52272ba0f1bc25338456e950f"
+                  },
+                  {
+                    "inner_fold": 4,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "9167d2d6b1b008cdf4e9506c8256577493c5135ff9836d21eba86067450e110b"
+                  }
+                ]
+              },
+              "training_frames": 1834,
+              "weight_min": 1.0,
+              "weight_max": 1.0,
+              "training_rows_sha256": "2583e907c459f30d32303858af54e1dce14595a062e90c590c18ed7e97913a4b"
+            }
+          ],
+          "refined_boundaries_full_context": 5
+        },
+        {
+          "fold": 3,
+          "learners": [
+            {
+              "feature_count": 77,
+              "parameters": [
+                -0.6144069509497179,
+                0.9028719893321433
+              ],
+              "inner_calibration": {
+                "calibration_frames": 5500,
+                "objective": 0.5749680772829514,
+                "folds": [
+                  {
+                    "inner_fold": 0,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "6a19237b1c481ea6fdee348f298c696da3c4e465ced98eaf9b8f94590d80c25c"
+                  },
+                  {
+                    "inner_fold": 1,
+                    "calibration_frames": 1500,
+                    "training_frames": 1167,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "60e7af598ec8c55e3d1e2abf44e4ea5a16b46ab8baa7f9e7b1e492f4efdb5efe"
+                  },
+                  {
+                    "inner_fold": 2,
+                    "calibration_frames": 1250,
+                    "training_frames": 1334,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "bc8525a81a82106c6b49de9743dfdb3c17c7a6e52272ba0f1bc25338456e950f"
+                  },
+                  {
+                    "inner_fold": 4,
+                    "calibration_frames": 1250,
+                    "training_frames": 1417,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "7319a524b54bdad7b7a0fe34b019631d1cb6e91601f75753eb9d80e7ac31c2e3"
+                  }
+                ]
+              },
+              "training_frames": 1834,
+              "weight_min": 1.0,
+              "weight_max": 1.0,
+              "training_rows_sha256": "86edd967017ee38a669142f65e6942ae13a77bec9125e93b6e4901ba85030805"
+            },
+            {
+              "feature_count": 85,
+              "parameters": [
+                -0.5577110114614592,
+                0.9646725100866985
+              ],
+              "inner_calibration": {
+                "calibration_frames": 5500,
+                "objective": 0.5355142581124729,
+                "folds": [
+                  {
+                    "inner_fold": 0,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "6a19237b1c481ea6fdee348f298c696da3c4e465ced98eaf9b8f94590d80c25c"
+                  },
+                  {
+                    "inner_fold": 1,
+                    "calibration_frames": 1500,
+                    "training_frames": 1167,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "60e7af598ec8c55e3d1e2abf44e4ea5a16b46ab8baa7f9e7b1e492f4efdb5efe"
+                  },
+                  {
+                    "inner_fold": 2,
+                    "calibration_frames": 1250,
+                    "training_frames": 1334,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "bc8525a81a82106c6b49de9743dfdb3c17c7a6e52272ba0f1bc25338456e950f"
+                  },
+                  {
+                    "inner_fold": 4,
+                    "calibration_frames": 1250,
+                    "training_frames": 1417,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "7319a524b54bdad7b7a0fe34b019631d1cb6e91601f75753eb9d80e7ac31c2e3"
+                  }
+                ]
+              },
+              "training_frames": 1834,
+              "weight_min": 1.0,
+              "weight_max": 1.0,
+              "training_rows_sha256": "86edd967017ee38a669142f65e6942ae13a77bec9125e93b6e4901ba85030805"
+            }
+          ],
+          "refined_boundaries_full_context": 4
+        },
+        {
+          "fold": 4,
+          "learners": [
+            {
+              "feature_count": 77,
+              "parameters": [
+                -1.0800644654471794,
+                -0.24641566038821927
+              ],
+              "inner_calibration": {
+                "calibration_frames": 5750,
+                "objective": 0.7129834040517163,
+                "folds": [
+                  {
+                    "inner_fold": 0,
+                    "calibration_frames": 1500,
+                    "training_frames": 1334,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "2c859f935a136d9f1aa32675d6b8e06637981e60ef063290498c156d43dcb8e1"
+                  },
+                  {
+                    "inner_fold": 1,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "ff97f9d2607728d893e25486779db75cdd80f296395c176c9546f33d3a360f9d"
+                  },
+                  {
+                    "inner_fold": 2,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "9167d2d6b1b008cdf4e9506c8256577493c5135ff9836d21eba86067450e110b"
+                  },
+                  {
+                    "inner_fold": 3,
+                    "calibration_frames": 1250,
+                    "training_frames": 1417,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "7319a524b54bdad7b7a0fe34b019631d1cb6e91601f75753eb9d80e7ac31c2e3"
+                  }
+                ]
+              },
+              "training_frames": 1917,
+              "weight_min": 1.0,
+              "weight_max": 1.0,
+              "training_rows_sha256": "4963db451a6cbd0919f31fa0160f96ba0f78c792e9d574a94f9a6c200c13dcd0"
+            },
+            {
+              "feature_count": 85,
+              "parameters": [
+                -1.0390734411819127,
+                -0.1455254134803376
+              ],
+              "inner_calibration": {
+                "calibration_frames": 5750,
+                "objective": 0.6983117579397194,
+                "folds": [
+                  {
+                    "inner_fold": 0,
+                    "calibration_frames": 1500,
+                    "training_frames": 1334,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "2c859f935a136d9f1aa32675d6b8e06637981e60ef063290498c156d43dcb8e1"
+                  },
+                  {
+                    "inner_fold": 1,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "ff97f9d2607728d893e25486779db75cdd80f296395c176c9546f33d3a360f9d"
+                  },
+                  {
+                    "inner_fold": 2,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "9167d2d6b1b008cdf4e9506c8256577493c5135ff9836d21eba86067450e110b"
+                  },
+                  {
+                    "inner_fold": 3,
+                    "calibration_frames": 1250,
+                    "training_frames": 1417,
+                    "weight_min": 1.0,
+                    "weight_max": 1.0,
+                    "training_rows_sha256": "7319a524b54bdad7b7a0fe34b019631d1cb6e91601f75753eb9d80e7ac31c2e3"
+                  }
+                ]
+              },
+              "training_frames": 1917,
+              "weight_min": 1.0,
+              "weight_max": 1.0,
+              "training_rows_sha256": "4963db451a6cbd0919f31fa0160f96ba0f78c792e9d574a94f9a6c200c13dcd0"
+            }
+          ],
+          "refined_boundaries_full_context": 3
+        }
+      ]
+    },
+    "sqrt_spells": {
+      "full_public_fit_context": {
+        "spell_f1_mean": 0.8266666666666668,
+        "macro_f1": 0.9879738594020422,
+        "n_pred_spells": 13,
+        "per_class": {
+          "H": {
+            "precision": 0.9973277909738717,
+            "recall": 0.972495657209033,
+            "f1": 0.9847552037525652,
+            "support": 3454
+          },
+          "A": {
+            "precision": 0.9650507328072153,
+            "recall": 0.9965075669383003,
+            "f1": 0.9805269186712485,
+            "support": 2577
+          },
+          "D": {
+            "precision": 0.9979605710401088,
+            "recall": 0.9993192648059904,
+            "f1": 0.998639455782313,
+            "support": 1469
+          }
+        },
+        "spell_f1": {
+          "0.3": {
+            "precision": 1.0,
+            "recall": 0.7647058823529411,
+            "f1": 0.8666666666666666,
+            "n_matched": 13,
+            "n_spurious": 0,
+            "n_missed": 4
+          },
+          "0.4": {
+            "precision": 1.0,
+            "recall": 0.7647058823529411,
+            "f1": 0.8666666666666666,
+            "n_matched": 13,
+            "n_spurious": 0,
+            "n_missed": 4
+          },
+          "0.5": {
+            "precision": 0.9230769230769231,
+            "recall": 0.7058823529411765,
+            "f1": 0.8000000000000002,
+            "n_matched": 12,
+            "n_spurious": 1,
+            "n_missed": 5
+          },
+          "0.6": {
+            "precision": 0.9230769230769231,
+            "recall": 0.7058823529411765,
+            "f1": 0.8000000000000002,
+            "n_matched": 12,
+            "n_spurious": 1,
+            "n_missed": 5
+          },
+          "0.7": {
+            "precision": 0.9230769230769231,
+            "recall": 0.7058823529411765,
+            "f1": 0.8000000000000002,
+            "n_matched": 12,
+            "n_spurious": 1,
+            "n_missed": 5
+          }
+        }
+      },
+      "full_public_fit_learners": [
+        {
+          "feature_count": 77,
+          "parameters": [
+            -0.45659667205368853,
+            -0.10262325917854728
+          ],
+          "inner_calibration": {
+            "calibration_frames": 7500,
+            "objective": 0.41450158648667657,
+            "folds": [
+              {
+                "inner_fold": 0,
+                "calibration_frames": 1500,
+                "training_frames": 1917,
+                "weight_min": 0.652225188753697,
+                "weight_max": 4.873920697540329,
+                "training_rows_sha256": "fc5752ddb8f7cbab7dd17202a0fd8194a7da10405895a14eef572b2dd07568e3"
+              },
+              {
+                "inner_fold": 1,
+                "calibration_frames": 1500,
+                "training_frames": 1834,
+                "weight_min": 0.6587724135778713,
+                "weight_max": 4.516316127762433,
+                "training_rows_sha256": "96b6b083df338fb812865132dfb2ab8757db11ec334faeca53022f54b98d6b90"
+              },
+              {
+                "inner_fold": 2,
+                "calibration_frames": 1500,
+                "training_frames": 1834,
+                "weight_min": 0.6234320749481773,
+                "weight_max": 2.3871809106412574,
+                "training_rows_sha256": "2583e907c459f30d32303858af54e1dce14595a062e90c590c18ed7e97913a4b"
+              },
+              {
+                "inner_fold": 3,
+                "calibration_frames": 1500,
+                "training_frames": 1834,
+                "weight_min": 0.6323183089884721,
+                "weight_max": 4.725161411661512,
+                "training_rows_sha256": "86edd967017ee38a669142f65e6942ae13a77bec9125e93b6e4901ba85030805"
+              },
+              {
+                "inner_fold": 4,
+                "calibration_frames": 1500,
+                "training_frames": 1917,
+                "weight_min": 0.6546229345824,
+                "weight_max": 4.891838470762623,
+                "training_rows_sha256": "4963db451a6cbd0919f31fa0160f96ba0f78c792e9d574a94f9a6c200c13dcd0"
+              }
+            ]
+          },
+          "training_frames": 2500,
+          "weight_min": 0.6447330859210231,
+          "weight_max": 4.817934029601228,
+          "training_rows_sha256": "cd859a5293ab54ee5a0d4fff8dffce860a72b2b2f585c76f8d7435835c5fb70c"
+        },
+        {
+          "feature_count": 85,
+          "parameters": [
+            -0.4624932844409668,
+            -0.13305489373119783
+          ],
+          "inner_calibration": {
+            "calibration_frames": 7500,
+            "objective": 0.41059473519324124,
+            "folds": [
+              {
+                "inner_fold": 0,
+                "calibration_frames": 1500,
+                "training_frames": 1917,
+                "weight_min": 0.652225188753697,
+                "weight_max": 4.873920697540329,
+                "training_rows_sha256": "fc5752ddb8f7cbab7dd17202a0fd8194a7da10405895a14eef572b2dd07568e3"
+              },
+              {
+                "inner_fold": 1,
+                "calibration_frames": 1500,
+                "training_frames": 1834,
+                "weight_min": 0.6587724135778713,
+                "weight_max": 4.516316127762433,
+                "training_rows_sha256": "96b6b083df338fb812865132dfb2ab8757db11ec334faeca53022f54b98d6b90"
+              },
+              {
+                "inner_fold": 2,
+                "calibration_frames": 1500,
+                "training_frames": 1834,
+                "weight_min": 0.6234320749481773,
+                "weight_max": 2.3871809106412574,
+                "training_rows_sha256": "2583e907c459f30d32303858af54e1dce14595a062e90c590c18ed7e97913a4b"
+              },
+              {
+                "inner_fold": 3,
+                "calibration_frames": 1500,
+                "training_frames": 1834,
+                "weight_min": 0.6323183089884721,
+                "weight_max": 4.725161411661512,
+                "training_rows_sha256": "86edd967017ee38a669142f65e6942ae13a77bec9125e93b6e4901ba85030805"
+              },
+              {
+                "inner_fold": 4,
+                "calibration_frames": 1500,
+                "training_frames": 1917,
+                "weight_min": 0.6546229345824,
+                "weight_max": 4.891838470762623,
+                "training_rows_sha256": "4963db451a6cbd0919f31fa0160f96ba0f78c792e9d574a94f9a6c200c13dcd0"
+              }
+            ]
+          },
+          "training_frames": 2500,
+          "weight_min": 0.6447330859210231,
+          "weight_max": 4.817934029601228,
+          "training_rows_sha256": "cd859a5293ab54ee5a0d4fff8dffce860a72b2b2f585c76f8d7435835c5fb70c"
+        }
+      ],
+      "model_cache": "experiments/cache/rare_spell_models_sqrt_spells.joblib",
+      "model_sha256": "2502a67ad86aeee9579827797ea64e27c8cee16edfaffe394c0379f1888986f7",
+      "held_out": {
+        "spell_f1_mean": 0.6266666666666667,
+        "macro_f1": 0.882590011995454,
+        "n_pred_spells": 13,
+        "per_class": {
+          "H": {
+            "precision": 0.9208321294423577,
+            "recall": 0.9226983207874928,
+            "f1": 0.92176428054953,
+            "support": 3454
+          },
+          "A": {
+            "precision": 0.8839172646686365,
+            "recall": 0.8125727590221188,
+            "f1": 0.8467448443186414,
+            "support": 2577
+          },
+          "D": {
+            "precision": 0.8263473053892215,
+            "recall": 0.9394145677331518,
+            "f1": 0.8792609111181904,
+            "support": 1469
+          }
+        },
+        "spell_f1": {
+          "0.3": {
+            "precision": 0.8461538461538461,
+            "recall": 0.6470588235294118,
+            "f1": 0.7333333333333334,
+            "n_matched": 11,
+            "n_spurious": 2,
+            "n_missed": 6
+          },
+          "0.4": {
+            "precision": 0.8461538461538461,
+            "recall": 0.6470588235294118,
+            "f1": 0.7333333333333334,
+            "n_matched": 11,
+            "n_spurious": 2,
+            "n_missed": 6
+          },
+          "0.5": {
+            "precision": 0.7692307692307693,
+            "recall": 0.5882352941176471,
+            "f1": 0.6666666666666667,
+            "n_matched": 10,
+            "n_spurious": 3,
+            "n_missed": 7
+          },
+          "0.6": {
+            "precision": 0.6923076923076923,
+            "recall": 0.5294117647058824,
+            "f1": 0.5999999999999999,
+            "n_matched": 9,
+            "n_spurious": 4,
+            "n_missed": 8
+          },
+          "0.7": {
+            "precision": 0.46153846153846156,
+            "recall": 0.35294117647058826,
+            "f1": 0.4000000000000001,
+            "n_matched": 6,
+            "n_spurious": 7,
+            "n_missed": 11
+          }
+        }
+      },
+      "folds": [
+        {
+          "fold": 0,
+          "learners": [
+            {
+              "feature_count": 77,
+              "parameters": [
+                -0.49401501047319596,
+                -0.12881481263956704
+              ],
+              "inner_calibration": {
+                "calibration_frames": 5750,
+                "objective": 0.43890809431004724,
+                "folds": [
+                  {
+                    "inner_fold": 1,
+                    "calibration_frames": 1250,
+                    "training_frames": 1417,
+                    "weight_min": 0.6607299120663407,
+                    "weight_max": 4.529736061280186,
+                    "training_rows_sha256": "60db12dc34f4325a1913ffabd9d1893fa5bceb1c06c6f8cc48d3393b56b7fd21"
+                  },
+                  {
+                    "inner_fold": 2,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 0.66934494518172,
+                    "weight_max": 2.7219418160121758,
+                    "training_rows_sha256": "06d23fa4be628518e0c27963896ccdfbd838d36e0b05420772b365ff1bd2f909"
+                  },
+                  {
+                    "inner_fold": 3,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 0.6369179391865445,
+                    "weight_max": 4.7595333329089184,
+                    "training_rows_sha256": "6a19237b1c481ea6fdee348f298c696da3c4e465ced98eaf9b8f94590d80c25c"
+                  },
+                  {
+                    "inner_fold": 4,
+                    "calibration_frames": 1500,
+                    "training_frames": 1334,
+                    "weight_min": 0.6703060724775348,
+                    "weight_max": 5.009034757731452,
+                    "training_rows_sha256": "2c859f935a136d9f1aa32675d6b8e06637981e60ef063290498c156d43dcb8e1"
+                  }
+                ]
+              },
+              "training_frames": 1917,
+              "weight_min": 0.652225188753697,
+              "weight_max": 4.873920697540329,
+              "training_rows_sha256": "fc5752ddb8f7cbab7dd17202a0fd8194a7da10405895a14eef572b2dd07568e3"
+            },
+            {
+              "feature_count": 85,
+              "parameters": [
+                -0.506914365984608,
+                -0.09112139770485213
+              ],
+              "inner_calibration": {
+                "calibration_frames": 5750,
+                "objective": 0.4618680284307636,
+                "folds": [
+                  {
+                    "inner_fold": 1,
+                    "calibration_frames": 1250,
+                    "training_frames": 1417,
+                    "weight_min": 0.6607299120663407,
+                    "weight_max": 4.529736061280186,
+                    "training_rows_sha256": "60db12dc34f4325a1913ffabd9d1893fa5bceb1c06c6f8cc48d3393b56b7fd21"
+                  },
+                  {
+                    "inner_fold": 2,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 0.66934494518172,
+                    "weight_max": 2.7219418160121758,
+                    "training_rows_sha256": "06d23fa4be628518e0c27963896ccdfbd838d36e0b05420772b365ff1bd2f909"
+                  },
+                  {
+                    "inner_fold": 3,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 0.6369179391865445,
+                    "weight_max": 4.7595333329089184,
+                    "training_rows_sha256": "6a19237b1c481ea6fdee348f298c696da3c4e465ced98eaf9b8f94590d80c25c"
+                  },
+                  {
+                    "inner_fold": 4,
+                    "calibration_frames": 1500,
+                    "training_frames": 1334,
+                    "weight_min": 0.6703060724775348,
+                    "weight_max": 5.009034757731452,
+                    "training_rows_sha256": "2c859f935a136d9f1aa32675d6b8e06637981e60ef063290498c156d43dcb8e1"
+                  }
+                ]
+              },
+              "training_frames": 1917,
+              "weight_min": 0.652225188753697,
+              "weight_max": 4.873920697540329,
+              "training_rows_sha256": "fc5752ddb8f7cbab7dd17202a0fd8194a7da10405895a14eef572b2dd07568e3"
+            }
+          ],
+          "refined_boundaries_full_context": 4
+        },
+        {
+          "fold": 1,
+          "learners": [
+            {
+              "feature_count": 77,
+              "parameters": [
+                -0.6145374307864588,
+                -0.053419341636101556
+              ],
+              "inner_calibration": {
+                "calibration_frames": 5500,
+                "objective": 0.5332000136069195,
+                "folds": [
+                  {
+                    "inner_fold": 0,
+                    "calibration_frames": 1250,
+                    "training_frames": 1417,
+                    "weight_min": 0.6607299120663407,
+                    "weight_max": 4.529736061280186,
+                    "training_rows_sha256": "60db12dc34f4325a1913ffabd9d1893fa5bceb1c06c6f8cc48d3393b56b7fd21"
+                  },
+                  {
+                    "inner_fold": 2,
+                    "calibration_frames": 1250,
+                    "training_frames": 1334,
+                    "weight_min": 0.6819730861603296,
+                    "weight_max": 2.4185985646173624,
+                    "training_rows_sha256": "b85aa2842d054d1966b5665a7e19d83f0d58e94f6b9fcaf4f4be14630f2f5e7d"
+                  },
+                  {
+                    "inner_fold": 3,
+                    "calibration_frames": 1500,
+                    "training_frames": 1167,
+                    "weight_min": 0.6493228560476031,
+                    "weight_max": 4.242231035383803,
+                    "training_rows_sha256": "60e7af598ec8c55e3d1e2abf44e4ea5a16b46ab8baa7f9e7b1e492f4efdb5efe"
+                  },
+                  {
+                    "inner_fold": 4,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 0.6860791630685596,
+                    "weight_max": 4.482371583245507,
+                    "training_rows_sha256": "ff97f9d2607728d893e25486779db75cdd80f296395c176c9546f33d3a360f9d"
+                  }
+                ]
+              },
+              "training_frames": 1834,
+              "weight_min": 0.6587724135778713,
+              "weight_max": 4.516316127762433,
+              "training_rows_sha256": "96b6b083df338fb812865132dfb2ab8757db11ec334faeca53022f54b98d6b90"
+            },
+            {
+              "feature_count": 85,
+              "parameters": [
+                -0.55799898963267,
+                0.0023344959743613605
+              ],
+              "inner_calibration": {
+                "calibration_frames": 5500,
+                "objective": 0.51272069545937,
+                "folds": [
+                  {
+                    "inner_fold": 0,
+                    "calibration_frames": 1250,
+                    "training_frames": 1417,
+                    "weight_min": 0.6607299120663407,
+                    "weight_max": 4.529736061280186,
+                    "training_rows_sha256": "60db12dc34f4325a1913ffabd9d1893fa5bceb1c06c6f8cc48d3393b56b7fd21"
+                  },
+                  {
+                    "inner_fold": 2,
+                    "calibration_frames": 1250,
+                    "training_frames": 1334,
+                    "weight_min": 0.6819730861603296,
+                    "weight_max": 2.4185985646173624,
+                    "training_rows_sha256": "b85aa2842d054d1966b5665a7e19d83f0d58e94f6b9fcaf4f4be14630f2f5e7d"
+                  },
+                  {
+                    "inner_fold": 3,
+                    "calibration_frames": 1500,
+                    "training_frames": 1167,
+                    "weight_min": 0.6493228560476031,
+                    "weight_max": 4.242231035383803,
+                    "training_rows_sha256": "60e7af598ec8c55e3d1e2abf44e4ea5a16b46ab8baa7f9e7b1e492f4efdb5efe"
+                  },
+                  {
+                    "inner_fold": 4,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 0.6860791630685596,
+                    "weight_max": 4.482371583245507,
+                    "training_rows_sha256": "ff97f9d2607728d893e25486779db75cdd80f296395c176c9546f33d3a360f9d"
+                  }
+                ]
+              },
+              "training_frames": 1834,
+              "weight_min": 0.6587724135778713,
+              "weight_max": 4.516316127762433,
+              "training_rows_sha256": "96b6b083df338fb812865132dfb2ab8757db11ec334faeca53022f54b98d6b90"
+            }
+          ],
+          "refined_boundaries_full_context": 4
+        },
+        {
+          "fold": 2,
+          "learners": [
+            {
+              "feature_count": 77,
+              "parameters": [
+                -0.4754070189168688,
+                0.40822860313222536
+              ],
+              "inner_calibration": {
+                "calibration_frames": 5500,
+                "objective": 0.4788448999616221,
+                "folds": [
+                  {
+                    "inner_fold": 0,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 0.66934494518172,
+                    "weight_max": 2.7219418160121758,
+                    "training_rows_sha256": "06d23fa4be628518e0c27963896ccdfbd838d36e0b05420772b365ff1bd2f909"
+                  },
+                  {
+                    "inner_fold": 1,
+                    "calibration_frames": 1250,
+                    "training_frames": 1334,
+                    "weight_min": 0.6819730861603296,
+                    "weight_max": 2.4185985646173624,
+                    "training_rows_sha256": "b85aa2842d054d1966b5665a7e19d83f0d58e94f6b9fcaf4f4be14630f2f5e7d"
+                  },
+                  {
+                    "inner_fold": 3,
+                    "calibration_frames": 1250,
+                    "training_frames": 1334,
+                    "weight_min": 0.5866291302854506,
+                    "weight_max": 2.2462589233316526,
+                    "training_rows_sha256": "bc8525a81a82106c6b49de9743dfdb3c17c7a6e52272ba0f1bc25338456e950f"
+                  },
+                  {
+                    "inner_fold": 4,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 0.6249528526986703,
+                    "weight_max": 2.393004113779477,
+                    "training_rows_sha256": "9167d2d6b1b008cdf4e9506c8256577493c5135ff9836d21eba86067450e110b"
+                  }
+                ]
+              },
+              "training_frames": 1834,
+              "weight_min": 0.6234320749481773,
+              "weight_max": 2.3871809106412574,
+              "training_rows_sha256": "2583e907c459f30d32303858af54e1dce14595a062e90c590c18ed7e97913a4b"
+            },
+            {
+              "feature_count": 85,
+              "parameters": [
+                -0.42571607910780546,
+                0.16975674897499407
+              ],
+              "inner_calibration": {
+                "calibration_frames": 5500,
+                "objective": 0.4627809037392383,
+                "folds": [
+                  {
+                    "inner_fold": 0,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 0.66934494518172,
+                    "weight_max": 2.7219418160121758,
+                    "training_rows_sha256": "06d23fa4be628518e0c27963896ccdfbd838d36e0b05420772b365ff1bd2f909"
+                  },
+                  {
+                    "inner_fold": 1,
+                    "calibration_frames": 1250,
+                    "training_frames": 1334,
+                    "weight_min": 0.6819730861603296,
+                    "weight_max": 2.4185985646173624,
+                    "training_rows_sha256": "b85aa2842d054d1966b5665a7e19d83f0d58e94f6b9fcaf4f4be14630f2f5e7d"
+                  },
+                  {
+                    "inner_fold": 3,
+                    "calibration_frames": 1250,
+                    "training_frames": 1334,
+                    "weight_min": 0.5866291302854506,
+                    "weight_max": 2.2462589233316526,
+                    "training_rows_sha256": "bc8525a81a82106c6b49de9743dfdb3c17c7a6e52272ba0f1bc25338456e950f"
+                  },
+                  {
+                    "inner_fold": 4,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 0.6249528526986703,
+                    "weight_max": 2.393004113779477,
+                    "training_rows_sha256": "9167d2d6b1b008cdf4e9506c8256577493c5135ff9836d21eba86067450e110b"
+                  }
+                ]
+              },
+              "training_frames": 1834,
+              "weight_min": 0.6234320749481773,
+              "weight_max": 2.3871809106412574,
+              "training_rows_sha256": "2583e907c459f30d32303858af54e1dce14595a062e90c590c18ed7e97913a4b"
+            }
+          ],
+          "refined_boundaries_full_context": 6
+        },
+        {
+          "fold": 3,
+          "learners": [
+            {
+              "feature_count": 77,
+              "parameters": [
+                -0.48188072652753616,
+                1.0821326301680514
+              ],
+              "inner_calibration": {
+                "calibration_frames": 5500,
+                "objective": 0.5013681530036805,
+                "folds": [
+                  {
+                    "inner_fold": 0,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 0.6369179391865445,
+                    "weight_max": 4.7595333329089184,
+                    "training_rows_sha256": "6a19237b1c481ea6fdee348f298c696da3c4e465ced98eaf9b8f94590d80c25c"
+                  },
+                  {
+                    "inner_fold": 1,
+                    "calibration_frames": 1500,
+                    "training_frames": 1167,
+                    "weight_min": 0.6493228560476031,
+                    "weight_max": 4.242231035383803,
+                    "training_rows_sha256": "60e7af598ec8c55e3d1e2abf44e4ea5a16b46ab8baa7f9e7b1e492f4efdb5efe"
+                  },
+                  {
+                    "inner_fold": 2,
+                    "calibration_frames": 1250,
+                    "training_frames": 1334,
+                    "weight_min": 0.5866291302854506,
+                    "weight_max": 2.2462589233316526,
+                    "training_rows_sha256": "bc8525a81a82106c6b49de9743dfdb3c17c7a6e52272ba0f1bc25338456e950f"
+                  },
+                  {
+                    "inner_fold": 4,
+                    "calibration_frames": 1250,
+                    "training_frames": 1417,
+                    "weight_min": 0.6624097894545361,
+                    "weight_max": 4.950027749227271,
+                    "training_rows_sha256": "7319a524b54bdad7b7a0fe34b019631d1cb6e91601f75753eb9d80e7ac31c2e3"
+                  }
+                ]
+              },
+              "training_frames": 1834,
+              "weight_min": 0.6323183089884721,
+              "weight_max": 4.725161411661512,
+              "training_rows_sha256": "86edd967017ee38a669142f65e6942ae13a77bec9125e93b6e4901ba85030805"
+            },
+            {
+              "feature_count": 85,
+              "parameters": [
+                -0.41201814433797546,
+                1.2353550682672911
+              ],
+              "inner_calibration": {
+                "calibration_frames": 5500,
+                "objective": 0.47297431207553275,
+                "folds": [
+                  {
+                    "inner_fold": 0,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 0.6369179391865445,
+                    "weight_max": 4.7595333329089184,
+                    "training_rows_sha256": "6a19237b1c481ea6fdee348f298c696da3c4e465ced98eaf9b8f94590d80c25c"
+                  },
+                  {
+                    "inner_fold": 1,
+                    "calibration_frames": 1500,
+                    "training_frames": 1167,
+                    "weight_min": 0.6493228560476031,
+                    "weight_max": 4.242231035383803,
+                    "training_rows_sha256": "60e7af598ec8c55e3d1e2abf44e4ea5a16b46ab8baa7f9e7b1e492f4efdb5efe"
+                  },
+                  {
+                    "inner_fold": 2,
+                    "calibration_frames": 1250,
+                    "training_frames": 1334,
+                    "weight_min": 0.5866291302854506,
+                    "weight_max": 2.2462589233316526,
+                    "training_rows_sha256": "bc8525a81a82106c6b49de9743dfdb3c17c7a6e52272ba0f1bc25338456e950f"
+                  },
+                  {
+                    "inner_fold": 4,
+                    "calibration_frames": 1250,
+                    "training_frames": 1417,
+                    "weight_min": 0.6624097894545361,
+                    "weight_max": 4.950027749227271,
+                    "training_rows_sha256": "7319a524b54bdad7b7a0fe34b019631d1cb6e91601f75753eb9d80e7ac31c2e3"
+                  }
+                ]
+              },
+              "training_frames": 1834,
+              "weight_min": 0.6323183089884721,
+              "weight_max": 4.725161411661512,
+              "training_rows_sha256": "86edd967017ee38a669142f65e6942ae13a77bec9125e93b6e4901ba85030805"
+            }
+          ],
+          "refined_boundaries_full_context": 6
+        },
+        {
+          "fold": 4,
+          "learners": [
+            {
+              "feature_count": 77,
+              "parameters": [
+                -0.8857392904773671,
+                0.02967121841746702
+              ],
+              "inner_calibration": {
+                "calibration_frames": 5750,
+                "objective": 0.655274242687573,
+                "folds": [
+                  {
+                    "inner_fold": 0,
+                    "calibration_frames": 1500,
+                    "training_frames": 1334,
+                    "weight_min": 0.6703060724775348,
+                    "weight_max": 5.009034757731452,
+                    "training_rows_sha256": "2c859f935a136d9f1aa32675d6b8e06637981e60ef063290498c156d43dcb8e1"
+                  },
+                  {
+                    "inner_fold": 1,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 0.6860791630685596,
+                    "weight_max": 4.482371583245507,
+                    "training_rows_sha256": "ff97f9d2607728d893e25486779db75cdd80f296395c176c9546f33d3a360f9d"
+                  },
+                  {
+                    "inner_fold": 2,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 0.6249528526986703,
+                    "weight_max": 2.393004113779477,
+                    "training_rows_sha256": "9167d2d6b1b008cdf4e9506c8256577493c5135ff9836d21eba86067450e110b"
+                  },
+                  {
+                    "inner_fold": 3,
+                    "calibration_frames": 1250,
+                    "training_frames": 1417,
+                    "weight_min": 0.6624097894545361,
+                    "weight_max": 4.950027749227271,
+                    "training_rows_sha256": "7319a524b54bdad7b7a0fe34b019631d1cb6e91601f75753eb9d80e7ac31c2e3"
+                  }
+                ]
+              },
+              "training_frames": 1917,
+              "weight_min": 0.6546229345824,
+              "weight_max": 4.891838470762623,
+              "training_rows_sha256": "4963db451a6cbd0919f31fa0160f96ba0f78c792e9d574a94f9a6c200c13dcd0"
+            },
+            {
+              "feature_count": 85,
+              "parameters": [
+                -0.8716634969498855,
+                0.00342523038350744
+              ],
+              "inner_calibration": {
+                "calibration_frames": 5750,
+                "objective": 0.6355049614772754,
+                "folds": [
+                  {
+                    "inner_fold": 0,
+                    "calibration_frames": 1500,
+                    "training_frames": 1334,
+                    "weight_min": 0.6703060724775348,
+                    "weight_max": 5.009034757731452,
+                    "training_rows_sha256": "2c859f935a136d9f1aa32675d6b8e06637981e60ef063290498c156d43dcb8e1"
+                  },
+                  {
+                    "inner_fold": 1,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 0.6860791630685596,
+                    "weight_max": 4.482371583245507,
+                    "training_rows_sha256": "ff97f9d2607728d893e25486779db75cdd80f296395c176c9546f33d3a360f9d"
+                  },
+                  {
+                    "inner_fold": 2,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 0.6249528526986703,
+                    "weight_max": 2.393004113779477,
+                    "training_rows_sha256": "9167d2d6b1b008cdf4e9506c8256577493c5135ff9836d21eba86067450e110b"
+                  },
+                  {
+                    "inner_fold": 3,
+                    "calibration_frames": 1250,
+                    "training_frames": 1417,
+                    "weight_min": 0.6624097894545361,
+                    "weight_max": 4.950027749227271,
+                    "training_rows_sha256": "7319a524b54bdad7b7a0fe34b019631d1cb6e91601f75753eb9d80e7ac31c2e3"
+                  }
+                ]
+              },
+              "training_frames": 1917,
+              "weight_min": 0.6546229345824,
+              "weight_max": 4.891838470762623,
+              "training_rows_sha256": "4963db451a6cbd0919f31fa0160f96ba0f78c792e9d574a94f9a6c200c13dcd0"
+            }
+          ],
+          "refined_boundaries_full_context": 3
+        }
+      ]
+    },
+    "larger_sqrt_spells": {
+      "full_public_fit_context": {
+        "spell_f1_mean": 0.8625,
+        "macro_f1": 0.9890274781686365,
+        "n_pred_spells": 15,
+        "per_class": {
+          "H": {
+            "precision": 0.9970422951789412,
+            "recall": 0.9759698899826288,
+            "f1": 0.9863935625457205,
+            "support": 3454
+          },
+          "A": {
+            "precision": 0.9693993199848886,
+            "recall": 0.9957314707023671,
+            "f1": 0.9823889739663093,
+            "support": 2577
+          },
+          "D": {
+            "precision": 0.9972826086956522,
+            "recall": 0.9993192648059904,
+            "f1": 0.9982998979938796,
+            "support": 1469
+          }
+        },
+        "spell_f1": {
+          "0.3": {
+            "precision": 1.0,
+            "recall": 0.8823529411764706,
+            "f1": 0.9375,
+            "n_matched": 15,
+            "n_spurious": 0,
+            "n_missed": 2
+          },
+          "0.4": {
+            "precision": 0.9333333333333333,
+            "recall": 0.8235294117647058,
+            "f1": 0.8749999999999999,
+            "n_matched": 14,
+            "n_spurious": 1,
+            "n_missed": 3
+          },
+          "0.5": {
+            "precision": 0.9333333333333333,
+            "recall": 0.8235294117647058,
+            "f1": 0.8749999999999999,
+            "n_matched": 14,
+            "n_spurious": 1,
+            "n_missed": 3
+          },
+          "0.6": {
+            "precision": 0.8666666666666667,
+            "recall": 0.7647058823529411,
+            "f1": 0.8125,
+            "n_matched": 13,
+            "n_spurious": 2,
+            "n_missed": 4
+          },
+          "0.7": {
+            "precision": 0.8666666666666667,
+            "recall": 0.7647058823529411,
+            "f1": 0.8125,
+            "n_matched": 13,
+            "n_spurious": 2,
+            "n_missed": 4
+          }
+        }
+      },
+      "full_public_fit_learners": [
+        {
+          "feature_count": 77,
+          "parameters": [
+            -0.5205367612687409,
+            0.037413695272368055
+          ],
+          "inner_calibration": {
+            "calibration_frames": 7500,
+            "objective": 0.41543249660674836,
+            "folds": [
+              {
+                "inner_fold": 0,
+                "calibration_frames": 1500,
+                "training_frames": 1917,
+                "weight_min": 0.652225188753697,
+                "weight_max": 4.873920697540329,
+                "training_rows_sha256": "fc5752ddb8f7cbab7dd17202a0fd8194a7da10405895a14eef572b2dd07568e3"
+              },
+              {
+                "inner_fold": 1,
+                "calibration_frames": 1500,
+                "training_frames": 1834,
+                "weight_min": 0.6587724135778713,
+                "weight_max": 4.516316127762433,
+                "training_rows_sha256": "96b6b083df338fb812865132dfb2ab8757db11ec334faeca53022f54b98d6b90"
+              },
+              {
+                "inner_fold": 2,
+                "calibration_frames": 1500,
+                "training_frames": 1834,
+                "weight_min": 0.6234320749481773,
+                "weight_max": 2.3871809106412574,
+                "training_rows_sha256": "2583e907c459f30d32303858af54e1dce14595a062e90c590c18ed7e97913a4b"
+              },
+              {
+                "inner_fold": 3,
+                "calibration_frames": 1500,
+                "training_frames": 1834,
+                "weight_min": 0.6323183089884721,
+                "weight_max": 4.725161411661512,
+                "training_rows_sha256": "86edd967017ee38a669142f65e6942ae13a77bec9125e93b6e4901ba85030805"
+              },
+              {
+                "inner_fold": 4,
+                "calibration_frames": 1500,
+                "training_frames": 1917,
+                "weight_min": 0.6546229345824,
+                "weight_max": 4.891838470762623,
+                "training_rows_sha256": "4963db451a6cbd0919f31fa0160f96ba0f78c792e9d574a94f9a6c200c13dcd0"
+              }
+            ]
+          },
+          "training_frames": 2500,
+          "weight_min": 0.6447330859210231,
+          "weight_max": 4.817934029601228,
+          "training_rows_sha256": "cd859a5293ab54ee5a0d4fff8dffce860a72b2b2f585c76f8d7435835c5fb70c"
+        },
+        {
+          "feature_count": 85,
+          "parameters": [
+            -0.5400840751325064,
+            0.03825094841635992
+          ],
+          "inner_calibration": {
+            "calibration_frames": 7500,
+            "objective": 0.43171406155072756,
+            "folds": [
+              {
+                "inner_fold": 0,
+                "calibration_frames": 1500,
+                "training_frames": 1917,
+                "weight_min": 0.652225188753697,
+                "weight_max": 4.873920697540329,
+                "training_rows_sha256": "fc5752ddb8f7cbab7dd17202a0fd8194a7da10405895a14eef572b2dd07568e3"
+              },
+              {
+                "inner_fold": 1,
+                "calibration_frames": 1500,
+                "training_frames": 1834,
+                "weight_min": 0.6587724135778713,
+                "weight_max": 4.516316127762433,
+                "training_rows_sha256": "96b6b083df338fb812865132dfb2ab8757db11ec334faeca53022f54b98d6b90"
+              },
+              {
+                "inner_fold": 2,
+                "calibration_frames": 1500,
+                "training_frames": 1834,
+                "weight_min": 0.6234320749481773,
+                "weight_max": 2.3871809106412574,
+                "training_rows_sha256": "2583e907c459f30d32303858af54e1dce14595a062e90c590c18ed7e97913a4b"
+              },
+              {
+                "inner_fold": 3,
+                "calibration_frames": 1500,
+                "training_frames": 1834,
+                "weight_min": 0.6323183089884721,
+                "weight_max": 4.725161411661512,
+                "training_rows_sha256": "86edd967017ee38a669142f65e6942ae13a77bec9125e93b6e4901ba85030805"
+              },
+              {
+                "inner_fold": 4,
+                "calibration_frames": 1500,
+                "training_frames": 1917,
+                "weight_min": 0.6546229345824,
+                "weight_max": 4.891838470762623,
+                "training_rows_sha256": "4963db451a6cbd0919f31fa0160f96ba0f78c792e9d574a94f9a6c200c13dcd0"
+              }
+            ]
+          },
+          "training_frames": 2500,
+          "weight_min": 0.6447330859210231,
+          "weight_max": 4.817934029601228,
+          "training_rows_sha256": "cd859a5293ab54ee5a0d4fff8dffce860a72b2b2f585c76f8d7435835c5fb70c"
+        }
+      ],
+      "model_cache": "experiments/cache/rare_spell_models_larger_sqrt_spells.joblib",
+      "model_sha256": "b23668df431dbcaa41253b67e925c62ce6505aaa26b38c1b2d848b63902dd39c",
+      "held_out": {
+        "spell_f1_mean": 0.5199999999999999,
+        "macro_f1": 0.8533036820799014,
+        "n_pred_spells": 13,
+        "per_class": {
+          "H": {
+            "precision": 0.9066100667070952,
+            "recall": 0.8656629994209613,
+            "f1": 0.8856635071090047,
+            "support": 3454
+          },
+          "A": {
+            "precision": 0.7901990811638591,
+            "recall": 0.8009313154831199,
+            "f1": 0.7955290036615917,
+            "support": 2577
+          },
+          "D": {
+            "precision": 0.8452830188679246,
+            "recall": 0.9149081007488087,
+            "f1": 0.8787185354691076,
+            "support": 1469
+          }
+        },
+        "spell_f1": {
+          "0.3": {
+            "precision": 0.7692307692307693,
+            "recall": 0.5882352941176471,
+            "f1": 0.6666666666666667,
+            "n_matched": 10,
+            "n_spurious": 3,
+            "n_missed": 7
+          },
+          "0.4": {
+            "precision": 0.6923076923076923,
+            "recall": 0.5294117647058824,
+            "f1": 0.5999999999999999,
+            "n_matched": 9,
+            "n_spurious": 4,
+            "n_missed": 8
+          },
+          "0.5": {
+            "precision": 0.6153846153846154,
+            "recall": 0.47058823529411764,
+            "f1": 0.5333333333333333,
+            "n_matched": 8,
+            "n_spurious": 5,
+            "n_missed": 9
+          },
+          "0.6": {
+            "precision": 0.46153846153846156,
+            "recall": 0.35294117647058826,
+            "f1": 0.4000000000000001,
+            "n_matched": 6,
+            "n_spurious": 7,
+            "n_missed": 11
+          },
+          "0.7": {
+            "precision": 0.46153846153846156,
+            "recall": 0.35294117647058826,
+            "f1": 0.4000000000000001,
+            "n_matched": 6,
+            "n_spurious": 7,
+            "n_missed": 11
+          }
+        }
+      },
+      "folds": [
+        {
+          "fold": 0,
+          "learners": [
+            {
+              "feature_count": 77,
+              "parameters": [
+                -0.44383336390649075,
+                0.028372021417109018
+              ],
+              "inner_calibration": {
+                "calibration_frames": 5750,
+                "objective": 0.42451711833350303,
+                "folds": [
+                  {
+                    "inner_fold": 1,
+                    "calibration_frames": 1250,
+                    "training_frames": 1417,
+                    "weight_min": 0.6607299120663407,
+                    "weight_max": 4.529736061280186,
+                    "training_rows_sha256": "60db12dc34f4325a1913ffabd9d1893fa5bceb1c06c6f8cc48d3393b56b7fd21"
+                  },
+                  {
+                    "inner_fold": 2,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 0.66934494518172,
+                    "weight_max": 2.7219418160121758,
+                    "training_rows_sha256": "06d23fa4be628518e0c27963896ccdfbd838d36e0b05420772b365ff1bd2f909"
+                  },
+                  {
+                    "inner_fold": 3,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 0.6369179391865445,
+                    "weight_max": 4.7595333329089184,
+                    "training_rows_sha256": "6a19237b1c481ea6fdee348f298c696da3c4e465ced98eaf9b8f94590d80c25c"
+                  },
+                  {
+                    "inner_fold": 4,
+                    "calibration_frames": 1500,
+                    "training_frames": 1334,
+                    "weight_min": 0.6703060724775348,
+                    "weight_max": 5.009034757731452,
+                    "training_rows_sha256": "2c859f935a136d9f1aa32675d6b8e06637981e60ef063290498c156d43dcb8e1"
+                  }
+                ]
+              },
+              "training_frames": 1917,
+              "weight_min": 0.652225188753697,
+              "weight_max": 4.873920697540329,
+              "training_rows_sha256": "fc5752ddb8f7cbab7dd17202a0fd8194a7da10405895a14eef572b2dd07568e3"
+            },
+            {
+              "feature_count": 85,
+              "parameters": [
+                -0.4086860998765096,
+                0.06109118161348783
+              ],
+              "inner_calibration": {
+                "calibration_frames": 5750,
+                "objective": 0.42654357385863756,
+                "folds": [
+                  {
+                    "inner_fold": 1,
+                    "calibration_frames": 1250,
+                    "training_frames": 1417,
+                    "weight_min": 0.6607299120663407,
+                    "weight_max": 4.529736061280186,
+                    "training_rows_sha256": "60db12dc34f4325a1913ffabd9d1893fa5bceb1c06c6f8cc48d3393b56b7fd21"
+                  },
+                  {
+                    "inner_fold": 2,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 0.66934494518172,
+                    "weight_max": 2.7219418160121758,
+                    "training_rows_sha256": "06d23fa4be628518e0c27963896ccdfbd838d36e0b05420772b365ff1bd2f909"
+                  },
+                  {
+                    "inner_fold": 3,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 0.6369179391865445,
+                    "weight_max": 4.7595333329089184,
+                    "training_rows_sha256": "6a19237b1c481ea6fdee348f298c696da3c4e465ced98eaf9b8f94590d80c25c"
+                  },
+                  {
+                    "inner_fold": 4,
+                    "calibration_frames": 1500,
+                    "training_frames": 1334,
+                    "weight_min": 0.6703060724775348,
+                    "weight_max": 5.009034757731452,
+                    "training_rows_sha256": "2c859f935a136d9f1aa32675d6b8e06637981e60ef063290498c156d43dcb8e1"
+                  }
+                ]
+              },
+              "training_frames": 1917,
+              "weight_min": 0.652225188753697,
+              "weight_max": 4.873920697540329,
+              "training_rows_sha256": "fc5752ddb8f7cbab7dd17202a0fd8194a7da10405895a14eef572b2dd07568e3"
+            }
+          ],
+          "refined_boundaries_full_context": 3
+        },
+        {
+          "fold": 1,
+          "learners": [
+            {
+              "feature_count": 77,
+              "parameters": [
+                -0.6393411703008473,
+                -0.07359377146798551
+              ],
+              "inner_calibration": {
+                "calibration_frames": 5500,
+                "objective": 0.5369307174377465,
+                "folds": [
+                  {
+                    "inner_fold": 0,
+                    "calibration_frames": 1250,
+                    "training_frames": 1417,
+                    "weight_min": 0.6607299120663407,
+                    "weight_max": 4.529736061280186,
+                    "training_rows_sha256": "60db12dc34f4325a1913ffabd9d1893fa5bceb1c06c6f8cc48d3393b56b7fd21"
+                  },
+                  {
+                    "inner_fold": 2,
+                    "calibration_frames": 1250,
+                    "training_frames": 1334,
+                    "weight_min": 0.6819730861603296,
+                    "weight_max": 2.4185985646173624,
+                    "training_rows_sha256": "b85aa2842d054d1966b5665a7e19d83f0d58e94f6b9fcaf4f4be14630f2f5e7d"
+                  },
+                  {
+                    "inner_fold": 3,
+                    "calibration_frames": 1500,
+                    "training_frames": 1167,
+                    "weight_min": 0.6493228560476031,
+                    "weight_max": 4.242231035383803,
+                    "training_rows_sha256": "60e7af598ec8c55e3d1e2abf44e4ea5a16b46ab8baa7f9e7b1e492f4efdb5efe"
+                  },
+                  {
+                    "inner_fold": 4,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 0.6860791630685596,
+                    "weight_max": 4.482371583245507,
+                    "training_rows_sha256": "ff97f9d2607728d893e25486779db75cdd80f296395c176c9546f33d3a360f9d"
+                  }
+                ]
+              },
+              "training_frames": 1834,
+              "weight_min": 0.6587724135778713,
+              "weight_max": 4.516316127762433,
+              "training_rows_sha256": "96b6b083df338fb812865132dfb2ab8757db11ec334faeca53022f54b98d6b90"
+            },
+            {
+              "feature_count": 85,
+              "parameters": [
+                -0.5731560221991718,
+                -0.010484505538469531
+              ],
+              "inner_calibration": {
+                "calibration_frames": 5500,
+                "objective": 0.5112754729480516,
+                "folds": [
+                  {
+                    "inner_fold": 0,
+                    "calibration_frames": 1250,
+                    "training_frames": 1417,
+                    "weight_min": 0.6607299120663407,
+                    "weight_max": 4.529736061280186,
+                    "training_rows_sha256": "60db12dc34f4325a1913ffabd9d1893fa5bceb1c06c6f8cc48d3393b56b7fd21"
+                  },
+                  {
+                    "inner_fold": 2,
+                    "calibration_frames": 1250,
+                    "training_frames": 1334,
+                    "weight_min": 0.6819730861603296,
+                    "weight_max": 2.4185985646173624,
+                    "training_rows_sha256": "b85aa2842d054d1966b5665a7e19d83f0d58e94f6b9fcaf4f4be14630f2f5e7d"
+                  },
+                  {
+                    "inner_fold": 3,
+                    "calibration_frames": 1500,
+                    "training_frames": 1167,
+                    "weight_min": 0.6493228560476031,
+                    "weight_max": 4.242231035383803,
+                    "training_rows_sha256": "60e7af598ec8c55e3d1e2abf44e4ea5a16b46ab8baa7f9e7b1e492f4efdb5efe"
+                  },
+                  {
+                    "inner_fold": 4,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 0.6860791630685596,
+                    "weight_max": 4.482371583245507,
+                    "training_rows_sha256": "ff97f9d2607728d893e25486779db75cdd80f296395c176c9546f33d3a360f9d"
+                  }
+                ]
+              },
+              "training_frames": 1834,
+              "weight_min": 0.6587724135778713,
+              "weight_max": 4.516316127762433,
+              "training_rows_sha256": "96b6b083df338fb812865132dfb2ab8757db11ec334faeca53022f54b98d6b90"
+            }
+          ],
+          "refined_boundaries_full_context": 2
+        },
+        {
+          "fold": 2,
+          "learners": [
+            {
+              "feature_count": 77,
+              "parameters": [
+                -0.483470382256447,
+                0.34084836686314174
+              ],
+              "inner_calibration": {
+                "calibration_frames": 5500,
+                "objective": 0.48366103174402825,
+                "folds": [
+                  {
+                    "inner_fold": 0,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 0.66934494518172,
+                    "weight_max": 2.7219418160121758,
+                    "training_rows_sha256": "06d23fa4be628518e0c27963896ccdfbd838d36e0b05420772b365ff1bd2f909"
+                  },
+                  {
+                    "inner_fold": 1,
+                    "calibration_frames": 1250,
+                    "training_frames": 1334,
+                    "weight_min": 0.6819730861603296,
+                    "weight_max": 2.4185985646173624,
+                    "training_rows_sha256": "b85aa2842d054d1966b5665a7e19d83f0d58e94f6b9fcaf4f4be14630f2f5e7d"
+                  },
+                  {
+                    "inner_fold": 3,
+                    "calibration_frames": 1250,
+                    "training_frames": 1334,
+                    "weight_min": 0.5866291302854506,
+                    "weight_max": 2.2462589233316526,
+                    "training_rows_sha256": "bc8525a81a82106c6b49de9743dfdb3c17c7a6e52272ba0f1bc25338456e950f"
+                  },
+                  {
+                    "inner_fold": 4,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 0.6249528526986703,
+                    "weight_max": 2.393004113779477,
+                    "training_rows_sha256": "9167d2d6b1b008cdf4e9506c8256577493c5135ff9836d21eba86067450e110b"
+                  }
+                ]
+              },
+              "training_frames": 1834,
+              "weight_min": 0.6234320749481773,
+              "weight_max": 2.3871809106412574,
+              "training_rows_sha256": "2583e907c459f30d32303858af54e1dce14595a062e90c590c18ed7e97913a4b"
+            },
+            {
+              "feature_count": 85,
+              "parameters": [
+                -0.46141893291427083,
+                0.1453060574726226
+              ],
+              "inner_calibration": {
+                "calibration_frames": 5500,
+                "objective": 0.46793702425267925,
+                "folds": [
+                  {
+                    "inner_fold": 0,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 0.66934494518172,
+                    "weight_max": 2.7219418160121758,
+                    "training_rows_sha256": "06d23fa4be628518e0c27963896ccdfbd838d36e0b05420772b365ff1bd2f909"
+                  },
+                  {
+                    "inner_fold": 1,
+                    "calibration_frames": 1250,
+                    "training_frames": 1334,
+                    "weight_min": 0.6819730861603296,
+                    "weight_max": 2.4185985646173624,
+                    "training_rows_sha256": "b85aa2842d054d1966b5665a7e19d83f0d58e94f6b9fcaf4f4be14630f2f5e7d"
+                  },
+                  {
+                    "inner_fold": 3,
+                    "calibration_frames": 1250,
+                    "training_frames": 1334,
+                    "weight_min": 0.5866291302854506,
+                    "weight_max": 2.2462589233316526,
+                    "training_rows_sha256": "bc8525a81a82106c6b49de9743dfdb3c17c7a6e52272ba0f1bc25338456e950f"
+                  },
+                  {
+                    "inner_fold": 4,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 0.6249528526986703,
+                    "weight_max": 2.393004113779477,
+                    "training_rows_sha256": "9167d2d6b1b008cdf4e9506c8256577493c5135ff9836d21eba86067450e110b"
+                  }
+                ]
+              },
+              "training_frames": 1834,
+              "weight_min": 0.6234320749481773,
+              "weight_max": 2.3871809106412574,
+              "training_rows_sha256": "2583e907c459f30d32303858af54e1dce14595a062e90c590c18ed7e97913a4b"
+            }
+          ],
+          "refined_boundaries_full_context": 5
+        },
+        {
+          "fold": 3,
+          "learners": [
+            {
+              "feature_count": 77,
+              "parameters": [
+                -0.5742772661072822,
+                0.9365031762734417
+              ],
+              "inner_calibration": {
+                "calibration_frames": 5500,
+                "objective": 0.548398993194164,
+                "folds": [
+                  {
+                    "inner_fold": 0,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 0.6369179391865445,
+                    "weight_max": 4.7595333329089184,
+                    "training_rows_sha256": "6a19237b1c481ea6fdee348f298c696da3c4e465ced98eaf9b8f94590d80c25c"
+                  },
+                  {
+                    "inner_fold": 1,
+                    "calibration_frames": 1500,
+                    "training_frames": 1167,
+                    "weight_min": 0.6493228560476031,
+                    "weight_max": 4.242231035383803,
+                    "training_rows_sha256": "60e7af598ec8c55e3d1e2abf44e4ea5a16b46ab8baa7f9e7b1e492f4efdb5efe"
+                  },
+                  {
+                    "inner_fold": 2,
+                    "calibration_frames": 1250,
+                    "training_frames": 1334,
+                    "weight_min": 0.5866291302854506,
+                    "weight_max": 2.2462589233316526,
+                    "training_rows_sha256": "bc8525a81a82106c6b49de9743dfdb3c17c7a6e52272ba0f1bc25338456e950f"
+                  },
+                  {
+                    "inner_fold": 4,
+                    "calibration_frames": 1250,
+                    "training_frames": 1417,
+                    "weight_min": 0.6624097894545361,
+                    "weight_max": 4.950027749227271,
+                    "training_rows_sha256": "7319a524b54bdad7b7a0fe34b019631d1cb6e91601f75753eb9d80e7ac31c2e3"
+                  }
+                ]
+              },
+              "training_frames": 1834,
+              "weight_min": 0.6323183089884721,
+              "weight_max": 4.725161411661512,
+              "training_rows_sha256": "86edd967017ee38a669142f65e6942ae13a77bec9125e93b6e4901ba85030805"
+            },
+            {
+              "feature_count": 85,
+              "parameters": [
+                -0.5167517249755473,
+                0.9787061372503786
+              ],
+              "inner_calibration": {
+                "calibration_frames": 5500,
+                "objective": 0.5122068544125606,
+                "folds": [
+                  {
+                    "inner_fold": 0,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 0.6369179391865445,
+                    "weight_max": 4.7595333329089184,
+                    "training_rows_sha256": "6a19237b1c481ea6fdee348f298c696da3c4e465ced98eaf9b8f94590d80c25c"
+                  },
+                  {
+                    "inner_fold": 1,
+                    "calibration_frames": 1500,
+                    "training_frames": 1167,
+                    "weight_min": 0.6493228560476031,
+                    "weight_max": 4.242231035383803,
+                    "training_rows_sha256": "60e7af598ec8c55e3d1e2abf44e4ea5a16b46ab8baa7f9e7b1e492f4efdb5efe"
+                  },
+                  {
+                    "inner_fold": 2,
+                    "calibration_frames": 1250,
+                    "training_frames": 1334,
+                    "weight_min": 0.5866291302854506,
+                    "weight_max": 2.2462589233316526,
+                    "training_rows_sha256": "bc8525a81a82106c6b49de9743dfdb3c17c7a6e52272ba0f1bc25338456e950f"
+                  },
+                  {
+                    "inner_fold": 4,
+                    "calibration_frames": 1250,
+                    "training_frames": 1417,
+                    "weight_min": 0.6624097894545361,
+                    "weight_max": 4.950027749227271,
+                    "training_rows_sha256": "7319a524b54bdad7b7a0fe34b019631d1cb6e91601f75753eb9d80e7ac31c2e3"
+                  }
+                ]
+              },
+              "training_frames": 1834,
+              "weight_min": 0.6323183089884721,
+              "weight_max": 4.725161411661512,
+              "training_rows_sha256": "86edd967017ee38a669142f65e6942ae13a77bec9125e93b6e4901ba85030805"
+            }
+          ],
+          "refined_boundaries_full_context": 6
+        },
+        {
+          "fold": 4,
+          "learners": [
+            {
+              "feature_count": 77,
+              "parameters": [
+                -1.0448151144922404,
+                -0.23101953762184899
+              ],
+              "inner_calibration": {
+                "calibration_frames": 5750,
+                "objective": 0.6983816032563488,
+                "folds": [
+                  {
+                    "inner_fold": 0,
+                    "calibration_frames": 1500,
+                    "training_frames": 1334,
+                    "weight_min": 0.6703060724775348,
+                    "weight_max": 5.009034757731452,
+                    "training_rows_sha256": "2c859f935a136d9f1aa32675d6b8e06637981e60ef063290498c156d43dcb8e1"
+                  },
+                  {
+                    "inner_fold": 1,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 0.6860791630685596,
+                    "weight_max": 4.482371583245507,
+                    "training_rows_sha256": "ff97f9d2607728d893e25486779db75cdd80f296395c176c9546f33d3a360f9d"
+                  },
+                  {
+                    "inner_fold": 2,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 0.6249528526986703,
+                    "weight_max": 2.393004113779477,
+                    "training_rows_sha256": "9167d2d6b1b008cdf4e9506c8256577493c5135ff9836d21eba86067450e110b"
+                  },
+                  {
+                    "inner_fold": 3,
+                    "calibration_frames": 1250,
+                    "training_frames": 1417,
+                    "weight_min": 0.6624097894545361,
+                    "weight_max": 4.950027749227271,
+                    "training_rows_sha256": "7319a524b54bdad7b7a0fe34b019631d1cb6e91601f75753eb9d80e7ac31c2e3"
+                  }
+                ]
+              },
+              "training_frames": 1917,
+              "weight_min": 0.6546229345824,
+              "weight_max": 4.891838470762623,
+              "training_rows_sha256": "4963db451a6cbd0919f31fa0160f96ba0f78c792e9d574a94f9a6c200c13dcd0"
+            },
+            {
+              "feature_count": 85,
+              "parameters": [
+                -0.9933035915452787,
+                -0.1419509335675295
+              ],
+              "inner_calibration": {
+                "calibration_frames": 5750,
+                "objective": 0.6804860160622416,
+                "folds": [
+                  {
+                    "inner_fold": 0,
+                    "calibration_frames": 1500,
+                    "training_frames": 1334,
+                    "weight_min": 0.6703060724775348,
+                    "weight_max": 5.009034757731452,
+                    "training_rows_sha256": "2c859f935a136d9f1aa32675d6b8e06637981e60ef063290498c156d43dcb8e1"
+                  },
+                  {
+                    "inner_fold": 1,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 0.6860791630685596,
+                    "weight_max": 4.482371583245507,
+                    "training_rows_sha256": "ff97f9d2607728d893e25486779db75cdd80f296395c176c9546f33d3a360f9d"
+                  },
+                  {
+                    "inner_fold": 2,
+                    "calibration_frames": 1500,
+                    "training_frames": 1250,
+                    "weight_min": 0.6249528526986703,
+                    "weight_max": 2.393004113779477,
+                    "training_rows_sha256": "9167d2d6b1b008cdf4e9506c8256577493c5135ff9836d21eba86067450e110b"
+                  },
+                  {
+                    "inner_fold": 3,
+                    "calibration_frames": 1250,
+                    "training_frames": 1417,
+                    "weight_min": 0.6624097894545361,
+                    "weight_max": 4.950027749227271,
+                    "training_rows_sha256": "7319a524b54bdad7b7a0fe34b019631d1cb6e91601f75753eb9d80e7ac31c2e3"
+                  }
+                ]
+              },
+              "training_frames": 1917,
+              "weight_min": 0.6546229345824,
+              "weight_max": 4.891838470762623,
+              "training_rows_sha256": "4963db451a6cbd0919f31fa0160f96ba0f78c792e9d574a94f9a6c200c13dcd0"
+            }
+          ],
+          "refined_boundaries_full_context": 4
+        }
+      ]
+    }
+  },
+  "labels_sha256": "bda559851bad48e556896b357b9727b474f325877c83ed925a0af28f674f05bd",
+  "base_features_sha256": "c87c85c5e71bc3393ab27d786cd9d907fa6303d864c7e25e92e275329662d4e0",
+  "paper_features_sha256": "1806ee758d81e13739b12c332960c8a0c779663b8e702bc1e600b14b5f8927d5",
+  "prior_sha256": "76e94ca6791a4c90b293bb12ec3818ee6344f047e86fb78bc51c1ef255fb6ddb",
+  "source_sha256": {
+    "experiments/rare_spell_models.py": "266cf96e84e7662ab2b3741f2c6debd36fb73f302eceebb17c023bbfe1d62094",
+    "experiments/segment_weighting.py": "2718166c6511b2b089570d3e53deff2322dbb081a6c5012ea825aff2c4f3acde",
+    "possession/features.py": "ae92003a16357a1384c30969390ea4e211eccac01bf61205a15b754d740fc91a",
+    "possession/calibration.py": "b38fa6dff645ff07da957a48c2384411a27f6589783cd556ef61530dd27195b0",
+    "possession/control.py": "5fe94129731615c6f2f7a786e925ac4ddc1787614d1c4ca0bad2555017934a00",
+    "possession/physics.py": "635e7814f57ceced08582ab6521e7454cc1401278cfe73d49bb1513b2a9e43f3",
+    "possession/model.py": "82b22fb14af5825836a7c3c67fd8667f2cc13277a5fda30a3e5745003b29b33e",
+    "possession/duration.py": "78b2ff3f604295c2ed29f29f135dc9af52257acc4d32c0f5587aa0428662a36b"
+  }
+}

@@ -7,6 +7,21 @@ from scipy.special import logsumexp
 from possession.model import fit_model, predict
 
 
+def blend_teams(base, other):
+    """Average conditional H/A evidence while retaining the base live/dead probability."""
+    base, other = np.asarray(base, dtype=float), np.asarray(other, dtype=float)
+    if base.ndim != 2 or base.shape[1] != 3 or other.shape != base.shape:
+        raise ValueError('Expected two matching H/A/D probability matrices')
+    conditional = []
+    for p in (base, other):
+        if not np.isfinite(p).all() or np.any(p < 0) or not np.allclose(p.sum(axis=1), 1):
+            raise ValueError('Expected finite normalized H/A/D probabilities')
+        alive = p[:, :2].sum(axis=1, keepdims=True)
+        conditional.append(np.divide(p[:, :2], alive, out=np.full_like(p[:, :2], .5), where=alive > 0))
+    team = (conditional[0] + conditional[1]) / 2
+    return np.column_stack([base[:, :2].sum(axis=1, keepdims=True) * team, base[:, 2]])
+
+
 def calibrated(probability, parameters):
     p = np.asarray(probability, dtype=float)
     parameters = np.asarray(parameters, dtype=float)
