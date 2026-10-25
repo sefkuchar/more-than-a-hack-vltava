@@ -21,6 +21,83 @@ The previous artifact is preserved as
 [models/possession_baseline.joblib](models/possession_baseline.joblib), together
 with its metadata, held-out predictions and full submission.
 
+## How the model works
+
+The model does not classify each frame independently and then smooth the result. Two
+classifiers provide per-frame H/A/D evidence, and a semi-Markov decoder chooses the
+whole label sequence that best balances that evidence against realistic possession
+and dead-ball durations. Physical contact refinement then aligns the surviving H/A
+edges to observed player-ball events, and a gated camera pass restores short spells
+that the duration prior would otherwise erase.
+
+```mermaid
+flowchart TD
+    subgraph IN["Match inputs (label-free)"]
+        T["Tactical tracking<br/>players, ball, team slots"]
+        S["Smart Tagging<br/>phase and restart windows"]
+        H["Homography<br/>pitch geometry"]
+        B["Broadcast tracking<br/>second camera"]
+    end
+
+    subgraph FEAT["Feature construction"]
+        AL["Cross-camera alignment<br/>team correction + corrected nearest"]
+        F77["77 base features<br/>distance, contact, visibility, speed,<br/>tags and 5-125 frame rolling windows"]
+        F85["85 paper-evidence features<br/>77 base + SG7 kick acceleration,<br/>camera contact and correction"]
+    end
+
+    subgraph LEARN["Learned per-frame evidence"]
+        C1["Classifier 1<br/>HistGradientBoosting on 77"]
+        C2["Classifier 2<br/>HistGradientBoosting on 85"]
+        K1["Calibrator 1<br/>scale + dead-ball intercept"]
+        K2["Calibrator 2<br/>scale + dead-ball intercept"]
+        BL["Conditional team blend<br/>mean H/A probability, retain base D"]
+    end
+
+    subgraph DECODE["Temporal decoding and refinement"]
+        SM["Semi-Markov duration decoder<br/>25 Hz, external spell-duration prior,<br/>emission temperature 2"]
+        CR["Contact boundary refinement<br/>sustained contact and kick acceleration,<br/>snap existing H/A edges within 50 frames"]
+        RC["Camera short-spell recovery<br/>gated corrected proximity + classifier support"]
+    end
+
+    OUT["Submission<br/>one H / A / D / X label per video frame"]
+
+    T --> F77
+    T --> F85
+    S --> F77
+    S --> F85
+    H --> F77
+    H --> F85
+    B --> AL
+    T --> AL
+    AL --> F85
+    F77 --> C1
+    F85 --> C2
+    C1 --> K1
+    C2 --> K2
+    K1 --> BL
+    K2 --> BL
+    BL --> SM
+    SM --> CR
+    CR --> RC
+    RC --> OUT
+
+    GT["Public 5-minute ground truth"] -. training rows, stride 3 .-> C1
+    GT -. training rows, stride 3 .-> C2
+    GT -. blocked inner folds .-> K1
+    GT -. blocked inner folds .-> K2
+```
+
+| stage | what it decides | why it is there |
+|---|---|---|
+| Inputs | Tactical frame index, team ownership, ball state | Submission rows are tactical-video frames |
+| Features | Physical and temporal evidence per frame | Gives the classifiers geometry, visibility, tags and motion |
+| Classifiers | H/A/D probability per frame | Learns from the public five minutes only |
+| Calibration + blend | Trustworthy H/A probabilities, shared live/dead mass | Two complementary feature views, one team-symmetric decision |
+| Semi-Markov decode | Whole possession sequence | Prevents unrealistic flicker and enforces plausible spell lengths |
+| Contact refinement | Exact H/A transition times | Snaps model edges to observed player-ball contact or kicks |
+| Camera recovery | Missing short spells | Restores briefly supported possession changes suppressed by the prior |
+| Output | 199,319 frame labels | `frame,label` submission |
+
 ## Run and compare
 
 ```bash
@@ -28,6 +105,8 @@ source .venv-ball/bin/activate
 export OPENBLAS_NUM_THREADS=4 OMP_NUM_THREADS=4
 python -m possession.run
 python -m possession.compare
+python -m possession.validate
+python evaluation/bootstrap_evaluation.py --draws 10000
 python evaluation/validate_submission.py evaluation/results/possession_model.csv
 ```
 
@@ -160,11 +239,25 @@ assigns an absent class F1 zero when computing each fold's three-class macroF1.
 
 On the public window the current submission predicts 17 possessions against 17
 real ones, compared with 13 before the camera-recovery step. The pooled
-cross-validation output predicts 15. Its spell bootstrap interval is approximately
-**0.6000–0.9261**; macro-F1's interval is **0.7731–0.9321**. Repeated selection
-on this small public sample remains optimistic. Public ball visibility is 88.2%,
-versus about 59.3% over the full graded match, so these results do not establish
-full-match accuracy.
+cross-validation output predicts 15.
+
+A seeded paired bootstrap (`evaluation/bootstrap_evaluation.py`, 10,000 draws,
+seed 0) resamples whole possessions for spellF1 and whole ground-truth segments
+for macro-F1. Results are in `experiments/bootstrap_report.json`:
+
+| model | spellF1 (90% interval) | macroF1 (90% interval) |
+|---|---:|---:|
+| Current | **0.7750** (0.5875–0.9318) | 0.8880 (0.7663–0.9337) |
+| Previous saved model | 0.6429 (0.4143–0.8343) | 0.8919 (0.7773–0.9355) |
+
+The paired spellF1 difference is **+0.1321** (90% interval **−0.0125 to
+0.3089**); the current model is better in **93.6%** of paired draws, but zero is
+still inside the interval. The paired macroF1 difference is **−0.0039**
+(−0.0363 to 0.0211). Per-fold intervals are also in the report, but each fold has
+only four or five possessions, so they are correspondingly coarse. Repeated
+selection on this small public sample remains optimistic. Public ball visibility
+is 88.2%, versus about 59.3% over the full graded match, so these results do not
+establish full-match accuracy.
 
 Original research notes and historical experiments remain for inspection:
 

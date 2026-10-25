@@ -1,0 +1,398 @@
+{
+  "validation_type": "paired_bootstrap_evaluation",
+  "protocol": "Possessions are resampled with replacement for spellF1; ground-truth segments are resampled with replacement for macro-F1. Both models use the same seed and therefore the same resamples.",
+  "ground_truth": "evaluation/gt/BAR-ATH_possession_gt_public.csv",
+  "ground_truth_sha256": "e596a9af9626c623bb94be6fd350e12ee9a75c76a696cfadca3bc01735e92487",
+  "public_window": [
+    [
+      11185,
+      18685
+    ]
+  ],
+  "draws": 10000,
+  "seed": 0,
+  "percentiles": [
+    5,
+    95
+  ],
+  "models": {
+    "current": {
+      "predictions": "experiments/validation_predictions.csv",
+      "prediction_sha256": "7edcfccf14825192a562c94f4462f5e2301ef7c63597db3bf07bc19036ad1b17",
+      "point": {
+        "spell_f1_mean": 0.775,
+        "macro_f1": 0.8880455038465055,
+        "n_gt_spells": 17,
+        "n_pred_spells": 15
+      },
+      "bootstrap": {
+        "spell_f1": {
+          "low": 0.5875,
+          "high": 0.9318181818181819,
+          "mean": 0.7732070833333333,
+          "std": 0.10523617889088173,
+          "n_unique": 75,
+          "n_draws": 10000
+        },
+        "macro_f1": {
+          "low": 0.7662601234956041,
+          "high": 0.9336745668246968,
+          "mean": 0.8663549229021499,
+          "std": 0.058198539087327146,
+          "n_unique": 10000,
+          "n_draws": 10000
+        }
+      },
+      "per_fold": [
+        {
+          "fold": 0,
+          "held_out_first_frame": 11185,
+          "held_out_last_frame": 12684,
+          "point": {
+            "spell_f1_mean": 0.45714285714285713,
+            "macro_f1": 0.4983031238604181,
+            "n_gt_spells": 5,
+            "n_pred_spells": 2
+          },
+          "bootstrap": {
+            "spell_f1": {
+              "low": 0.0,
+              "high": 0.7619047619047619,
+              "mean": 0.4270660317460317,
+              "std": 0.21922491379981576,
+              "n_unique": 21,
+              "n_draws": 10000
+            },
+            "macro_f1": {
+              "low": 0.12936880542514348,
+              "high": 0.6288787691385095,
+              "mean": 0.39588682296564187,
+              "std": 0.15372301376289277,
+              "n_unique": 117,
+              "n_draws": 10000
+            }
+          }
+        },
+        {
+          "fold": 1,
+          "held_out_first_frame": 12685,
+          "held_out_last_frame": 14184,
+          "point": {
+            "spell_f1_mean": 0.6666666666666665,
+            "macro_f1": 0.8683641286865064,
+            "n_gt_spells": 4,
+            "n_pred_spells": 5
+          },
+          "bootstrap": {
+            "spell_f1": {
+              "low": 0.4444444444444445,
+              "high": 0.888888888888889,
+              "mean": 0.6674222222222223,
+              "std": 0.19098037388662886,
+              "n_unique": 5,
+              "n_draws": 10000
+            },
+            "macro_f1": {
+              "low": 0.41520860443206714,
+              "high": 0.9228459449941496,
+              "mean": 0.700750133776093,
+              "std": 0.170425792708385,
+              "n_unique": 123,
+              "n_draws": 10000
+            }
+          }
+        },
+        {
+          "fold": 2,
+          "held_out_first_frame": 14185,
+          "held_out_last_frame": 15684,
+          "point": {
+            "spell_f1_mean": 0.8444444444444444,
+            "macro_f1": 0.6474503268788775,
+            "n_gt_spells": 4,
+            "n_pred_spells": 5
+          },
+          "bootstrap": {
+            "spell_f1": {
+              "low": 0.8,
+              "high": 0.888888888888889,
+              "mean": 0.8445955555555557,
+              "std": 0.038196074777325784,
+              "n_unique": 5,
+              "n_draws": 10000
+            },
+            "macro_f1": {
+              "low": 0.328863796753705,
+              "high": 0.6654173236032502,
+              "mean": 0.5659272235431437,
+              "std": 0.1203443129402079,
+              "n_unique": 35,
+              "n_draws": 10000
+            }
+          }
+        },
+        {
+          "fold": 3,
+          "held_out_first_frame": 15685,
+          "held_out_last_frame": 17184,
+          "point": {
+            "spell_f1_mean": 0.5714285714285715,
+            "macro_f1": 0.6462388087395259,
+            "n_gt_spells": 4,
+            "n_pred_spells": 3
+          },
+          "bootstrap": {
+            "spell_f1": {
+              "low": 0.0,
+              "high": 1.0,
+              "mean": 0.5591857142857142,
+              "std": 0.2708774672151561,
+              "n_unique": 5,
+              "n_draws": 10000
+            },
+            "macro_f1": {
+              "low": 0.27147401908801694,
+              "high": 0.7792270531400965,
+              "mean": 0.5306562761725108,
+              "std": 0.16831997977386665,
+              "n_unique": 118,
+              "n_draws": 10000
+            }
+          }
+        },
+        {
+          "fold": 4,
+          "held_out_first_frame": 17185,
+          "held_out_last_frame": 18684,
+          "point": {
+            "spell_f1_mean": 0.8571428571428571,
+            "macro_f1": 0.8525303029648121,
+            "n_gt_spells": 4,
+            "n_pred_spells": 3
+          },
+          "bootstrap": {
+            "spell_f1": {
+              "low": 0.2857142857142857,
+              "high": 1.0,
+              "mean": 0.8114142857142856,
+              "std": 0.20117187239994055,
+              "n_unique": 5,
+              "n_draws": 10000
+            },
+            "macro_f1": {
+              "low": 0.4863654863654863,
+              "high": 0.9511348993953811,
+              "mean": 0.7283229699845961,
+              "std": 0.1742802287221335,
+              "n_unique": 433,
+              "n_draws": 10000
+            }
+          }
+        }
+      ]
+    },
+    "baseline": {
+      "predictions": "experiments/baseline_validation_predictions.csv",
+      "prediction_sha256": "ade02054c3c4559358caa8292fbda9686fd4e3c14efa141af5d5de6f0375ab2b",
+      "point": {
+        "spell_f1_mean": 0.6428571428571427,
+        "macro_f1": 0.8919037386538128,
+        "n_gt_spells": 17,
+        "n_pred_spells": 11
+      },
+      "bootstrap": {
+        "spell_f1": {
+          "low": 0.4142857142857143,
+          "high": 0.8342857142857143,
+          "mean": 0.6360053338353341,
+          "std": 0.12838756169862856,
+          "n_unique": 181,
+          "n_draws": 10000
+        },
+        "macro_f1": {
+          "low": 0.777305874113628,
+          "high": 0.9354651734248968,
+          "mean": 0.8707755065462843,
+          "std": 0.05665417271922889,
+          "n_unique": 10000,
+          "n_draws": 10000
+        }
+      },
+      "per_fold": [
+        {
+          "fold": 0,
+          "held_out_first_frame": 11185,
+          "held_out_last_frame": 12684,
+          "point": {
+            "spell_f1_mean": 0.45714285714285713,
+            "macro_f1": 0.5095614911410972,
+            "n_gt_spells": 5,
+            "n_pred_spells": 2
+          },
+          "bootstrap": {
+            "spell_f1": {
+              "low": 0.0,
+              "high": 0.7619047619047619,
+              "mean": 0.4270660317460317,
+              "std": 0.21922491379981576,
+              "n_unique": 21,
+              "n_draws": 10000
+            },
+            "macro_f1": {
+              "low": 0.16398243045387992,
+              "high": 0.6288787691385095,
+              "mean": 0.40908425445224483,
+              "std": 0.14934757599842133,
+              "n_unique": 117,
+              "n_draws": 10000
+            }
+          }
+        },
+        {
+          "fold": 1,
+          "held_out_first_frame": 12685,
+          "held_out_last_frame": 14184,
+          "point": {
+            "spell_f1_mean": 0.6666666666666665,
+            "macro_f1": 0.8354736634025736,
+            "n_gt_spells": 4,
+            "n_pred_spells": 5
+          },
+          "bootstrap": {
+            "spell_f1": {
+              "low": 0.4444444444444445,
+              "high": 0.888888888888889,
+              "mean": 0.6674222222222223,
+              "std": 0.19098037388662886,
+              "n_unique": 5,
+              "n_draws": 10000
+            },
+            "macro_f1": {
+              "low": 0.377236253617469,
+              "high": 0.9106549413454784,
+              "mean": 0.6766521084809066,
+              "std": 0.17076956253558384,
+              "n_unique": 123,
+              "n_draws": 10000
+            }
+          }
+        },
+        {
+          "fold": 2,
+          "held_out_first_frame": 14185,
+          "held_out_last_frame": 15684,
+          "point": {
+            "spell_f1_mean": 0.5333333333333334,
+            "macro_f1": 0.6390598475107927,
+            "n_gt_spells": 4,
+            "n_pred_spells": 2
+          },
+          "bootstrap": {
+            "spell_f1": {
+              "low": 0.0,
+              "high": 0.8571428571428571,
+              "mean": 0.4974742857142857,
+              "std": 0.2375924727882253,
+              "n_unique": 15,
+              "n_draws": 10000
+            },
+            "macro_f1": {
+              "low": 0.3176802668719528,
+              "high": 0.6505091815809098,
+              "mean": 0.5153817523458984,
+              "std": 0.15197259037208663,
+              "n_unique": 31,
+              "n_draws": 10000
+            }
+          }
+        },
+        {
+          "fold": 3,
+          "held_out_first_frame": 15685,
+          "held_out_last_frame": 17184,
+          "point": {
+            "spell_f1_mean": 0.4666666666666666,
+            "macro_f1": 0.6022788671741653,
+            "n_gt_spells": 4,
+            "n_pred_spells": 2
+          },
+          "bootstrap": {
+            "spell_f1": {
+              "low": 0.0,
+              "high": 0.7999999999999999,
+              "mean": 0.4367742857142857,
+              "std": 0.23834186508871713,
+              "n_unique": 15,
+              "n_draws": 10000
+            },
+            "macro_f1": {
+              "low": 0.2959183673469388,
+              "high": 0.6423215784085048,
+              "mean": 0.5042258235359126,
+              "std": 0.1410442033457549,
+              "n_unique": 117,
+              "n_draws": 10000
+            }
+          }
+        },
+        {
+          "fold": 4,
+          "held_out_first_frame": 17185,
+          "held_out_last_frame": 18684,
+          "point": {
+            "spell_f1_mean": 0.8571428571428571,
+            "macro_f1": 0.8511360301302052,
+            "n_gt_spells": 4,
+            "n_pred_spells": 3
+          },
+          "bootstrap": {
+            "spell_f1": {
+              "low": 0.2857142857142857,
+              "high": 1.0,
+              "mean": 0.8114142857142856,
+              "std": 0.20117187239994055,
+              "n_unique": 5,
+              "n_draws": 10000
+            },
+            "macro_f1": {
+              "low": 0.4815705128205128,
+              "high": 0.9499555412737203,
+              "mean": 0.727457477803001,
+              "std": 0.17393188757103567,
+              "n_unique": 439,
+              "n_draws": 10000
+            }
+          }
+        }
+      ]
+    }
+  },
+  "paired": {
+    "current_minus_baseline": {
+      "spell_f1": {
+        "point_difference": 0.13214285714285734,
+        "low": -0.012499999999999956,
+        "high": 0.30892857142857155,
+        "mean": 0.1372017494979992,
+        "share_current_better": 0.9355,
+        "share_tied": 0.0005,
+        "n_draws": 10000
+      },
+      "macro_f1": {
+        "point_difference": -0.0038582348073072925,
+        "low": -0.03625198409062606,
+        "high": 0.021120336458815274,
+        "mean": -0.004420583644134377,
+        "share_current_better": 0.4364,
+        "share_tied": 0.0,
+        "n_draws": 10000
+      }
+    }
+  },
+  "notes": [
+    "The comparison uses held-out out-of-fold predictions, not the public submission.",
+    "Each fold contains only four or five possessions; per-fold intervals are coarse.",
+    "The ground truth has 17 possessions, so all intervals are wide by construction.",
+    "The seed fixes the resamples; changing --draws changes the interval endpoints."
+  ]
+}
