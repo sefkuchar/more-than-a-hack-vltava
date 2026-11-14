@@ -1,3 +1,24 @@
+# Team Vltava — More than a Hack 2027, Phase 1 submission
+
+**Technical document:** [Vltava.md](Vltava.md) · **Model details:** [MODEL.md](MODEL.md)
+
+Regenerate the submitted file from the challenge data bundle (unpacked into `./data`, which is
+gitignored and not distributed here):
+
+```bash
+python -m venv .venv-ball
+source .venv-ball/bin/activate          # Windows: .venv-ball\Scripts\activate
+pip install -r requirements-model.txt   # Python 3.11+, pinned deps
+python -m possession.run --out Vltava.csv
+python evaluation/validate_submission.py Vltava.csv
+# expected SHA-256: 2fcb6f10fb885bc7041d62506fc014c4d119226165b7193d9fb2ad2ff4edebe2
+```
+
+Nested blocked cross-validation on the public 5 minutes: **0.7750 spellF1 / 0.8880 macroF1**
+(baseline 0.3256 / 0.6207). The rest of this README is the organisers' challenge description.
+
+---
+
 # More than a Hack 2027 — Phase 1: Ball Possession
 
 **Organised by [Metrica Sports](https://metrica-sports.com), [FC Barcelona](https://www.fcbarcelona.com)

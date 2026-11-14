@@ -9,3 +9,11 @@ data/**/*
 evaluation/reports/
 evaluation/scoreboard.csv
 experiments/cache/
+
+# Team submission hygiene: no full-match label files, papers or OS junk in the public repo
+**/.DS_Store
+stuff/
+evaluation/results/*.csv
+!evaluation/results/baseline_*.csv
+/Vltava.csv
+/Vltava.json

@@ -99,11 +99,11 @@
     -0.12576207375121817
   ],
   "duration_prior_sha256": "76e94ca6791a4c90b293bb12ec3818ee6344f047e86fb78bc51c1ef255fb6ddb",
-  "contact_refined_boundaries": 66,
+  "contact_refined_boundaries": 65,
   "camera_recovered_spells": 8,
   "public_training_score_spell_f1": 0.9882352941176471,
-  "public_training_score_macro_f1": 0.9919414064159874,
+  "public_training_score_macro_f1": 0.9919266028836792,
   "score_warning": "Public labels were used in training. These are resubstitution scores, not held-out performance.",
-  "submission_sha256": "9e073a2326ec725565b01d78782304804db3908d24ca231a9baaaf5b1cbb31fb",
+  "submission_sha256": "2fcb6f10fb885bc7041d62506fc014c4d119226165b7193d9fb2ad2ff4edebe2",
   "private_full_match_score": null
 }

@@ -101,7 +101,7 @@ flowchart TD
 ## Run and compare
 
 ```bash
-source .venv-ball/bin/activate
+source .venv-ball/bin/activate   # Windows: .venv-ball\\Scripts\\activate
 export OPENBLAS_NUM_THREADS=4 OMP_NUM_THREADS=4
 python -m possession.run
 python -m possession.compare
@@ -154,7 +154,10 @@ python -m possession.run
 python -m possession.compare
 ```
 
-Python 3.11+ is required; development used Python 3.14. Dependencies are pinned,
+Python 3.11+ is required; development used Python 3.14, and the submission is
+verified byte-identical under Python 3.13 and 3.14 (Linux x86-64). The expected
+submission SHA-256 is `2fcb6f10fb885bc7041d62506fc014c4d119226165b7193d9fb2ad2ff4edebe2`;
+`possession.run` records the hash of what it wrote in its JSON report. Dependencies are pinned,
 and saved classifiers require scikit-learn 1.8.0. Default artifacts use format 2;
 format 1 remains supported for the previous model.
 
