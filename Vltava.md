@@ -1,154 +1,141 @@
 # Team Vltava: ball possession, technical document
 
 **More than a Hack 2027, Phase 1** · Repository: <https://github.com/sefkuchar/more-than-a-hack-vltava>
-· Submission: `Vltava.csv` (SHA-256 `2fcb6f10fb885bc7041d62506fc014c4d119226165b7193d9fb2ad2ff4edebe2`)
+· Submission: `Vltava.csv` (SHA-256 `b206d380fced9a12c30cac7f90260272adf86d8b2dd64154a402653947c13367`)
 
 ## 1. Approach
 
-We predict per-frame evidence for H/A/D with learned classifiers. We then **decode whole
-possession sequences** instead of smoothing frame labels. `spellF1` rewards recovering complete
-possessions, and frame-level classifiers flicker. A plain majority-vote filter either keeps the
-flicker or erases real short possessions. A duration-aware decoder trades the evidence against
-how long possessions and stoppages really last.
+We predict per-frame H/A/D evidence with a classifier trained on **other games**. We then decode
+whole possession sequences instead of smoothing frame labels. `spellF1` rewards recovering
+complete possessions, and frame classifiers flicker. A duration-aware decoder trades the
+evidence against how long possessions and stoppages really last.
 
-Pipeline (`python -m possession.run`):
+The pipeline (`python -m possession.run`) has four steps.
 
-1. **Features (label-free).** 77 base features per frame, computed from tactical tracking, Smart
-   Tagging and pitch geometry:
+1. **Features (label-free, 62 per frame).** They are computed from tactical tracking and pitch
+   geometry:
    - distance from the ball to the nearest home and nearest away player, and the margin between them;
-   - Gaussian "contact" scores and sustained-contact flags;
-   - ball visibility and age of the last observation, ball speed and trajectory turn;
-   - distance to the pitch boundary, and player movement (share of moving players, mean speed);
-   - Smart Tagging restart and team-phase windows;
+   - Gaussian "contact" scores and sustained co-motion contact;
+   - ball visibility and the age of the last observation;
+   - ball speed and trajectory turn, distance to the pitch boundary, and player movement;
    - rolling means over 5, 12, 25, 50 and 125 frames.
 
-   A second view adds 8 features (85 in total) from the broadcast camera:
-   - a label-free spatial/temporal alignment of broadcast tracking to the tactical timeline;
-   - cross-camera team-assignment correction and the corrected contact evidence;
-   - ball kick acceleration from 7-frame Savitzky–Golay derivatives.
-2. **Two classifiers.** Shallow `HistGradientBoostingClassifier` models (`random_state=0`), one
-   per feature view, trained on the public 5 minutes (every 3rd frame). Home and away are swapped
-   during training and averaged at prediction, so the model has no team bias.
-3. **Calibration and blend.** Each model gets a 2-parameter calibrator (scale and dead-ball
-   intercept), fitted on inner blocked held-out predictions. The blend keeps the base model's D
-   probability and averages the two models' conditional H/A probabilities.
-4. **Semi-Markov decoding.** An exact 25 Hz semi-Markov (explicit-duration) decoder runs per half,
-   with emission temperature 2. The duration priors for possessions and dead-ball spells were
-   fitted on an unrelated public match (IDSSE / DFL-Sportec, CC-BY-4.0). Only the fitted
-   parameters are shipped, in `possession/duration_prior.json`.
-5. **Contact boundary refinement.** Existing H/A transitions snap to the nearest onset of new-team
-   control within ±50 frames. Spell count, label order and dead-ball edges are unchanged.
-6. **Camera short-spell recovery.** Short possessions that the duration prior suppressed are
-   restored, but only where broadcast-corrected geometry strongly supports them (see §3).
+   The same code computes the same features on the external matches.
+2. **Classifier.** A shallow `HistGradientBoostingClassifier` (`random_state=0`). Home and away
+   are swapped during training and averaged at prediction, so the model has no team bias.
+3. **Calibration.** A 2-parameter calibrator (probability scale and dead-ball intercept), fitted
+   on a held-out external match.
+4. **Semi-Markov decoding.** An exact 25 Hz explicit-duration decoder runs separately for each
+   half. Its log-normal-mixture priors for possession and dead-ball durations were fitted on an
+   external IDSSE match. The emission temperature was chosen on the held-out external match.
 
-## 2. Assets used and dropped
+## 2. Training data
+
+We use no labels of the provided match (BAR-ATH): not for training, calibration, tuning or model
+selection. The only labelled data is:
+
+| Dataset | Source | Who labelled it | How much | Used for |
+|---|---|---|---|---|
+| IDSSE J03WOH (Düsseldorf–Regensburg, 2. Bundesliga 2022/23) | [IDSSE / DFL-Sportec open data](https://doi.org/10.1038/s41597-025-04505-y), CC-BY-4.0, [mirror](https://huggingface.co/datasets/pysport/idsse-data) | Provider (Sportec Solutions for the DFL): per-frame `BallStatus` and `BallPossession` in the official position data | 137,214 frames | Classifier training; duration prior |
+| IDSSE J03WQQ (Düsseldorf–St. Pauli) | same | same | 142,345 frames | Classifier training |
+| IDSSE J03WOY (Düsseldorf–Rostock) | same | same | 142,536 frames | Calibration and decoder settings only (held out from the classifier) |
+
+Labels map as follows: `BallStatus = 0` → D; `BallStatus = 1` with `BallPossession` 1 or 2 → H or A.
+Training uses every 4th frame of each training match, twice: once with the clean ball track and
+once with a corrupted copy. That gives 139,782 rows in total.
+
+**Domain adaptation, no labels involved.** The provided match's automatic tracking sees the ball
+on only 59% of live frames, while IDSSE sees it on almost every frame. So the corrupted copy
+overlays BAR-ATH's *unlabelled* ball-visibility pattern on the IDSSE ball track, at a random
+offset, and adds smooth 1 m positional noise. The only thing read from BAR-ATH here is
+`isfinite(ball)`.
+
+**Public 5 minutes.** These were used once, at the end, as the pipeline check the rules allow:
+0.4848 spellF1 / 0.7849 macroF1. They played no part in any choice. Before the rules update of
+23 Oct 2026 we had trained on that window. That model and its training code were removed. The
+`experiments/` and `research/` folders are kept for history only, and the pipeline uses neither.
+
+## 3. Assets used and dropped
 
 | Asset | Used? | How |
 |---|---|---|
 | Tactical tracking (ATD) | Yes, core | Ball and player positions, team slots, visibility |
 | Tactical homography | Yes | Pitch coordinates and boundary distance |
-| Smart Tagging | Yes | `SET PIECES` → restart feature; tactical phases → per-team phase features |
-| Broadcast tracking + homography | Yes | Second view: team-assignment correction, corrected contact, short-spell recovery |
-| Videos (`.mp4`) | **No** | Not needed by the final pipeline |
-| Public 5-min ground truth | Yes | The only supervised labels: training, calibration, blocked CV |
-| IDSSE public match (external) | Duration prior only | Fitted spell-duration distributions; the raw data is not shipped |
+| Smart Tagging | **No** (dropped) | IDSSE has no equivalent, so a model trained on other games can't learn from it |
+| Broadcast tracking + homography | **No** (dropped) | Same reason. Our earlier cross-camera features also relied on thresholds chosen with public labels |
+| Videos | No | Not needed |
+| IDSSE (external) | Yes | See §2 |
 
-Tried and **dropped** (all scored on the same nested blocked cross-validation; details in `research/`):
+Earlier experiments that we dropped (see `research/`): neural ball reconstruction, frame
+grouping, temporal convolution label predictors, graph label spreading and paper-derived feature
+stacks. All of them were evaluated under the old rules on the public window, so we don't rely on
+any of them now.
 
-- **Neural ball reconstruction** (a small model inspired by Ball Radar). It filled long ball gaps
-  better than interpolation, but did not improve possession spellF1.
-- **Frame grouping** (fixed or adaptive), graph label spreading, temporal-convolution label
-  predictors and external-pretrained temporal transfer. All scored between 0.43 and 0.59 spellF1,
-  below the frame classifier with decoding.
-- **Appending every feature idea from the papers to one classifier** (kick dynamics, opponent
-  pressure, object context): 0.50 to 0.63 spellF1. Only the separate two-view blend helped.
-- **Decoder emission temperature 5** (0.6800 spellF1) and a fixed temperature pool; we chose
-  temperature 2.
+## 4. Possession rules implemented
 
-## 3. Possession rules implemented
+- **Live vs dead.** `D` comes from the classifier's dead-ball probability, which draws on ball
+  speed and visibility, stationary players, player movement and distance to the pitch boundary.
+  The decoder imposes realistic stoppage durations, learned from IDSSE. A dead ball never gets a
+  team.
+- **Loose balls, contested phases, single touches, deflections.** Possession stays with the last
+  team in control. The semi-Markov decoder keeps the current possession through short,
+  low-evidence spells unless the evidence for the other team outweighs the duration prior. A
+  touch without control, a deflection or an aerial duel produces only a few frames of
+  other-team evidence, and the prior absorbs it.
+- **Change of possession.** A new spell starts only where the classifier's evidence stays
+  consistent for long enough to beat the duration prior. In practice that means repeated
+  proximity, contact and co-motion with the ball by the new team.
+- **Restarts.** After a stoppage the decoder starts a new spell. Its team comes from the evidence
+  (which team is near the ball), not from a hard-coded restart rule.
+- **Contact refinement** (snapping H/A edges to sustained-contact onsets) was evaluated on the
+  held-out IDSSE match. It did not help there (0.3030 vs 0.3070 spellF1), so it is off.
+- **Abstention.** `X` is written only outside the two halves. Every graded frame is H, A or D.
 
-The challenge definitions and the public ground truth are the reference. The system encodes them
-as follows:
+No frame number, clock, event ID, label of the provided game or manual correction enters the
+prediction. Every label in `Vltava.csv` comes out of the pipeline.
 
-- **Live vs dead.** Dead-ball frames (`D`) come from the classifier's D probability. That
-  probability draws on ball visibility, ball speed, stationary players, distance to the pitch
-  boundary and Smart Tagging `SET PIECES` windows. The decoder then enforces realistic stoppage
-  durations. We never assign a team to a dead ball, as the challenge requires.
-- **Loose balls and contested phases.** Possession stays with the last controlling team. The
-  semi-Markov decoder keeps the current possession through brief, low-evidence spells (a loose
-  ball, an aerial duel, a missed tracking frame) unless the evidence for the other team outweighs
-  the duration prior.
-- **What counts as a change of possession** (controlled gain). A new H/A edge snaps only to a
-  control onset. There are two kinds:
-  - *Sustained contact:* the ball is observed, the gaining team is within 1.5 m, the other team
-    is more than 3 m away, and this co-motion lasts **at least 8 frames (0.32 s)**.
-  - *Kick:* an exclusive-proximity interval that contains an observed ball acceleration of at
-    least 4 m/s². Accelerations above 60 m/s or 150 m/s² are rejected as noise.
-
-  Single touches, deflections and duels without follow-up control produce neither onset. They are
-  also too short to survive the duration prior.
-- **Short possessions.** A run of at least 12 frames (0.48 s) can flip H↔A in recovery, but only
-  where broadcast correction is active, and only if:
-  - the corrected camera puts the alternative team within 2.5 m of the ball;
-  - the current team is more than 3 m away;
-  - the classifier gives the alternative team at least 0.4 mean probability.
-
-  Recovery never touches `D` frames. The full submission recovers 8 such runs.
-- **Restarts.** After a stoppage, the decoder starts a new spell. Its team comes from the
-  classifier's evidence (proximity, team phase tags), not from a rule about who restarts.
-- **Abstention.** `X` is written only outside the two halves (before kickoff, halftime and after
-  the final whistle). Every graded frame gets H, A or D.
-
-No frame number, clock, event ID, private label or manual correction enters the prediction. Every
-label in `Vltava.csv` comes out of the pipeline.
-
-## 4. Results and limitations
+## 5. Results, limitations and reproduction
 
 | Evaluation | spellF1 | macroF1 |
 |---|---:|---:|
-| Public 5 min, training score (labels were used to fit) | 0.9882 | 0.9919 |
-| **Nested 5-fold blocked CV, pooled out-of-fold** | **0.7750** | **0.8880** |
-| Provided baseline (`baseline_smooth50`) | 0.3256 | 0.6207 |
+| Held-out IDSSE J03WOY, IDSSE's own labels (selection set) | 0.3070 | 0.7513 |
+| Public 5 min, pipeline check only | 0.4848 | 0.7849 |
+| Organisers' baseline on the public 5 min | 0.3256 | 0.6207 |
 
-The cross-validation uses five contiguous 1-minute folds, with a 10-second embargo on both sides
-and nested calibration. A seeded paired bootstrap (10,000 draws) gives a 90% interval of
-0.59–0.93 for spellF1.
+Decoder grid on J03WOY (spellF1): temperatures 1, 2, 3, 5 and 8 gave 0.307, 0.293, 0.283,
+0.283 and 0.260 without refinement, and 0.303, 0.293, 0.277, 0.276 and 0.260 with it. We picked
+temperature 1 without refinement.
 
 Limitations:
 
-- **Tiny supervision.** There are only 17 public possessions. Repeated model selection on them is
-  optimistic, and the CV interval is wide.
-- **Ball visibility shift.** The ball is visible on 88% of public frames, but only about 59%
-  across the whole match. Accuracy in long occlusions is untested and probably lower.
-- **Dead-ball timing.** D boundaries rely on indirect cues (speed, boundary, Smart Tagging). Quick
-  throw-ins and free kicks that are taken fast can merge with live play.
-- **Team-assignment errors** in the automatic tracking are only partly corrected, and only where
-  broadcast alignment exists.
-- **With more time we would:**
-  - train on more labelled matches (external providers) to fit the classifiers, not just the
-    duration prior;
-  - add a ball-imputation feature trained on block-masked real occlusions;
-  - add pitch-control / reachability features;
-  - learn D boundaries directly from Smart Tagging restart events.
+- **Label convention mismatch.** IDSSE's `BallPossession` changes about twice as often as the
+  challenge's possession (mean spell about 7 s against about 14 s). Our model is trained toward
+  the provider's notion. The full submission predicts 300 live spells with a mean of 12.1 s.
+- **Domain shift.** The external matches are German second division with near-complete optical
+  tracking. The provided match has fragmented automatic tracking and identity switches. Ball
+  corruption covers only part of that gap.
+- **Small external sample.** Two training matches. IDSSE has seven, and with more time we would
+  train on six and validate on the seventh.
+- **With more time** we would add a ball-imputation feature trained on IDSSE with block masking;
+  learn D boundaries from restart geometry; and test pitch-control or reachability features. All
+  of these would be selected on external validation only.
 
-## 5. Reproduction
+Reproduction. You need Python 3.11+ (verified under 3.14), the challenge bundle in `./data`, and
+for retraining only, the IDSSE files. Put these in `./data/external/`, unrenamed, from
+<https://huggingface.co/datasets/pysport/idsse-data>:
 
-Needs Python 3.11+ (output verified identical under 3.13 and 3.14) and the challenge data bundle
-in `./data` (or `MTAH_DATA_DIR`). Required files:
-
-- `tactical/BAR-ATH_tactical_atd.xml` and `.txt`, `_homography.csv`, `_smart_tagging.xml`;
-- `broadcast/BAR-ATH_broadcast_atd.txt`, `_homography.csv`.
+- `DFL_04_03_positions_raw_observed_DFL-COM-000002_DFL-MAT-{J03WOH,J03WQQ,J03WOY}.xml`
+- `DFL_02_01_matchinformation_DFL-COM-000002_DFL-MAT-{J03WOH,J03WQQ,J03WOY}.xml`
 
 ```bash
 python -m venv .venv-ball
 source .venv-ball/bin/activate          # Windows: .venv-ball\Scripts\activate
 pip install -r requirements-model.txt   # pinned; scikit-learn must be 1.8.0
-python -m possession.run --out Vltava.csv
+python -m possession.train              # optional: rebuilds models/possession_model.joblib (~7 min)
+python -m possession.run                # writes Vltava.csv (~1 min, 4 CPU cores)
 python evaluation/validate_submission.py Vltava.csv
 ```
 
-`possession.run` loads the saved model `models/possession_model.joblib`
-(SHA-256 `fa0acdef…c6fa`) and writes `Vltava.csv` plus `Vltava.json`, a report that includes the
-submission hash. The expected hash is the one at the top of this document. Retraining from scratch
-is `python -m possession.train`; cross-validation is `python -m possession.validate`. Runtime is a
-few minutes on 4 CPU cores. No GPU, video, PyTorch or external download is needed.
+`possession.run` writes `Vltava.json` next to the CSV, which records the hashes of the model,
+the prior and the submission. The expected submission hash is the one at the top of this
+document. No GPU, video or PyTorch is needed.

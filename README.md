@@ -1,21 +1,26 @@
 # Team Vltava — More than a Hack 2027, Phase 1 submission
 
-**Technical document:** [Vltava.md](Vltava.md) · **Model details:** [MODEL.md](MODEL.md)
+**Technical document:** [Vltava.md](Vltava.md) · **Model card:** [MODEL.md](MODEL.md)
 
-Regenerate the submitted file from the challenge data bundle (unpacked into `./data`, which is
-gitignored and not distributed here):
+The model is trained **only on external IDSSE matches** (other games, CC-BY-4.0). No label of
+the provided BAR-ATH match is used for training, calibration or tuning; the public 5 minutes are
+used only as a final pipeline check, as the rules of 23 Oct 2026 require.
+
+Regenerate the submitted file (challenge bundle in `./data`, gitignored, not distributed here):
 
 ```bash
 python -m venv .venv-ball
 source .venv-ball/bin/activate          # Windows: .venv-ball\Scripts\activate
 pip install -r requirements-model.txt   # Python 3.11+, pinned deps
-python -m possession.run --out Vltava.csv
+python -m possession.run                # writes Vltava.csv using models/possession_model.joblib
 python evaluation/validate_submission.py Vltava.csv
-# expected SHA-256: 2fcb6f10fb885bc7041d62506fc014c4d119226165b7193d9fb2ad2ff4edebe2
+# expected SHA-256: b206d380fced9a12c30cac7f90260272adf86d8b2dd64154a402653947c13367
 ```
 
-Nested blocked cross-validation on the public 5 minutes: **0.7750 spellF1 / 0.8880 macroF1**
-(baseline 0.3256 / 0.6207). The rest of this README is the organisers' challenge description.
+Retraining (`python -m possession.train`) additionally needs the IDSSE files listed in
+[Vltava.md](Vltava.md#5-reproduction) in `./data/external`.
+
+The rest of this README is the organisers' challenge description.
 
 ---
 
@@ -63,7 +68,7 @@ switches, and the ball itself is invisible on 41% of the frames you are scored o
 | **Ranked on** | `spellF1` — how many of the match's real possessions you recovered as whole possessions                                   |
 | **Also reported** | `macroF1` — the per-frame view, and the first tie-break                                                                   |
 | **Baseline to beat** | `spellF1` **0.2433**, in this repository                                                                                  |
-| **Ground truth you get** | the first **5 minutes** of play                                                                                           |
+| **Ground truth you get** | the first **5 minutes** of play — to check your pipeline, not to train on                                              |
 | **Ground truth you are scored on** | the full match, **private**                                                                                               |
 
 It is deliberately **not** a tracking challenge. The tracking, tagging and homography are given to
@@ -73,27 +78,6 @@ getting to the actual question. See [CHALLENGE.md](CHALLENGE.md).
 ---
 
 ## Try it right now
-
-For the possession model developed in this checkout, its blocked validation results,
-research notes and reproduction commands, see **[MODEL.md](MODEL.md)**.
-
-```bash
-source .venv-ball/bin/activate
-python -m possession.run       # load the saved model and generate the submission
-python -m possession.compare   # compare cross-validation predictions with the baselines
-```
-
-The saved model is [models/possession_model.joblib](models/possession_model.joblib).
-Its public training score is **0.9882 spellF1 / 0.9919 macroF1** and it predicts
-all 17 public possessions; its nested five-fold blocked cross-validation score is
-**0.7750 spellF1 / 0.8880 macroF1** (pooled out-of-fold predictions), using a
-paper-inspired conditional team ensemble, kick-confirmed boundary refinement and
-camera-corrected short-spell recovery.
-The previous model is preserved as `models/possession_baseline.joblib`
-(held-out **0.6429 / 0.8919**; its **0.7429** spellF1 was a public training score).
-External datasets and downloaded checkpoints have been removed; running the model uses
-the challenge assets in this directory. Fresh setup, retraining and the official
-scorer commands are in [MODEL.md](MODEL.md).
 
 The scorer, a 5-minute ground truth and four working baselines are in this repository. No
 enrolment, no download, no data:

@@ -1,89 +1,99 @@
 {
   "model": "possession_model.joblib",
-  "training_frames": 2500,
-  "emission_temperature": 2.0,
-  "feature_count": 77,
-  "calibration_parameters": [
-    -0.5031901740681952,
-    -0.07856062087135267
-  ],
-  "calibration_training": {
-    "folds": [
-      {
-        "inner_fold": 0,
-        "training_frames": 1917,
-        "calibration_frames": 1500
-      },
-      {
-        "inner_fold": 1,
-        "training_frames": 1834,
-        "calibration_frames": 1500
-      },
-      {
-        "inner_fold": 2,
-        "training_frames": 1834,
-        "calibration_frames": 1500
-      },
-      {
-        "inner_fold": 3,
-        "training_frames": 1834,
-        "calibration_frames": 1500
-      },
-      {
-        "inner_fold": 4,
-        "training_frames": 1917,
-        "calibration_frames": 1500
-      }
-    ],
-    "calibration_frames": 7500,
-    "regularized_objective": 0.42996379499837933
+  "training_rows": {
+    "J03WOH_clean": 34304,
+    "J03WOH_corrupt": 34304,
+    "J03WQQ_clean": 35587,
+    "J03WQQ_corrupt": 35587
   },
-  "sklearn_version": "1.8.0",
-  "feature_sha256": "c87c85c5e71bc3393ab27d786cd9d907fa6303d864c7e25e92e275329662d4e0",
-  "public_labels_sha256": "bda559851bad48e556896b357b9727b474f325877c83ed925a0af28f674f05bd",
-  "model_sha256": "fa0acdefd42af065fd505cfe24249dcef1c49fe634ce19054ae86f2509e7c6fa",
-  "external_data_required": false,
-  "note": "Classifier and calibrator use allowed public labels. Use possession.validate for held-out performance.",
-  "paper_blend": {
-    "weight": 0.5,
-    "fusion": "mean conditional H/A probabilities, retain base D",
-    "boundary_refinement": "sustained contact or observed SG7 acceleration-confirmed contact",
-    "feature_count": 85,
-    "feature_sha256": "1806ee758d81e13739b12c332960c8a0c779663b8e702bc1e600b14b5f8927d5",
-    "calibration_parameters": [
-      -0.508803410661385,
-      -0.12576207375121817
-    ],
-    "calibration_training": {
-      "folds": [
-        {
-          "inner_fold": 0,
-          "training_frames": 1917,
-          "calibration_frames": 1500
-        },
-        {
-          "inner_fold": 1,
-          "training_frames": 1834,
-          "calibration_frames": 1500
-        },
-        {
-          "inner_fold": 2,
-          "training_frames": 1834,
-          "calibration_frames": 1500
-        },
-        {
-          "inner_fold": 3,
-          "training_frames": 1834,
-          "calibration_frames": 1500
-        },
-        {
-          "inner_fold": 4,
-          "training_frames": 1917,
-          "calibration_frames": 1500
-        }
-      ],
-      "calibration_frames": 7500,
-      "regularized_objective": 0.43443763283274794
+  "feature_count": 62,
+  "calibration_parameters": [
+    -0.04133492784596425,
+    0.23001584647916193
+  ],
+  "calibration_objective": 0.44734060247796203,
+  "validation_match": "J03WOY",
+  "validation_grid": [
+    {
+      "temperature": 1.0,
+      "refine": false,
+      "refined_edges": 0,
+      "spell_f1": 0.3070301291248207,
+      "macro_f1": 0.7513111445857739
+    },
+    {
+      "temperature": 2.0,
+      "refine": false,
+      "refined_edges": 0,
+      "spell_f1": 0.29333333333333333,
+      "macro_f1": 0.7500482632609775
+    },
+    {
+      "temperature": 3.0,
+      "refine": false,
+      "refined_edges": 0,
+      "spell_f1": 0.28304821150855364,
+      "macro_f1": 0.7455248002636745
+    },
+    {
+      "temperature": 5.0,
+      "refine": false,
+      "refined_edges": 0,
+      "spell_f1": 0.2828025477707007,
+      "macro_f1": 0.746728645789406
+    },
+    {
+      "temperature": 8.0,
+      "refine": false,
+      "refined_edges": 0,
+      "spell_f1": 0.2603588907014682,
+      "macro_f1": 0.7425473727594437
+    },
+    {
+      "temperature": 1.0,
+      "refine": true,
+      "refined_edges": 67,
+      "spell_f1": 0.303012912482066,
+      "macro_f1": 0.7507248997748976
+    },
+    {
+      "temperature": 2.0,
+      "refine": true,
+      "refined_edges": 49,
+      "spell_f1": 0.29333333333333333,
+      "macro_f1": 0.7498034737875221
+    },
+    {
+      "temperature": 3.0,
+      "refine": true,
+      "refined_edges": 44,
+      "spell_f1": 0.2768273716951789,
+      "macro_f1": 0.7447503898289648
+    },
+    {
+      "temperature": 5.0,
+      "refine": true,
+      "refined_edges": 39,
+      "spell_f1": 0.27579617834394904,
+      "macro_f1": 0.7455495862987727
+    },
+    {
+      "temperature": 8.0,
+      "refine": true,
+      "refined_edges": 29,
+      "spell_f1": 0.2603588907014682,
+      "macro_f1": 0.7419815930307111
     }
-  }
+  ],
+  "selected": {
+    "temperature": 1.0,
+    "refine": false,
+    "refined_edges": 0,
+    "spell_f1": 0.3070301291248207,
+    "macro_f1": 0.7513111445857739
+  },
+  "target_ball_visibility": 0.593074274347369,
+  "provided_game_labels_used": false,
+  "sklearn_version": "1.8.0",
+  "model_sha256": "d50bfc1626a6741574ff20c83f6086aa978d4c4d724d38b6b7bd6edcc14cbc3f"
 }
