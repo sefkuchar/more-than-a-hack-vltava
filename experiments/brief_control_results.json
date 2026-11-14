@@ -1,0 +1,7 @@
+{
+  "method": "brief_control",
+  "spell_f1_mean": 0.525,
+  "macro_f1": 0.8681844683717643,
+  "n_pred_spells": 15,
+  "source_sha256": "e0350183781189aa0345ae8d752189a20ebe1165d891431f5389e857e6bc7954"
+}

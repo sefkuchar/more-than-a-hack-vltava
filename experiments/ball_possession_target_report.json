@@ -1,0 +1,17 @@
+{
+  "source_sha256": {
+    "checkpoint": "6367cb451556d65b39c3a81aef6f7304e155a46f7f0be7b37eef24f384e0a0e2",
+    "code": "78554449f2f8f625f53ab4c1ce9f3341f91245f5778be0a6cf7165c251d84032"
+  },
+  "feature_count": 84,
+  "protocol": "Unrelated-match masked-ball model; 5 contiguous minute folds with 10s embargo and isolated full-context decoding",
+  "short_gap_policy": "Keep interpolation below 2 seconds; preserve every observed ball coordinate",
+  "model": {
+    "spell_f1_mean": 0.6266666666666667,
+    "macro_f1": 0.8787455418085434,
+    "n_gt_spells": 17,
+    "n_pred_spells": 13,
+    "spell_bootstrap_low": 0.43999999999999995,
+    "spell_bootstrap_high": 0.8025
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "method": "broadcast_motion",
+  "penalty": 32,
+  "feature_count": 85,
+  "stride": 3,
+  "folds": 5,
+  "embargo_frames": 250,
+  "source_fingerprints": {
+    "experiments/broadcast_motion.py": "768868345b16e9388a3306e7a2a51818b49b987e0d0a97f9412af2a6ab2ae0aa",
+    "possession/features.py": "56ac029f1ed867c314befb651c84f3c952bbc14eae40c542f2bf10807be6e8ae",
+    "possession/model.py": "82b22fb14af5825836a7c3c67fd8667f2cc13277a5fda30a3e5745003b29b33e",
+    "possession/decode.py": "58b98987d4b79b5ab9f1b41f61ed0ec8b95f42793177c4799194867868cd57c0",
+    "experiments/align_broadcast.py": "340cb854ba163c072629e3a73649e989d4064955dd2a7d83e19e2d50d70f4e30",
+    "feature_matrix": "08d06286fce9dbafe45f5efaf74ca6c9800d8dfd332e766375e44e403c6760c7",
+    "labels": "bda559851bad48e556896b357b9727b474f325877c83ed925a0af28f674f05bd"
+  },
+  "spell_f1_mean": 0.5733333333333335,
+  "macro_f1": 0.837291805492502,
+  "n_pred_spells": 13
+}

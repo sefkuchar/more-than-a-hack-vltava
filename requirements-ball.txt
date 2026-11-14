@@ -1,0 +1,3 @@
+# Optional ball reconstruction experiments; install inside .venv-ball.
+-r requirements-model.txt
+torch==2.14.1

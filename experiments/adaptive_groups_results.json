@@ -1,0 +1,94 @@
+{
+  "results": {
+    "group_duration": {
+      "spell_f1_mean": 0.475,
+      "macro_f1": 0.8082388416316415,
+      "n_pred_spells": 15
+    },
+    "group_duration_snap": {
+      "spell_f1_mean": 0.45,
+      "macro_f1": 0.8117630399802048,
+      "n_pred_spells": 15
+    }
+  },
+  "groups": 204,
+  "duration_frames_quantiles": [
+    10.0,
+    25.0,
+    40.0,
+    50.0,
+    50.0
+  ],
+  "grouping_features": [
+    "contact_H",
+    "contact_A",
+    "stable_contact_H",
+    "stable_contact_A",
+    "ball_speed",
+    "moving_players",
+    "mean_player_speed",
+    "observed",
+    "distance_H",
+    "distance_A"
+  ],
+  "group_scale": [
+    0.36305470746770824,
+    0.3238791021106692,
+    0.3340753756678284,
+    0.2971851196760505,
+    5.248377964495856,
+    0.29415078149786467,
+    0.9080479071183432,
+    0.32260812141048156,
+    3.3835764326981983,
+    6.246740102563602
+  ],
+  "group_center": [
+    0.27464590840540243,
+    0.18088292112660434,
+    0.22591503062689558,
+    0.15017104355093233,
+    6.178416145452361,
+    0.45673628190805515,
+    2.190960703309377,
+    0.882,
+    4.410455451119194,
+    7.076022944160799
+  ],
+  "folds": [
+    {
+      "fold": 0,
+      "training_groups": 153,
+      "training_raw_frames": 5710,
+      "snap_changes_full_context": 2
+    },
+    {
+      "fold": 1,
+      "training_groups": 149,
+      "training_raw_frames": 5465,
+      "snap_changes_full_context": 2
+    },
+    {
+      "fold": 2,
+      "training_groups": 147,
+      "training_raw_frames": 5480,
+      "snap_changes_full_context": 4
+    },
+    {
+      "fold": 3,
+      "training_groups": 152,
+      "training_raw_frames": 5470,
+      "snap_changes_full_context": 5
+    },
+    {
+      "fold": 4,
+      "training_groups": 158,
+      "training_raw_frames": 5750,
+      "snap_changes_full_context": 5
+    }
+  ],
+  "source_sha256": "4fdd1b828005742a09cb3a1fef64536a2905e4e2619eb8e536816604d796280c",
+  "feature_sha256": "c87c85c5e71bc3393ab27d786cd9d907fa6303d864c7e25e92e275329662d4e0",
+  "prior_sha256": "76e94ca6791a4c90b293bb12ec3818ee6344f047e86fb78bc51c1ef255fb6ddb",
+  "protocol": "Label-free5Hzstandardizedphysicalfeatures; RMSshift>.75 fromcurrentgroupmean createsboundaryaftermin.4s,max2s; finaltailredistributedwithoutviolatinglimits. Mean77featurespergroup; majoritytraininglabelonlyforwholegroupsinsidetrainmask,weights=rawlength/3; minleaf5 rescales35stridesamples togroups. Strict5minuteCV10sembargo;samefoldfullcontext probabilitiesexpand25Hz thenexternaldurationT5. Secondfixedoutputusesunchangedphysicalsnap. No groupingthresholdsearch/GTchangepoints."
+}

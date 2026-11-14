@@ -1,0 +1,23 @@
+[
+  {
+    "method": "target_persistence",
+    "penalty": 24,
+    "spell_f1_mean": 0.6133333333333334,
+    "macro_f1": 0.8713244026964807,
+    "n_pred_spells": 13
+  },
+  {
+    "method": "target_persistence",
+    "penalty": 48,
+    "spell_f1_mean": 0.6133333333333334,
+    "macro_f1": 0.8732446637674439,
+    "n_pred_spells": 13
+  },
+  {
+    "method": "target_persistence",
+    "penalty": 64,
+    "spell_f1_mean": 0.6142857142857141,
+    "macro_f1": 0.8780267045325534,
+    "n_pred_spells": 11
+  }
+]

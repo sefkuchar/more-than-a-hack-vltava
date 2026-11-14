@@ -1,0 +1,3395 @@
+{
+  "protocol": "Production: five contiguous minute folds; 250-frame embargo; inner blocked probability calibration; same-fold full-context duration decoding and unchanged contact refinement.",
+  "variants": [
+    "baseline",
+    "kick",
+    "control",
+    "physics",
+    "camera",
+    "physics_camera",
+    "object_context",
+    "physics_context",
+    "combined"
+  ],
+  "results": {
+    "baseline": {
+      "metrics": {
+        "spell_f1_mean": 0.6428571428571427,
+        "macro_f1": 0.8919037386538128,
+        "n_pred_spells": 11,
+        "per_class": {
+          "H": {
+            "precision": 0.9381630797211277,
+            "recall": 0.8960625361899247,
+            "f1": 0.9166296460832223,
+            "support": 3454
+          },
+          "A": {
+            "precision": 0.8713659896455596,
+            "recall": 0.8490492821109817,
+            "f1": 0.8600628930817611,
+            "support": 2577
+          },
+          "D": {
+            "precision": 0.8402366863905325,
+            "recall": 0.966643975493533,
+            "f1": 0.8990186767964546,
+            "support": 1469
+          }
+        },
+        "spell_f1": {
+          "0.3": {
+            "precision": 0.9090909090909091,
+            "recall": 0.5882352941176471,
+            "f1": 0.7142857142857143,
+            "n_matched": 10,
+            "n_spurious": 1,
+            "n_missed": 7
+          },
+          "0.4": {
+            "precision": 0.9090909090909091,
+            "recall": 0.5882352941176471,
+            "f1": 0.7142857142857143,
+            "n_matched": 10,
+            "n_spurious": 1,
+            "n_missed": 7
+          },
+          "0.5": {
+            "precision": 0.8181818181818182,
+            "recall": 0.5294117647058824,
+            "f1": 0.6428571428571428,
+            "n_matched": 9,
+            "n_spurious": 2,
+            "n_missed": 8
+          },
+          "0.6": {
+            "precision": 0.7272727272727273,
+            "recall": 0.47058823529411764,
+            "f1": 0.5714285714285714,
+            "n_matched": 8,
+            "n_spurious": 3,
+            "n_missed": 9
+          },
+          "0.7": {
+            "precision": 0.7272727272727273,
+            "recall": 0.47058823529411764,
+            "f1": 0.5714285714285714,
+            "n_matched": 8,
+            "n_spurious": 3,
+            "n_missed": 9
+          }
+        },
+        "confusion": [
+          [
+            3095,
+            292,
+            67,
+            0
+          ],
+          [
+            186,
+            2188,
+            203,
+            0
+          ],
+          [
+            18,
+            31,
+            1420,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "feature_count": 77,
+      "added_features": [],
+      "feature_sha256": "c87c85c5e71bc3393ab27d786cd9d907fa6303d864c7e25e92e275329662d4e0",
+      "folds": [
+        {
+          "fold": 0,
+          "training_frames": 1917,
+          "calibration_parameters": [
+            -0.48633833406737137,
+            -0.07556285558846498
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 1,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1334,
+                "calibration_frames": 1500
+              }
+            ],
+            "calibration_frames": 5750,
+            "regularized_objective": 0.46535667746064435
+          },
+          "refined_boundaries_full_context": 2
+        },
+        {
+          "fold": 1,
+          "training_frames": 1834,
+          "calibration_parameters": [
+            -0.5859486525624465,
+            0.10530307249043869
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1167,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              }
+            ],
+            "calibration_frames": 5500,
+            "regularized_objective": 0.5182473927503386
+          },
+          "refined_boundaries_full_context": 3
+        },
+        {
+          "fold": 2,
+          "training_frames": 1834,
+          "calibration_parameters": [
+            -0.5331146431993876,
+            0.32924064727010666
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 1,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              }
+            ],
+            "calibration_frames": 5500,
+            "regularized_objective": 0.5119004406115771
+          },
+          "refined_boundaries_full_context": 3
+        },
+        {
+          "fold": 3,
+          "training_frames": 1834,
+          "calibration_parameters": [
+            -0.4718689546187803,
+            1.228154227538607
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 1,
+                "training_frames": 1167,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              }
+            ],
+            "calibration_frames": 5500,
+            "regularized_objective": 0.5145117245490513
+          },
+          "refined_boundaries_full_context": 4
+        },
+        {
+          "fold": 4,
+          "training_frames": 1917,
+          "calibration_parameters": [
+            -0.913934092412372,
+            0.06733074531302381
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1334,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 1,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              }
+            ],
+            "calibration_frames": 5750,
+            "regularized_objective": 0.6627583144754878
+          },
+          "refined_boundaries_full_context": 3
+        }
+      ]
+    },
+    "kick": {
+      "metrics": {
+        "spell_f1_mean": 0.6266666666666667,
+        "macro_f1": 0.8847850628530134,
+        "n_pred_spells": 13,
+        "per_class": {
+          "H": {
+            "precision": 0.9238095238095239,
+            "recall": 0.8986682107701216,
+            "f1": 0.9110654534781333,
+            "support": 3454
+          },
+          "A": {
+            "precision": 0.868918375552875,
+            "recall": 0.8385719829258829,
+            "f1": 0.8534755134281201,
+            "support": 2577
+          },
+          "D": {
+            "precision": 0.8402903811252269,
+            "recall": 0.9455411844792376,
+            "f1": 0.8898142216527867,
+            "support": 1469
+          }
+        },
+        "spell_f1": {
+          "0.3": {
+            "precision": 0.8461538461538461,
+            "recall": 0.6470588235294118,
+            "f1": 0.7333333333333334,
+            "n_matched": 11,
+            "n_spurious": 2,
+            "n_missed": 6
+          },
+          "0.4": {
+            "precision": 0.8461538461538461,
+            "recall": 0.6470588235294118,
+            "f1": 0.7333333333333334,
+            "n_matched": 11,
+            "n_spurious": 2,
+            "n_missed": 6
+          },
+          "0.5": {
+            "precision": 0.7692307692307693,
+            "recall": 0.5882352941176471,
+            "f1": 0.6666666666666667,
+            "n_matched": 10,
+            "n_spurious": 3,
+            "n_missed": 7
+          },
+          "0.6": {
+            "precision": 0.6153846153846154,
+            "recall": 0.47058823529411764,
+            "f1": 0.5333333333333333,
+            "n_matched": 8,
+            "n_spurious": 5,
+            "n_missed": 9
+          },
+          "0.7": {
+            "precision": 0.5384615384615384,
+            "recall": 0.4117647058823529,
+            "f1": 0.4666666666666667,
+            "n_matched": 7,
+            "n_spurious": 6,
+            "n_missed": 10
+          }
+        },
+        "confusion": [
+          [
+            3104,
+            288,
+            62,
+            0
+          ],
+          [
+            214,
+            2161,
+            202,
+            0
+          ],
+          [
+            42,
+            38,
+            1389,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "feature_count": 86,
+      "added_features": [
+        "kick_support",
+        "kick_speed",
+        "kick_accel",
+        "kick_speed_variance",
+        "kick_accel_variance",
+        "kick_contact_accel_H",
+        "kick_contact_accel_A",
+        "kick_contact_accel_mean25_H",
+        "kick_contact_accel_mean25_A"
+      ],
+      "feature_sha256": "05e3d32978fd8308632b3405a487c341b31168794e4d44b5e88c6408df02b7a4",
+      "folds": [
+        {
+          "fold": 0,
+          "training_frames": 1917,
+          "calibration_parameters": [
+            -0.5331554858630054,
+            -0.06345097022892493
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 1,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1334,
+                "calibration_frames": 1500
+              }
+            ],
+            "calibration_frames": 5750,
+            "regularized_objective": 0.47958590709525245
+          },
+          "refined_boundaries_full_context": 2
+        },
+        {
+          "fold": 1,
+          "training_frames": 1834,
+          "calibration_parameters": [
+            -0.5890335836509979,
+            0.09240930336457133
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1167,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              }
+            ],
+            "calibration_frames": 5500,
+            "regularized_objective": 0.5161405800153746
+          },
+          "refined_boundaries_full_context": 3
+        },
+        {
+          "fold": 2,
+          "training_frames": 1834,
+          "calibration_parameters": [
+            -0.5194291108849498,
+            0.3303041609292216
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 1,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              }
+            ],
+            "calibration_frames": 5500,
+            "regularized_objective": 0.5052343264671867
+          },
+          "refined_boundaries_full_context": 3
+        },
+        {
+          "fold": 3,
+          "training_frames": 1834,
+          "calibration_parameters": [
+            -0.496791096997746,
+            1.212200523579766
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 1,
+                "training_frames": 1167,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              }
+            ],
+            "calibration_frames": 5500,
+            "regularized_objective": 0.5306764336098942
+          },
+          "refined_boundaries_full_context": 5
+        },
+        {
+          "fold": 4,
+          "training_frames": 1917,
+          "calibration_parameters": [
+            -0.883447493508206,
+            0.11076142412489974
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1334,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 1,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              }
+            ],
+            "calibration_frames": 5750,
+            "regularized_objective": 0.6509773698887892
+          },
+          "refined_boundaries_full_context": 3
+        }
+      ]
+    },
+    "control": {
+      "metrics": {
+        "spell_f1_mean": 0.6428571428571427,
+        "macro_f1": 0.8915914891593056,
+        "n_pred_spells": 11,
+        "per_class": {
+          "H": {
+            "precision": 0.9381818181818182,
+            "recall": 0.8963520555877244,
+            "f1": 0.916790050340539,
+            "support": 3454
+          },
+          "A": {
+            "precision": 0.8717131474103585,
+            "recall": 0.8490492821109817,
+            "f1": 0.860231963829369,
+            "support": 2577
+          },
+          "D": {
+            "precision": 0.8390532544378698,
+            "recall": 0.9652825051055139,
+            "f1": 0.8977524533080089,
+            "support": 1469
+          }
+        },
+        "spell_f1": {
+          "0.3": {
+            "precision": 0.9090909090909091,
+            "recall": 0.5882352941176471,
+            "f1": 0.7142857142857143,
+            "n_matched": 10,
+            "n_spurious": 1,
+            "n_missed": 7
+          },
+          "0.4": {
+            "precision": 0.9090909090909091,
+            "recall": 0.5882352941176471,
+            "f1": 0.7142857142857143,
+            "n_matched": 10,
+            "n_spurious": 1,
+            "n_missed": 7
+          },
+          "0.5": {
+            "precision": 0.8181818181818182,
+            "recall": 0.5294117647058824,
+            "f1": 0.6428571428571428,
+            "n_matched": 9,
+            "n_spurious": 2,
+            "n_missed": 8
+          },
+          "0.6": {
+            "precision": 0.7272727272727273,
+            "recall": 0.47058823529411764,
+            "f1": 0.5714285714285714,
+            "n_matched": 8,
+            "n_spurious": 3,
+            "n_missed": 9
+          },
+          "0.7": {
+            "precision": 0.7272727272727273,
+            "recall": 0.47058823529411764,
+            "f1": 0.5714285714285714,
+            "n_matched": 8,
+            "n_spurious": 3,
+            "n_missed": 9
+          }
+        },
+        "confusion": [
+          [
+            3096,
+            291,
+            67,
+            0
+          ],
+          [
+            184,
+            2188,
+            205,
+            0
+          ],
+          [
+            20,
+            31,
+            1418,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "feature_count": 85,
+      "added_features": [
+        "control_predicted_separation_H",
+        "control_predicted_separation_A",
+        "control_opponents_1m_H",
+        "control_opponents_1m_A",
+        "control_opponents_3m_H",
+        "control_opponents_3m_A",
+        "control_opponents_5m_H",
+        "control_opponents_5m_A"
+      ],
+      "feature_sha256": "d9828535f738bdb5e1111917f465be1c2908ce6cb8feadd5c54ed88add19c916",
+      "folds": [
+        {
+          "fold": 0,
+          "training_frames": 1917,
+          "calibration_parameters": [
+            -0.4822226217487363,
+            -0.07969154681403921
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 1,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1334,
+                "calibration_frames": 1500
+              }
+            ],
+            "calibration_frames": 5750,
+            "regularized_objective": 0.46446301341839463
+          },
+          "refined_boundaries_full_context": 2
+        },
+        {
+          "fold": 1,
+          "training_frames": 1834,
+          "calibration_parameters": [
+            -0.5860921827589618,
+            0.10719179393240413
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1167,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              }
+            ],
+            "calibration_frames": 5500,
+            "regularized_objective": 0.5207188795702908
+          },
+          "refined_boundaries_full_context": 3
+        },
+        {
+          "fold": 2,
+          "training_frames": 1834,
+          "calibration_parameters": [
+            -0.5262116117393355,
+            0.3030452989711007
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 1,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              }
+            ],
+            "calibration_frames": 5500,
+            "regularized_objective": 0.5089105629097358
+          },
+          "refined_boundaries_full_context": 3
+        },
+        {
+          "fold": 3,
+          "training_frames": 1834,
+          "calibration_parameters": [
+            -0.4703263355883317,
+            1.2191731786112963
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 1,
+                "training_frames": 1167,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              }
+            ],
+            "calibration_frames": 5500,
+            "regularized_objective": 0.5118376904162658
+          },
+          "refined_boundaries_full_context": 4
+        },
+        {
+          "fold": 4,
+          "training_frames": 1917,
+          "calibration_parameters": [
+            -0.9040117998289832,
+            0.06328339569471124
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1334,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 1,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              }
+            ],
+            "calibration_frames": 5750,
+            "regularized_objective": 0.6562513894738162
+          },
+          "refined_boundaries_full_context": 3
+        }
+      ]
+    },
+    "physics": {
+      "metrics": {
+        "spell_f1_mean": 0.6266666666666667,
+        "macro_f1": 0.8841537861221798,
+        "n_pred_spells": 13,
+        "per_class": {
+          "H": {
+            "precision": 0.9237187127532777,
+            "recall": 0.897510133178923,
+            "f1": 0.910425844346549,
+            "support": 3454
+          },
+          "A": {
+            "precision": 0.8692679002413516,
+            "recall": 0.8385719829258829,
+            "f1": 0.8536440845348608,
+            "support": 2577
+          },
+          "D": {
+            "precision": 0.8377563329312424,
+            "recall": 0.9455411844792376,
+            "f1": 0.8883914294851295,
+            "support": 1469
+          }
+        },
+        "spell_f1": {
+          "0.3": {
+            "precision": 0.8461538461538461,
+            "recall": 0.6470588235294118,
+            "f1": 0.7333333333333334,
+            "n_matched": 11,
+            "n_spurious": 2,
+            "n_missed": 6
+          },
+          "0.4": {
+            "precision": 0.8461538461538461,
+            "recall": 0.6470588235294118,
+            "f1": 0.7333333333333334,
+            "n_matched": 11,
+            "n_spurious": 2,
+            "n_missed": 6
+          },
+          "0.5": {
+            "precision": 0.7692307692307693,
+            "recall": 0.5882352941176471,
+            "f1": 0.6666666666666667,
+            "n_matched": 10,
+            "n_spurious": 3,
+            "n_missed": 7
+          },
+          "0.6": {
+            "precision": 0.6153846153846154,
+            "recall": 0.47058823529411764,
+            "f1": 0.5333333333333333,
+            "n_matched": 8,
+            "n_spurious": 5,
+            "n_missed": 9
+          },
+          "0.7": {
+            "precision": 0.5384615384615384,
+            "recall": 0.4117647058823529,
+            "f1": 0.4666666666666667,
+            "n_matched": 7,
+            "n_spurious": 6,
+            "n_missed": 10
+          }
+        },
+        "confusion": [
+          [
+            3100,
+            287,
+            67,
+            0
+          ],
+          [
+            214,
+            2161,
+            202,
+            0
+          ],
+          [
+            42,
+            38,
+            1389,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "feature_count": 94,
+      "added_features": [
+        "kick_support",
+        "kick_speed",
+        "kick_accel",
+        "kick_speed_variance",
+        "kick_accel_variance",
+        "kick_contact_accel_H",
+        "kick_contact_accel_A",
+        "kick_contact_accel_mean25_H",
+        "kick_contact_accel_mean25_A",
+        "control_predicted_separation_H",
+        "control_predicted_separation_A",
+        "control_opponents_1m_H",
+        "control_opponents_1m_A",
+        "control_opponents_3m_H",
+        "control_opponents_3m_A",
+        "control_opponents_5m_H",
+        "control_opponents_5m_A"
+      ],
+      "feature_sha256": "5045bec8bdee2f3b7e0154dce6f04e20cd3cca5556ab6a4eaa07325b6532f6f5",
+      "folds": [
+        {
+          "fold": 0,
+          "training_frames": 1917,
+          "calibration_parameters": [
+            -0.5300922337752751,
+            -0.0906160664948498
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 1,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1334,
+                "calibration_frames": 1500
+              }
+            ],
+            "calibration_frames": 5750,
+            "regularized_objective": 0.4786140604378959
+          },
+          "refined_boundaries_full_context": 2
+        },
+        {
+          "fold": 1,
+          "training_frames": 1834,
+          "calibration_parameters": [
+            -0.5941194404590328,
+            0.0935644155418549
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1167,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              }
+            ],
+            "calibration_frames": 5500,
+            "regularized_objective": 0.5205794497878652
+          },
+          "refined_boundaries_full_context": 3
+        },
+        {
+          "fold": 2,
+          "training_frames": 1834,
+          "calibration_parameters": [
+            -0.5216405804594461,
+            0.32682191996393484
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 1,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              }
+            ],
+            "calibration_frames": 5500,
+            "regularized_objective": 0.503733815879668
+          },
+          "refined_boundaries_full_context": 3
+        },
+        {
+          "fold": 3,
+          "training_frames": 1834,
+          "calibration_parameters": [
+            -0.498051436058533,
+            1.1782494846152711
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 1,
+                "training_frames": 1167,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              }
+            ],
+            "calibration_frames": 5500,
+            "regularized_objective": 0.5230347223804377
+          },
+          "refined_boundaries_full_context": 5
+        },
+        {
+          "fold": 4,
+          "training_frames": 1917,
+          "calibration_parameters": [
+            -0.8714610088787003,
+            0.12466094624845114
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1334,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 1,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              }
+            ],
+            "calibration_frames": 5750,
+            "regularized_objective": 0.6463817596102122
+          },
+          "refined_boundaries_full_context": 3
+        }
+      ]
+    },
+    "camera": {
+      "metrics": {
+        "spell_f1_mean": 0.6266666666666666,
+        "macro_f1": 0.8726282279403484,
+        "n_pred_spells": 13,
+        "per_class": {
+          "H": {
+            "precision": 0.9142265601892932,
+            "recall": 0.8949044585987261,
+            "f1": 0.9044623262618873,
+            "support": 3454
+          },
+          "A": {
+            "precision": 0.8498960498960499,
+            "recall": 0.7931703531237874,
+            "f1": 0.8205539943797673,
+            "support": 2577
+          },
+          "D": {
+            "precision": 0.8290548424737456,
+            "recall": 0.9673247106875426,
+            "f1": 0.8928683631793904,
+            "support": 1469
+          }
+        },
+        "spell_f1": {
+          "0.3": {
+            "precision": 0.7692307692307693,
+            "recall": 0.5882352941176471,
+            "f1": 0.6666666666666667,
+            "n_matched": 10,
+            "n_spurious": 3,
+            "n_missed": 7
+          },
+          "0.4": {
+            "precision": 0.7692307692307693,
+            "recall": 0.5882352941176471,
+            "f1": 0.6666666666666667,
+            "n_matched": 10,
+            "n_spurious": 3,
+            "n_missed": 7
+          },
+          "0.5": {
+            "precision": 0.7692307692307693,
+            "recall": 0.5882352941176471,
+            "f1": 0.6666666666666667,
+            "n_matched": 10,
+            "n_spurious": 3,
+            "n_missed": 7
+          },
+          "0.6": {
+            "precision": 0.6923076923076923,
+            "recall": 0.5294117647058824,
+            "f1": 0.5999999999999999,
+            "n_matched": 9,
+            "n_spurious": 4,
+            "n_missed": 8
+          },
+          "0.7": {
+            "precision": 0.6153846153846154,
+            "recall": 0.47058823529411764,
+            "f1": 0.5333333333333333,
+            "n_matched": 8,
+            "n_spurious": 5,
+            "n_missed": 9
+          }
+        },
+        "confusion": [
+          [
+            3091,
+            313,
+            50,
+            0
+          ],
+          [
+            290,
+            2044,
+            243,
+            0
+          ],
+          [
+            0,
+            48,
+            1421,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "feature_count": 85,
+      "added_features": [
+        "camera_mapped_ball",
+        "camera_team_correction",
+        "camera_contact_H",
+        "camera_contact_A",
+        "camera_contact_mean_12_H",
+        "camera_contact_mean_12_A",
+        "camera_contact_mean_50_H",
+        "camera_contact_mean_50_A"
+      ],
+      "feature_sha256": "1806ee758d81e13739b12c332960c8a0c779663b8e702bc1e600b14b5f8927d5",
+      "folds": [
+        {
+          "fold": 0,
+          "training_frames": 1917,
+          "calibration_parameters": [
+            -0.5081499586284073,
+            -0.07230067530302504
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 1,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1334,
+                "calibration_frames": 1500
+              }
+            ],
+            "calibration_frames": 5750,
+            "regularized_objective": 0.4849809770577112
+          },
+          "refined_boundaries_full_context": 2
+        },
+        {
+          "fold": 1,
+          "training_frames": 1834,
+          "calibration_parameters": [
+            -0.5425891585043157,
+            0.160417759614192
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1167,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              }
+            ],
+            "calibration_frames": 5500,
+            "regularized_objective": 0.4983125321416656
+          },
+          "refined_boundaries_full_context": 3
+        },
+        {
+          "fold": 2,
+          "training_frames": 1834,
+          "calibration_parameters": [
+            -0.42810382888395987,
+            0.27363675345422533
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 1,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              }
+            ],
+            "calibration_frames": 5500,
+            "regularized_objective": 0.46484960246354107
+          },
+          "refined_boundaries_full_context": 4
+        },
+        {
+          "fold": 3,
+          "training_frames": 1834,
+          "calibration_parameters": [
+            -0.44873915054701596,
+            1.2666906452503781
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 1,
+                "training_frames": 1167,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              }
+            ],
+            "calibration_frames": 5500,
+            "regularized_objective": 0.49889480288276583
+          },
+          "refined_boundaries_full_context": 5
+        },
+        {
+          "fold": 4,
+          "training_frames": 1917,
+          "calibration_parameters": [
+            -0.8406570155674381,
+            0.15475300015466906
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1334,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 1,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              }
+            ],
+            "calibration_frames": 5750,
+            "regularized_objective": 0.6202792692836027
+          },
+          "refined_boundaries_full_context": 3
+        }
+      ]
+    },
+    "physics_camera": {
+      "metrics": {
+        "spell_f1_mean": 0.6285714285714286,
+        "macro_f1": 0.8828090520206162,
+        "n_pred_spells": 11,
+        "per_class": {
+          "H": {
+            "precision": 0.903207810320781,
+            "recall": 0.937463810075275,
+            "f1": 0.9200170478761187,
+            "support": 3454
+          },
+          "A": {
+            "precision": 0.918460833715071,
+            "recall": 0.7780364765230888,
+            "f1": 0.842436974789916,
+            "support": 2577
+          },
+          "D": {
+            "precision": 0.8187066974595842,
+            "recall": 0.9652825051055139,
+            "f1": 0.8859731333958138,
+            "support": 1469
+          }
+        },
+        "spell_f1": {
+          "0.3": {
+            "precision": 0.9090909090909091,
+            "recall": 0.5882352941176471,
+            "f1": 0.7142857142857143,
+            "n_matched": 10,
+            "n_spurious": 1,
+            "n_missed": 7
+          },
+          "0.4": {
+            "precision": 0.9090909090909091,
+            "recall": 0.5882352941176471,
+            "f1": 0.7142857142857143,
+            "n_matched": 10,
+            "n_spurious": 1,
+            "n_missed": 7
+          },
+          "0.5": {
+            "precision": 0.9090909090909091,
+            "recall": 0.5882352941176471,
+            "f1": 0.7142857142857143,
+            "n_matched": 10,
+            "n_spurious": 1,
+            "n_missed": 7
+          },
+          "0.6": {
+            "precision": 0.7272727272727273,
+            "recall": 0.47058823529411764,
+            "f1": 0.5714285714285714,
+            "n_matched": 8,
+            "n_spurious": 3,
+            "n_missed": 9
+          },
+          "0.7": {
+            "precision": 0.5454545454545454,
+            "recall": 0.35294117647058826,
+            "f1": 0.42857142857142855,
+            "n_matched": 6,
+            "n_spurious": 5,
+            "n_missed": 11
+          }
+        },
+        "confusion": [
+          [
+            3238,
+            153,
+            63,
+            0
+          ],
+          [
+            321,
+            2005,
+            251,
+            0
+          ],
+          [
+            26,
+            25,
+            1418,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "feature_count": 102,
+      "added_features": [
+        "kick_support",
+        "kick_speed",
+        "kick_accel",
+        "kick_speed_variance",
+        "kick_accel_variance",
+        "kick_contact_accel_H",
+        "kick_contact_accel_A",
+        "kick_contact_accel_mean25_H",
+        "kick_contact_accel_mean25_A",
+        "control_predicted_separation_H",
+        "control_predicted_separation_A",
+        "control_opponents_1m_H",
+        "control_opponents_1m_A",
+        "control_opponents_3m_H",
+        "control_opponents_3m_A",
+        "control_opponents_5m_H",
+        "control_opponents_5m_A",
+        "camera_mapped_ball",
+        "camera_team_correction",
+        "camera_contact_H",
+        "camera_contact_A",
+        "camera_contact_mean_12_H",
+        "camera_contact_mean_12_A",
+        "camera_contact_mean_50_H",
+        "camera_contact_mean_50_A"
+      ],
+      "feature_sha256": "77cdfc35ff00a67d721db0e6d15d5408e87187fc2979c6a898a561f9f8ac5bfa",
+      "folds": [
+        {
+          "fold": 0,
+          "training_frames": 1917,
+          "calibration_parameters": [
+            -0.5296737112927578,
+            -0.01750175509012871
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 1,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1334,
+                "calibration_frames": 1500
+              }
+            ],
+            "calibration_frames": 5750,
+            "regularized_objective": 0.4877341550618492
+          },
+          "refined_boundaries_full_context": 2
+        },
+        {
+          "fold": 1,
+          "training_frames": 1834,
+          "calibration_parameters": [
+            -0.5461724338226931,
+            0.14627833474653698
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1167,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              }
+            ],
+            "calibration_frames": 5500,
+            "regularized_objective": 0.49796232723124223
+          },
+          "refined_boundaries_full_context": 2
+        },
+        {
+          "fold": 2,
+          "training_frames": 1834,
+          "calibration_parameters": [
+            -0.4659950521926599,
+            0.2945385398992018
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 1,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              }
+            ],
+            "calibration_frames": 5500,
+            "regularized_objective": 0.47918484058679245
+          },
+          "refined_boundaries_full_context": 4
+        },
+        {
+          "fold": 3,
+          "training_frames": 1834,
+          "calibration_parameters": [
+            -0.4539807483679483,
+            1.2276865173706077
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 1,
+                "training_frames": 1167,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              }
+            ],
+            "calibration_frames": 5500,
+            "regularized_objective": 0.5032804779161297
+          },
+          "refined_boundaries_full_context": 5
+        },
+        {
+          "fold": 4,
+          "training_frames": 1917,
+          "calibration_parameters": [
+            -0.8392038771557708,
+            0.13047789689849765
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1334,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 1,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              }
+            ],
+            "calibration_frames": 5750,
+            "regularized_objective": 0.6177410558554345
+          },
+          "refined_boundaries_full_context": 3
+        }
+      ]
+    },
+    "object_context": {
+      "metrics": {
+        "spell_f1_mean": 0.5931034482758621,
+        "macro_f1": 0.8690409705807957,
+        "n_pred_spells": 12,
+        "per_class": {
+          "H": {
+            "precision": 0.8933102652825836,
+            "recall": 0.8969310943833236,
+            "f1": 0.8951170182028315,
+            "support": 3454
+          },
+          "A": {
+            "precision": 0.8595006347862886,
+            "recall": 0.7881257275902211,
+            "f1": 0.8222672064777328,
+            "support": 2577
+          },
+          "D": {
+            "precision": 0.8364289994008388,
+            "recall": 0.9503063308373043,
+            "f1": 0.8897386870618227,
+            "support": 1469
+          }
+        },
+        "spell_f1": {
+          "0.3": {
+            "precision": 0.8333333333333334,
+            "recall": 0.5882352941176471,
+            "f1": 0.6896551724137931,
+            "n_matched": 10,
+            "n_spurious": 2,
+            "n_missed": 7
+          },
+          "0.4": {
+            "precision": 0.8333333333333334,
+            "recall": 0.5882352941176471,
+            "f1": 0.6896551724137931,
+            "n_matched": 10,
+            "n_spurious": 2,
+            "n_missed": 7
+          },
+          "0.5": {
+            "precision": 0.75,
+            "recall": 0.5294117647058824,
+            "f1": 0.6206896551724139,
+            "n_matched": 9,
+            "n_spurious": 3,
+            "n_missed": 8
+          },
+          "0.6": {
+            "precision": 0.5833333333333334,
+            "recall": 0.4117647058823529,
+            "f1": 0.4827586206896552,
+            "n_matched": 7,
+            "n_spurious": 5,
+            "n_missed": 10
+          },
+          "0.7": {
+            "precision": 0.5833333333333334,
+            "recall": 0.4117647058823529,
+            "f1": 0.4827586206896552,
+            "n_matched": 7,
+            "n_spurious": 5,
+            "n_missed": 10
+          }
+        },
+        "confusion": [
+          [
+            3098,
+            289,
+            67,
+            0
+          ],
+          [
+            340,
+            2031,
+            206,
+            0
+          ],
+          [
+            30,
+            43,
+            1396,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "feature_count": 86,
+      "added_features": [
+        "context_visible_players_H",
+        "context_visible_players_A",
+        "context_outside_fraction_H",
+        "context_outside_fraction_A",
+        "context_nearest5_fraction_H",
+        "context_nearest5_fraction_A",
+        "context_ball_velocity_x",
+        "context_ball_velocity_y",
+        "context_velocity_supported"
+      ],
+      "feature_sha256": "044bc6417bec70c17ffff95d0f1e429748e398a9fc65c0bfda39660594857b15",
+      "folds": [
+        {
+          "fold": 0,
+          "training_frames": 1917,
+          "calibration_parameters": [
+            -0.5127297396176547,
+            -0.0502064921098788
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 1,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1334,
+                "calibration_frames": 1500
+              }
+            ],
+            "calibration_frames": 5750,
+            "regularized_objective": 0.4822961813622702
+          },
+          "refined_boundaries_full_context": 2
+        },
+        {
+          "fold": 1,
+          "training_frames": 1834,
+          "calibration_parameters": [
+            -0.5920395504823133,
+            -0.012696010418077186
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1167,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              }
+            ],
+            "calibration_frames": 5500,
+            "regularized_objective": 0.5237737838935621
+          },
+          "refined_boundaries_full_context": 2
+        },
+        {
+          "fold": 2,
+          "training_frames": 1834,
+          "calibration_parameters": [
+            -0.4821147303113632,
+            0.14072299910851668
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 1,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              }
+            ],
+            "calibration_frames": 5500,
+            "regularized_objective": 0.4958817165289378
+          },
+          "refined_boundaries_full_context": 3
+        },
+        {
+          "fold": 3,
+          "training_frames": 1834,
+          "calibration_parameters": [
+            -0.4834318909266474,
+            1.137373052888156
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 1,
+                "training_frames": 1167,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              }
+            ],
+            "calibration_frames": 5500,
+            "regularized_objective": 0.5208203572035537
+          },
+          "refined_boundaries_full_context": 5
+        },
+        {
+          "fold": 4,
+          "training_frames": 1917,
+          "calibration_parameters": [
+            -0.947020718003116,
+            0.02827544875899896
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1334,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 1,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              }
+            ],
+            "calibration_frames": 5750,
+            "regularized_objective": 0.6746390852766679
+          },
+          "refined_boundaries_full_context": 3
+        }
+      ]
+    },
+    "physics_context": {
+      "metrics": {
+        "spell_f1_mean": 0.5793103448275863,
+        "macro_f1": 0.8644216551188064,
+        "n_pred_spells": 12,
+        "per_class": {
+          "H": {
+            "precision": 0.884780739466896,
+            "recall": 0.8937463810075275,
+            "f1": 0.8892409621201209,
+            "support": 3454
+          },
+          "A": {
+            "precision": 0.857566765578635,
+            "recall": 0.7850213426464882,
+            "f1": 0.8196920583468397,
+            "support": 2577
+          },
+          "D": {
+            "precision": 0.8353510895883777,
+            "recall": 0.9394145677331518,
+            "f1": 0.8843319448894584,
+            "support": 1469
+          }
+        },
+        "spell_f1": {
+          "0.3": {
+            "precision": 0.8333333333333334,
+            "recall": 0.5882352941176471,
+            "f1": 0.6896551724137931,
+            "n_matched": 10,
+            "n_spurious": 2,
+            "n_missed": 7
+          },
+          "0.4": {
+            "precision": 0.8333333333333334,
+            "recall": 0.5882352941176471,
+            "f1": 0.6896551724137931,
+            "n_matched": 10,
+            "n_spurious": 2,
+            "n_missed": 7
+          },
+          "0.5": {
+            "precision": 0.75,
+            "recall": 0.5294117647058824,
+            "f1": 0.6206896551724139,
+            "n_matched": 9,
+            "n_spurious": 3,
+            "n_missed": 8
+          },
+          "0.6": {
+            "precision": 0.5833333333333334,
+            "recall": 0.4117647058823529,
+            "f1": 0.4827586206896552,
+            "n_matched": 7,
+            "n_spurious": 5,
+            "n_missed": 10
+          },
+          "0.7": {
+            "precision": 0.5,
+            "recall": 0.35294117647058826,
+            "f1": 0.41379310344827586,
+            "n_matched": 6,
+            "n_spurious": 6,
+            "n_missed": 11
+          }
+        },
+        "confusion": [
+          [
+            3087,
+            300,
+            67,
+            0
+          ],
+          [
+            349,
+            2023,
+            205,
+            0
+          ],
+          [
+            53,
+            36,
+            1380,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "feature_count": 103,
+      "added_features": [
+        "kick_support",
+        "kick_speed",
+        "kick_accel",
+        "kick_speed_variance",
+        "kick_accel_variance",
+        "kick_contact_accel_H",
+        "kick_contact_accel_A",
+        "kick_contact_accel_mean25_H",
+        "kick_contact_accel_mean25_A",
+        "control_predicted_separation_H",
+        "control_predicted_separation_A",
+        "control_opponents_1m_H",
+        "control_opponents_1m_A",
+        "control_opponents_3m_H",
+        "control_opponents_3m_A",
+        "control_opponents_5m_H",
+        "control_opponents_5m_A",
+        "context_visible_players_H",
+        "context_visible_players_A",
+        "context_outside_fraction_H",
+        "context_outside_fraction_A",
+        "context_nearest5_fraction_H",
+        "context_nearest5_fraction_A",
+        "context_ball_velocity_x",
+        "context_ball_velocity_y",
+        "context_velocity_supported"
+      ],
+      "feature_sha256": "7a32292d134c99a5a6f1b72f3b309396b6c7c1a5f2ea384866a07bb820a0e3fb",
+      "folds": [
+        {
+          "fold": 0,
+          "training_frames": 1917,
+          "calibration_parameters": [
+            -0.5331206503187115,
+            -0.09957917993709325
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 1,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1334,
+                "calibration_frames": 1500
+              }
+            ],
+            "calibration_frames": 5750,
+            "regularized_objective": 0.4856719633117115
+          },
+          "refined_boundaries_full_context": 2
+        },
+        {
+          "fold": 1,
+          "training_frames": 1834,
+          "calibration_parameters": [
+            -0.5848806550112486,
+            0.020561926628881743
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1167,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              }
+            ],
+            "calibration_frames": 5500,
+            "regularized_objective": 0.522579373371411
+          },
+          "refined_boundaries_full_context": 2
+        },
+        {
+          "fold": 2,
+          "training_frames": 1834,
+          "calibration_parameters": [
+            -0.47729031940482136,
+            0.1473228193480776
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 1,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              }
+            ],
+            "calibration_frames": 5500,
+            "regularized_objective": 0.4900159734152866
+          },
+          "refined_boundaries_full_context": 3
+        },
+        {
+          "fold": 3,
+          "training_frames": 1834,
+          "calibration_parameters": [
+            -0.48815224126806583,
+            1.144057590203144
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 1,
+                "training_frames": 1167,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              }
+            ],
+            "calibration_frames": 5500,
+            "regularized_objective": 0.5251937685934243
+          },
+          "refined_boundaries_full_context": 5
+        },
+        {
+          "fold": 4,
+          "training_frames": 1917,
+          "calibration_parameters": [
+            -0.9229210914021936,
+            0.05989557541536349
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1334,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 1,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              }
+            ],
+            "calibration_frames": 5750,
+            "regularized_objective": 0.668373182092771
+          },
+          "refined_boundaries_full_context": 3
+        }
+      ]
+    },
+    "combined": {
+      "metrics": {
+        "spell_f1_mean": 0.5037037037037038,
+        "macro_f1": 0.8499144522909087,
+        "n_pred_spells": 10,
+        "per_class": {
+          "H": {
+            "precision": 0.8711111111111111,
+            "recall": 0.9079328314997105,
+            "f1": 0.8891409129571874,
+            "support": 3454
+          },
+          "A": {
+            "precision": 0.8511796733212341,
+            "recall": 0.7279782693053939,
+            "f1": 0.7847730600292825,
+            "support": 2577
+          },
+          "D": {
+            "precision": 0.8172169811320755,
+            "recall": 0.943498978897209,
+            "f1": 0.875829383886256,
+            "support": 1469
+          }
+        },
+        "spell_f1": {
+          "0.3": {
+            "precision": 0.8,
+            "recall": 0.47058823529411764,
+            "f1": 0.5925925925925927,
+            "n_matched": 8,
+            "n_spurious": 2,
+            "n_missed": 9
+          },
+          "0.4": {
+            "precision": 0.8,
+            "recall": 0.47058823529411764,
+            "f1": 0.5925925925925927,
+            "n_matched": 8,
+            "n_spurious": 2,
+            "n_missed": 9
+          },
+          "0.5": {
+            "precision": 0.8,
+            "recall": 0.47058823529411764,
+            "f1": 0.5925925925925927,
+            "n_matched": 8,
+            "n_spurious": 2,
+            "n_missed": 9
+          },
+          "0.6": {
+            "precision": 0.5,
+            "recall": 0.29411764705882354,
+            "f1": 0.37037037037037035,
+            "n_matched": 5,
+            "n_spurious": 5,
+            "n_missed": 12
+          },
+          "0.7": {
+            "precision": 0.5,
+            "recall": 0.29411764705882354,
+            "f1": 0.37037037037037035,
+            "n_matched": 5,
+            "n_spurious": 5,
+            "n_missed": 12
+          }
+        },
+        "confusion": [
+          [
+            3136,
+            256,
+            62,
+            0
+          ],
+          [
+            453,
+            1876,
+            248,
+            0
+          ],
+          [
+            11,
+            72,
+            1386,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "feature_count": 111,
+      "added_features": [
+        "kick_support",
+        "kick_speed",
+        "kick_accel",
+        "kick_speed_variance",
+        "kick_accel_variance",
+        "kick_contact_accel_H",
+        "kick_contact_accel_A",
+        "kick_contact_accel_mean25_H",
+        "kick_contact_accel_mean25_A",
+        "control_predicted_separation_H",
+        "control_predicted_separation_A",
+        "control_opponents_1m_H",
+        "control_opponents_1m_A",
+        "control_opponents_3m_H",
+        "control_opponents_3m_A",
+        "control_opponents_5m_H",
+        "control_opponents_5m_A",
+        "camera_mapped_ball",
+        "camera_team_correction",
+        "camera_contact_H",
+        "camera_contact_A",
+        "camera_contact_mean_12_H",
+        "camera_contact_mean_12_A",
+        "camera_contact_mean_50_H",
+        "camera_contact_mean_50_A",
+        "context_visible_players_H",
+        "context_visible_players_A",
+        "context_outside_fraction_H",
+        "context_outside_fraction_A",
+        "context_nearest5_fraction_H",
+        "context_nearest5_fraction_A",
+        "context_ball_velocity_x",
+        "context_ball_velocity_y",
+        "context_velocity_supported"
+      ],
+      "feature_sha256": "305fe7a557c8fc7d1ba2d70d0c7264206dbd1e1199307dcd07d6c721f9a58684",
+      "folds": [
+        {
+          "fold": 0,
+          "training_frames": 1917,
+          "calibration_parameters": [
+            -0.5503703261025555,
+            -0.055816733351130465
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 1,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1334,
+                "calibration_frames": 1500
+              }
+            ],
+            "calibration_frames": 5750,
+            "regularized_objective": 0.5005649675131659
+          },
+          "refined_boundaries_full_context": 2
+        },
+        {
+          "fold": 1,
+          "training_frames": 1834,
+          "calibration_parameters": [
+            -0.5280097900401626,
+            -0.005746245585040792
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1167,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              }
+            ],
+            "calibration_frames": 5500,
+            "regularized_objective": 0.5042374838138562
+          },
+          "refined_boundaries_full_context": 1
+        },
+        {
+          "fold": 2,
+          "training_frames": 1834,
+          "calibration_parameters": [
+            -0.408281601427573,
+            0.2312873000837468
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 1,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              }
+            ],
+            "calibration_frames": 5500,
+            "regularized_objective": 0.4703911712792503
+          },
+          "refined_boundaries_full_context": 4
+        },
+        {
+          "fold": 3,
+          "training_frames": 1834,
+          "calibration_parameters": [
+            -0.4385152018796289,
+            1.2501954484904645
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 1,
+                "training_frames": 1167,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1334,
+                "calibration_frames": 1250
+              },
+              {
+                "inner_fold": 4,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              }
+            ],
+            "calibration_frames": 5500,
+            "regularized_objective": 0.5019746848642272
+          },
+          "refined_boundaries_full_context": 5
+        },
+        {
+          "fold": 4,
+          "training_frames": 1917,
+          "calibration_parameters": [
+            -0.8721893241301242,
+            0.10537111550243275
+          ],
+          "inner_calibration": {
+            "folds": [
+              {
+                "inner_fold": 0,
+                "training_frames": 1334,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 1,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 2,
+                "training_frames": 1250,
+                "calibration_frames": 1500
+              },
+              {
+                "inner_fold": 3,
+                "training_frames": 1417,
+                "calibration_frames": 1250
+              }
+            ],
+            "calibration_frames": 5750,
+            "regularized_objective": 0.6338653542595966
+          },
+          "refined_boundaries_full_context": 3
+        }
+      ]
+    }
+  },
+  "selection": "Initial baseline/physics/camera/physics_camera/object_context/combined comparison, followed by kick/control/physics_context ablations and fixed equal probability blends on the same public sample.",
+  "labels_sha256": "bda559851bad48e556896b357b9727b474f325877c83ed925a0af28f674f05bd",
+  "prior_sha256": "76e94ca6791a4c90b293bb12ec3818ee6344f047e86fb78bc51c1ef255fb6ddb",
+  "source_sha256": {
+    "experiments/paper_evidence.py": "d59969cf05a5e946a4bc247a7863ecb66abfb6c5c17428d59c9c30e96d6b1449",
+    "possession/physics.py": "635e7814f57ceced08582ab6521e7454cc1401278cfe73d49bb1513b2a9e43f3",
+    "possession/features.py": "ae92003a16357a1384c30969390ea4e211eccac01bf61205a15b754d740fc91a",
+    "possession/model.py": "82b22fb14af5825836a7c3c67fd8667f2cc13277a5fda30a3e5745003b29b33e",
+    "possession/calibration.py": "b38fa6dff645ff07da957a48c2384411a27f6589783cd556ef61530dd27195b0",
+    "possession/control.py": "5fe94129731615c6f2f7a786e925ac4ddc1787614d1c4ca0bad2555017934a00",
+    "possession/duration.py": "78b2ff3f604295c2ed29f29f135dc9af52257acc4d32c0f5587aa0428662a36b",
+    "experiments/align_broadcast.py": "340cb854ba163c072629e3a73649e989d4064955dd2a7d83e19e2d50d70f4e30"
+  },
+  "caveat": "Same 17 public spells used for repeated method selection; no private full-match score.",
+  "equal_calibrated_probability_blends": {
+    "baseline_kick": {
+      "spell_f1_mean": 0.6266666666666667,
+      "macro_f1": 0.8847874654385866,
+      "n_pred_spells": 13,
+      "per_class": {
+        "H": {
+          "precision": 0.9220238095238096,
+          "recall": 0.8969310943833236,
+          "f1": 0.9093043733489874,
+          "support": 3454
+        },
+        "A": {
+          "precision": 0.8717118575475516,
+          "recall": 0.8358556461001164,
+          "f1": 0.8534072900158479,
+          "support": 2577
+        },
+        "D": {
+          "precision": 0.8382264829239066,
+          "recall": 0.9523485364193329,
+          "f1": 0.8916507329509242,
+          "support": 1469
+        }
+      },
+      "spell_f1": {
+        "0.3": {
+          "precision": 0.8461538461538461,
+          "recall": 0.6470588235294118,
+          "f1": 0.7333333333333334,
+          "n_matched": 11,
+          "n_spurious": 2,
+          "n_missed": 6
+        },
+        "0.4": {
+          "precision": 0.8461538461538461,
+          "recall": 0.6470588235294118,
+          "f1": 0.7333333333333334,
+          "n_matched": 11,
+          "n_spurious": 2,
+          "n_missed": 6
+        },
+        "0.5": {
+          "precision": 0.7692307692307693,
+          "recall": 0.5882352941176471,
+          "f1": 0.6666666666666667,
+          "n_matched": 10,
+          "n_spurious": 3,
+          "n_missed": 7
+        },
+        "0.6": {
+          "precision": 0.6153846153846154,
+          "recall": 0.47058823529411764,
+          "f1": 0.5333333333333333,
+          "n_matched": 8,
+          "n_spurious": 5,
+          "n_missed": 9
+        },
+        "0.7": {
+          "precision": 0.5384615384615384,
+          "recall": 0.4117647058823529,
+          "f1": 0.4666666666666667,
+          "n_matched": 7,
+          "n_spurious": 6,
+          "n_missed": 10
+        }
+      },
+      "confusion": [
+        [
+          3098,
+          289,
+          67,
+          0
+        ],
+        [
+          220,
+          2154,
+          203,
+          0
+        ],
+        [
+          42,
+          28,
+          1399,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "baseline_control": {
+      "spell_f1_mean": 0.6428571428571427,
+      "macro_f1": 0.8919144776145879,
+      "n_pred_spells": 11,
+      "per_class": {
+        "H": {
+          "precision": 0.9387507580351728,
+          "recall": 0.8963520555877244,
+          "f1": 0.9170616113744076,
+          "support": 3454
+        },
+        "A": {
+          "precision": 0.8717131474103585,
+          "recall": 0.8490492821109817,
+          "f1": 0.860231963829369,
+          "support": 2577
+        },
+        "D": {
+          "precision": 0.8392434988179669,
+          "recall": 0.966643975493533,
+          "f1": 0.8984498576399874,
+          "support": 1469
+        }
+      },
+      "spell_f1": {
+        "0.3": {
+          "precision": 0.9090909090909091,
+          "recall": 0.5882352941176471,
+          "f1": 0.7142857142857143,
+          "n_matched": 10,
+          "n_spurious": 1,
+          "n_missed": 7
+        },
+        "0.4": {
+          "precision": 0.9090909090909091,
+          "recall": 0.5882352941176471,
+          "f1": 0.7142857142857143,
+          "n_matched": 10,
+          "n_spurious": 1,
+          "n_missed": 7
+        },
+        "0.5": {
+          "precision": 0.8181818181818182,
+          "recall": 0.5294117647058824,
+          "f1": 0.6428571428571428,
+          "n_matched": 9,
+          "n_spurious": 2,
+          "n_missed": 8
+        },
+        "0.6": {
+          "precision": 0.7272727272727273,
+          "recall": 0.47058823529411764,
+          "f1": 0.5714285714285714,
+          "n_matched": 8,
+          "n_spurious": 3,
+          "n_missed": 9
+        },
+        "0.7": {
+          "precision": 0.7272727272727273,
+          "recall": 0.47058823529411764,
+          "f1": 0.5714285714285714,
+          "n_matched": 8,
+          "n_spurious": 3,
+          "n_missed": 9
+        }
+      },
+      "confusion": [
+        [
+          3096,
+          291,
+          67,
+          0
+        ],
+        [
+          184,
+          2188,
+          205,
+          0
+        ],
+        [
+          18,
+          31,
+          1420,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "baseline_physics": {
+      "spell_f1_mean": 0.6266666666666667,
+      "macro_f1": 0.8848971772292816,
+      "n_pred_spells": 13,
+      "per_class": {
+        "H": {
+          "precision": 0.9220470098185064,
+          "recall": 0.8972206137811234,
+          "f1": 0.9094644167278064,
+          "support": 3454
+        },
+        "A": {
+          "precision": 0.8720647773279352,
+          "recall": 0.8358556461001164,
+          "f1": 0.8535763820091143,
+          "support": 2577
+        },
+        "D": {
+          "precision": 0.8382264829239066,
+          "recall": 0.9523485364193329,
+          "f1": 0.8916507329509242,
+          "support": 1469
+        }
+      },
+      "spell_f1": {
+        "0.3": {
+          "precision": 0.8461538461538461,
+          "recall": 0.6470588235294118,
+          "f1": 0.7333333333333334,
+          "n_matched": 11,
+          "n_spurious": 2,
+          "n_missed": 6
+        },
+        "0.4": {
+          "precision": 0.8461538461538461,
+          "recall": 0.6470588235294118,
+          "f1": 0.7333333333333334,
+          "n_matched": 11,
+          "n_spurious": 2,
+          "n_missed": 6
+        },
+        "0.5": {
+          "precision": 0.7692307692307693,
+          "recall": 0.5882352941176471,
+          "f1": 0.6666666666666667,
+          "n_matched": 10,
+          "n_spurious": 3,
+          "n_missed": 7
+        },
+        "0.6": {
+          "precision": 0.6153846153846154,
+          "recall": 0.47058823529411764,
+          "f1": 0.5333333333333333,
+          "n_matched": 8,
+          "n_spurious": 5,
+          "n_missed": 9
+        },
+        "0.7": {
+          "precision": 0.5384615384615384,
+          "recall": 0.4117647058823529,
+          "f1": 0.4666666666666667,
+          "n_matched": 7,
+          "n_spurious": 6,
+          "n_missed": 10
+        }
+      },
+      "confusion": [
+        [
+          3099,
+          288,
+          67,
+          0
+        ],
+        [
+          220,
+          2154,
+          203,
+          0
+        ],
+        [
+          42,
+          28,
+          1399,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "baseline_camera": {
+      "spell_f1_mean": 0.6799999999999999,
+      "macro_f1": 0.8821265410506737,
+      "n_pred_spells": 13,
+      "per_class": {
+        "H": {
+          "precision": 0.9162749706227967,
+          "recall": 0.9030110017371163,
+          "f1": 0.9095946340040828,
+          "support": 3454
+        },
+        "A": {
+          "precision": 0.8741112505227938,
+          "recall": 0.8110205665502522,
+          "f1": 0.8413848631239936,
+          "support": 2577
+        },
+        "D": {
+          "precision": 0.8334310850439882,
+          "recall": 0.9673247106875426,
+          "f1": 0.8954001260239445,
+          "support": 1469
+        }
+      },
+      "spell_f1": {
+        "0.3": {
+          "precision": 0.8461538461538461,
+          "recall": 0.6470588235294118,
+          "f1": 0.7333333333333334,
+          "n_matched": 11,
+          "n_spurious": 2,
+          "n_missed": 6
+        },
+        "0.4": {
+          "precision": 0.8461538461538461,
+          "recall": 0.6470588235294118,
+          "f1": 0.7333333333333334,
+          "n_matched": 11,
+          "n_spurious": 2,
+          "n_missed": 6
+        },
+        "0.5": {
+          "precision": 0.8461538461538461,
+          "recall": 0.6470588235294118,
+          "f1": 0.7333333333333334,
+          "n_matched": 11,
+          "n_spurious": 2,
+          "n_missed": 6
+        },
+        "0.6": {
+          "precision": 0.6923076923076923,
+          "recall": 0.5294117647058824,
+          "f1": 0.5999999999999999,
+          "n_matched": 9,
+          "n_spurious": 4,
+          "n_missed": 8
+        },
+        "0.7": {
+          "precision": 0.6923076923076923,
+          "recall": 0.5294117647058824,
+          "f1": 0.5999999999999999,
+          "n_matched": 9,
+          "n_spurious": 4,
+          "n_missed": 8
+        }
+      },
+      "confusion": [
+        [
+          3119,
+          273,
+          62,
+          0
+        ],
+        [
+          265,
+          2090,
+          222,
+          0
+        ],
+        [
+          20,
+          28,
+          1421,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "baseline_physics_camera": {
+      "spell_f1_mean": 0.6799999999999999,
+      "macro_f1": 0.8826942686401084,
+      "n_pred_spells": 13,
+      "per_class": {
+        "H": {
+          "precision": 0.9154970760233918,
+          "recall": 0.9064852345107122,
+          "f1": 0.9109688681990108,
+          "support": 3454
+        },
+        "A": {
+          "precision": 0.8812341504649197,
+          "recall": 0.8090803259604191,
+          "f1": 0.8436172364960551,
+          "support": 2577
+        },
+        "D": {
+          "precision": 0.8296382730455076,
+          "recall": 0.9680054458815521,
+          "f1": 0.8934967012252591,
+          "support": 1469
+        }
+      },
+      "spell_f1": {
+        "0.3": {
+          "precision": 0.8461538461538461,
+          "recall": 0.6470588235294118,
+          "f1": 0.7333333333333334,
+          "n_matched": 11,
+          "n_spurious": 2,
+          "n_missed": 6
+        },
+        "0.4": {
+          "precision": 0.8461538461538461,
+          "recall": 0.6470588235294118,
+          "f1": 0.7333333333333334,
+          "n_matched": 11,
+          "n_spurious": 2,
+          "n_missed": 6
+        },
+        "0.5": {
+          "precision": 0.8461538461538461,
+          "recall": 0.6470588235294118,
+          "f1": 0.7333333333333334,
+          "n_matched": 11,
+          "n_spurious": 2,
+          "n_missed": 6
+        },
+        "0.6": {
+          "precision": 0.6923076923076923,
+          "recall": 0.5294117647058824,
+          "f1": 0.5999999999999999,
+          "n_matched": 9,
+          "n_spurious": 4,
+          "n_missed": 8
+        },
+        "0.7": {
+          "precision": 0.6923076923076923,
+          "recall": 0.5294117647058824,
+          "f1": 0.5999999999999999,
+          "n_matched": 9,
+          "n_spurious": 4,
+          "n_missed": 8
+        }
+      },
+      "confusion": [
+        [
+          3131,
+          256,
+          67,
+          0
+        ],
+        [
+          267,
+          2085,
+          225,
+          0
+        ],
+        [
+          22,
+          25,
+          1422,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "baseline_object_context": {
+      "spell_f1_mean": 0.6,
+      "macro_f1": 0.8835331998482711,
+      "n_pred_spells": 13,
+      "per_class": {
+        "H": {
+          "precision": 0.9152392203189604,
+          "recall": 0.8972206137811234,
+          "f1": 0.9061403508771931,
+          "support": 3454
+        },
+        "A": {
+          "precision": 0.8663669799754802,
+          "recall": 0.8226620100892511,
+          "f1": 0.8439490445859873,
+          "support": 2577
+        },
+        "D": {
+          "precision": 0.8470305938812237,
+          "recall": 0.9611980939414567,
+          "f1": 0.9005102040816327,
+          "support": 1469
+        }
+      },
+      "spell_f1": {
+        "0.3": {
+          "precision": 0.8461538461538461,
+          "recall": 0.6470588235294118,
+          "f1": 0.7333333333333334,
+          "n_matched": 11,
+          "n_spurious": 2,
+          "n_missed": 6
+        },
+        "0.4": {
+          "precision": 0.8461538461538461,
+          "recall": 0.6470588235294118,
+          "f1": 0.7333333333333334,
+          "n_matched": 11,
+          "n_spurious": 2,
+          "n_missed": 6
+        },
+        "0.5": {
+          "precision": 0.6923076923076923,
+          "recall": 0.5294117647058824,
+          "f1": 0.5999999999999999,
+          "n_matched": 9,
+          "n_spurious": 4,
+          "n_missed": 8
+        },
+        "0.6": {
+          "precision": 0.5384615384615384,
+          "recall": 0.4117647058823529,
+          "f1": 0.4666666666666667,
+          "n_matched": 7,
+          "n_spurious": 6,
+          "n_missed": 10
+        },
+        "0.7": {
+          "precision": 0.5384615384615384,
+          "recall": 0.4117647058823529,
+          "f1": 0.4666666666666667,
+          "n_matched": 7,
+          "n_spurious": 6,
+          "n_missed": 10
+        }
+      },
+      "confusion": [
+        [
+          3099,
+          288,
+          67,
+          0
+        ],
+        [
+          269,
+          2120,
+          188,
+          0
+        ],
+        [
+          18,
+          39,
+          1412,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "baseline_physics_context": {
+      "spell_f1_mean": 0.5866666666666667,
+      "macro_f1": 0.8798549818456842,
+      "n_pred_spells": 13,
+      "per_class": {
+        "H": {
+          "precision": 0.9090642417131124,
+          "recall": 0.8972206137811234,
+          "f1": 0.9031035990091798,
+          "support": 3454
+        },
+        "A": {
+          "precision": 0.866312346688471,
+          "recall": 0.8222739619712844,
+          "f1": 0.8437188930917778,
+          "support": 2577
+        },
+        "D": {
+          "precision": 0.8449848024316109,
+          "recall": 0.9462219196732471,
+          "f1": 0.892742453436095,
+          "support": 1469
+        }
+      },
+      "spell_f1": {
+        "0.3": {
+          "precision": 0.8461538461538461,
+          "recall": 0.6470588235294118,
+          "f1": 0.7333333333333334,
+          "n_matched": 11,
+          "n_spurious": 2,
+          "n_missed": 6
+        },
+        "0.4": {
+          "precision": 0.8461538461538461,
+          "recall": 0.6470588235294118,
+          "f1": 0.7333333333333334,
+          "n_matched": 11,
+          "n_spurious": 2,
+          "n_missed": 6
+        },
+        "0.5": {
+          "precision": 0.6923076923076923,
+          "recall": 0.5294117647058824,
+          "f1": 0.5999999999999999,
+          "n_matched": 9,
+          "n_spurious": 4,
+          "n_missed": 8
+        },
+        "0.6": {
+          "precision": 0.5384615384615384,
+          "recall": 0.4117647058823529,
+          "f1": 0.4666666666666667,
+          "n_matched": 7,
+          "n_spurious": 6,
+          "n_missed": 10
+        },
+        "0.7": {
+          "precision": 0.46153846153846156,
+          "recall": 0.35294117647058826,
+          "f1": 0.4000000000000001,
+          "n_matched": 6,
+          "n_spurious": 7,
+          "n_missed": 11
+        }
+      },
+      "confusion": [
+        [
+          3099,
+          288,
+          67,
+          0
+        ],
+        [
+          270,
+          2119,
+          188,
+          0
+        ],
+        [
+          40,
+          39,
+          1390,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "baseline_combined": {
+      "spell_f1_mean": 0.6206896551724138,
+      "macro_f1": 0.8598695341173171,
+      "n_pred_spells": 12,
+      "per_class": {
+        "H": {
+          "precision": 0.8756330894766461,
+          "recall": 0.9009843659525189,
+          "f1": 0.8881278538812786,
+          "support": 3454
+        },
+        "A": {
+          "precision": 0.8642251004912908,
+          "recall": 0.7508731082654249,
+          "f1": 0.8035714285714285,
+          "support": 2577
+        },
+        "D": {
+          "precision": 0.8260105448154658,
+          "recall": 0.9598366235534377,
+          "f1": 0.8879093198992444,
+          "support": 1469
+        }
+      },
+      "spell_f1": {
+        "0.3": {
+          "precision": 0.8333333333333334,
+          "recall": 0.5882352941176471,
+          "f1": 0.6896551724137931,
+          "n_matched": 10,
+          "n_spurious": 2,
+          "n_missed": 7
+        },
+        "0.4": {
+          "precision": 0.8333333333333334,
+          "recall": 0.5882352941176471,
+          "f1": 0.6896551724137931,
+          "n_matched": 10,
+          "n_spurious": 2,
+          "n_missed": 7
+        },
+        "0.5": {
+          "precision": 0.8333333333333334,
+          "recall": 0.5882352941176471,
+          "f1": 0.6896551724137931,
+          "n_matched": 10,
+          "n_spurious": 2,
+          "n_missed": 7
+        },
+        "0.6": {
+          "precision": 0.6666666666666666,
+          "recall": 0.47058823529411764,
+          "f1": 0.5517241379310345,
+          "n_matched": 8,
+          "n_spurious": 4,
+          "n_missed": 9
+        },
+        "0.7": {
+          "precision": 0.5833333333333334,
+          "recall": 0.4117647058823529,
+          "f1": 0.4827586206896552,
+          "n_matched": 7,
+          "n_spurious": 5,
+          "n_missed": 10
+        }
+      },
+      "confusion": [
+        [
+          3112,
+          278,
+          64,
+          0
+        ],
+        [
+          409,
+          1935,
+          233,
+          0
+        ],
+        [
+          33,
+          26,
+          1410,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    }
+  }
+}

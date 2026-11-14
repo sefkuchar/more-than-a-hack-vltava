@@ -1,0 +1,39 @@
+{
+  "results": [
+    {
+      "method": "base_latent",
+      "spell_f1_mean": 0.6266666666666667,
+      "macro_f1": 0.8815681059101367,
+      "n_pred_spells": 13
+    },
+    {
+      "method": "base_latent_ball",
+      "spell_f1_mean": 0.6266666666666667,
+      "macro_f1": 0.8806937917711252,
+      "n_pred_spells": 13
+    },
+    {
+      "method": "interleaved_bagging",
+      "spell_f1_mean": 0.6133333333333334,
+      "macro_f1": 0.8762884305031226,
+      "n_pred_spells": 13
+    }
+  ],
+  "decoder": "external duration exact 25Hz",
+  "temperature": 5,
+  "fixed_equal_weights": true,
+  "fold_context_shape": [
+    5,
+    7500,
+    3
+  ],
+  "input_sha256": {
+    "booster_ensemble.npz": "5af6229dc1ea8c059dd078f93f6eb75d613dc1b5fafa0bf6e21e2d81fd11ab24",
+    "latent_context_validation.npz": "985424f586370dae794c5a29ad01ab7f9c90237391e34a847efac166d22f41fc",
+    "ball_possession_validation_target.npz": "ccdcb6603e10f9eeebfabe3984689891938ecb34a1586b2d96935ce247098633",
+    "base_features": "c87c85c5e71bc3393ab27d786cd9d907fa6303d864c7e25e92e275329662d4e0",
+    "script": "80aa0cf78a4d102433884e8cc7a41997c091f65ffd111e02cce980c38806098a",
+    "labels": "bda559851bad48e556896b357b9727b474f325877c83ed925a0af28f674f05bd",
+    "duration_priors": "0929da521f613fb7983a87fdb1dfc5459e341dfe5a4cc98d625ceee45bb6f7fd"
+  }
+}

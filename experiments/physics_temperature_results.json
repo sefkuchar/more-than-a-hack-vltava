@@ -1,0 +1,31 @@
+{
+  "results": {
+    "static_5": {
+      "spell_f1_mean": 0.6266666666666667,
+      "macro_f1": 0.8780037541743808,
+      "n_pred_spells": 13
+    },
+    "physics_adaptive": {
+      "spell_f1_mean": 0.6266666666666667,
+      "macro_f1": 0.8760816482297158,
+      "n_pred_spells": 13
+    }
+  },
+  "cache_provenance": {
+    "source_sha256": "b47897b37424c931ed36fae9fd578e9475055d0cdcd7f0c403acfcb78d45d193",
+    "feature_sha256": "c87c85c5e71bc3393ab27d786cd9d907fa6303d864c7e25e92e275329662d4e0",
+    "label_sha256": "bda559851bad48e556896b357b9727b474f325877c83ed925a0af28f674f05bd"
+  },
+  "cache_sha256": "5af6229dc1ea8c059dd078f93f6eb75d613dc1b5fafa0bf6e21e2d81fd11ab24",
+  "duration_prior_sha256": "76e94ca6791a4c90b293bb12ec3818ee6344f047e86fb78bc51c1ef255fb6ddb",
+  "source_sha256": "507d41c3e4f194971d6be6dde0b25f547439088d659c89e62a5a5fd2ffd8c69c",
+  "formula": "quality=stable[winner]*(1-stable[other])*(1-pD)*abs(pH-pA); T=5-4*clip(quality,0,1)",
+  "temperature_quantiles": [
+    1.0088241654941137,
+    2.8595074803356146,
+    4.955889733523135,
+    4.9999987118980105,
+    5.0
+  ],
+  "protocol": "Existing5 isolated60second folds and10second embargo; each fold decoded acrossfull7500 thenheldoutcore retained. Quality uses predictions andtrackingfeaturesonly; no label-based threshold or temperature search."
+}

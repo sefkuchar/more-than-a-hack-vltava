@@ -1,0 +1,89 @@
+{
+  "model": "possession_model.joblib",
+  "training_frames": 2500,
+  "emission_temperature": 2.0,
+  "feature_count": 77,
+  "calibration_parameters": [
+    -0.5031901740681952,
+    -0.07856062087135267
+  ],
+  "calibration_training": {
+    "folds": [
+      {
+        "inner_fold": 0,
+        "training_frames": 1917,
+        "calibration_frames": 1500
+      },
+      {
+        "inner_fold": 1,
+        "training_frames": 1834,
+        "calibration_frames": 1500
+      },
+      {
+        "inner_fold": 2,
+        "training_frames": 1834,
+        "calibration_frames": 1500
+      },
+      {
+        "inner_fold": 3,
+        "training_frames": 1834,
+        "calibration_frames": 1500
+      },
+      {
+        "inner_fold": 4,
+        "training_frames": 1917,
+        "calibration_frames": 1500
+      }
+    ],
+    "calibration_frames": 7500,
+    "regularized_objective": 0.42996379499837933
+  },
+  "sklearn_version": "1.8.0",
+  "feature_sha256": "c87c85c5e71bc3393ab27d786cd9d907fa6303d864c7e25e92e275329662d4e0",
+  "public_labels_sha256": "bda559851bad48e556896b357b9727b474f325877c83ed925a0af28f674f05bd",
+  "model_sha256": "fa0acdefd42af065fd505cfe24249dcef1c49fe634ce19054ae86f2509e7c6fa",
+  "external_data_required": false,
+  "note": "Classifier and calibrator use allowed public labels. Use possession.validate for held-out performance.",
+  "paper_blend": {
+    "weight": 0.5,
+    "fusion": "mean conditional H/A probabilities, retain base D",
+    "boundary_refinement": "sustained contact or observed SG7 acceleration-confirmed contact",
+    "feature_count": 85,
+    "feature_sha256": "1806ee758d81e13739b12c332960c8a0c779663b8e702bc1e600b14b5f8927d5",
+    "calibration_parameters": [
+      -0.508803410661385,
+      -0.12576207375121817
+    ],
+    "calibration_training": {
+      "folds": [
+        {
+          "inner_fold": 0,
+          "training_frames": 1917,
+          "calibration_frames": 1500
+        },
+        {
+          "inner_fold": 1,
+          "training_frames": 1834,
+          "calibration_frames": 1500
+        },
+        {
+          "inner_fold": 2,
+          "training_frames": 1834,
+          "calibration_frames": 1500
+        },
+        {
+          "inner_fold": 3,
+          "training_frames": 1834,
+          "calibration_frames": 1500
+        },
+        {
+          "inner_fold": 4,
+          "training_frames": 1917,
+          "calibration_frames": 1500
+        }
+      ],
+      "calibration_frames": 7500,
+      "regularized_objective": 0.43443763283274794
+    }
+  }
+}

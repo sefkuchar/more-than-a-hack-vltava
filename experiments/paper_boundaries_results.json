@@ -1,0 +1,38 @@
+{
+  "results": {
+    "baseline": {
+      "macro_f1": 0.8994975748889885,
+      "spell_f1_mean": 0.6428571428571427,
+      "n_pred_spells": 11
+    },
+    "camera_blend": {
+      "macro_f1": 0.8888174693702943,
+      "spell_f1_mean": 0.6799999999999999,
+      "n_pred_spells": 13
+    },
+    "physics_camera_blend": {
+      "macro_f1": 0.8875287226500216,
+      "spell_f1_mean": 0.6799999999999999,
+      "n_pred_spells": 13
+    },
+    "camera_team_blend": {
+      "macro_f1": 0.8911713007289886,
+      "spell_f1_mean": 0.6799999999999999,
+      "n_pred_spells": 13
+    },
+    "physics_camera_team_blend": {
+      "macro_f1": 0.8911713007289886,
+      "spell_f1_mean": 0.6799999999999999,
+      "n_pred_spells": 13
+    }
+  },
+  "additional_kick_onsets": [
+    200,
+    179
+  ],
+  "method": "Observed exclusive proximity interval contains a supported SG7 acceleration >=4m/s\u00b2; union with sustained onsets; unchanged +/-50 frame H/A-only refinement.",
+  "source_sha256": "69b55132e041215a05168dc6d6f47c67a519f7650498b9eb258dfd4e4b779196",
+  "feature_report_sha256": "5566327d60ff62cc96a8c3e040f40df824504b8fa33767bcbae892b86da1402e",
+  "cache_sha256": "400361575eecd51310a5852792730c39366574d0ba39fae3b4c6134582f9e41d",
+  "caveat": "Follow-up selection on the same 17 public spells; impulse contact is not proof of controlled recovery."
+}

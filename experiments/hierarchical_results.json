@@ -1,0 +1,29 @@
+[
+  {
+    "method": "hierarchical",
+    "penalty": 32,
+    "spell_f1_mean": 0.44799999999999995,
+    "macro_f1": 0.8405391750880323,
+    "n_pred_spells": 8,
+    "alive_dead_f1": 0.9595077741747735,
+    "team_acc_both_alive": 0.8856152512998267
+  },
+  {
+    "method": "team_head",
+    "penalty": 32,
+    "spell_f1_mean": 0.4923076923076922,
+    "macro_f1": 0.8787696594903815,
+    "n_pred_spells": 9,
+    "alive_dead_f1": 0.9702970297029704,
+    "team_acc_both_alive": 0.9071255620892424
+  },
+  {
+    "method": "dead_head",
+    "penalty": 32,
+    "spell_f1_mean": 0.55,
+    "macro_f1": 0.8532376365454196,
+    "n_pred_spells": 15,
+    "alive_dead_f1": 0.9598269982533478,
+    "team_acc_both_alive": 0.9019064124783363
+  }
+]

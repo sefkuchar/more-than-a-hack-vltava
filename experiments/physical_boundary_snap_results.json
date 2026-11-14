@@ -1,0 +1,61 @@
+{
+  "results": {
+    "static_duration": {
+      "spell_f1_mean": 0.6266666666666667,
+      "macro_f1": 0.8780037541743808,
+      "n_pred_spells": 13
+    },
+    "contact_boundary_snap": {
+      "spell_f1_mean": 0.64,
+      "macro_f1": 0.8804004595766904,
+      "n_pred_spells": 13
+    }
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "changed_boundaries_full_context": 2,
+      "changed_frames_full_context": 54,
+      "absolute_shift_frames": 54,
+      "changed_boundaries_heldout": 0
+    },
+    {
+      "fold": 1,
+      "changed_boundaries_full_context": 3,
+      "changed_frames_full_context": 62,
+      "absolute_shift_frames": 62,
+      "changed_boundaries_heldout": 1
+    },
+    {
+      "fold": 2,
+      "changed_boundaries_full_context": 3,
+      "changed_frames_full_context": 62,
+      "absolute_shift_frames": 62,
+      "changed_boundaries_heldout": 0
+    },
+    {
+      "fold": 3,
+      "changed_boundaries_full_context": 5,
+      "changed_frames_full_context": 115,
+      "absolute_shift_frames": 115,
+      "changed_boundaries_heldout": 0
+    },
+    {
+      "fold": 4,
+      "changed_boundaries_full_context": 4,
+      "changed_frames_full_context": 101,
+      "absolute_shift_frames": 101,
+      "changed_boundaries_heldout": 0
+    }
+  ],
+  "changed_oof_frames": 20,
+  "source_sha256": "f400a7844965733d6fc4f55be9cfafcd43fe9b885816888db31fda1a9548ddc5",
+  "feature_sha256": "c87c85c5e71bc3393ab27d786cd9d907fa6303d864c7e25e92e275329662d4e0",
+  "duration_prior_sha256": "76e94ca6791a4c90b293bb12ec3818ee6344f047e86fb78bc51c1ef255fb6ddb",
+  "cache_sha256": "5af6229dc1ea8c059dd078f93f6eb75d613dc1b5fafa0bf6e21e2d81fd11ab24",
+  "global_control_onsets": [
+    584,
+    351
+  ],
+  "protocol": "Fixed existing directH/A boundary snap to nearest actual global newteam control onset within50frames. Distances1.5/3m,stable>.2,observed,run>=8frames. Orderedpositive spells andDmask preserved perfullfoldcontext. No new spells,GTtiming or parameter search. Each label-excluded fold decoded+snapped in fullcontext before core retained."
+}

@@ -1,0 +1,55 @@
+{
+  "results": [
+    {
+      "method": "duration",
+      "spell_f1_mean": 0.48275862068965514,
+      "macro_f1": 0.8674855275264276,
+      "n_pred_spells": 12
+    },
+    {
+      "method": "duration_snap",
+      "spell_f1_mean": 0.48275862068965514,
+      "macro_f1": 0.868209707036053,
+      "n_pred_spells": 12
+    }
+  ],
+  "source_input_sha256": {
+    "experiments/lagged_evidence.py": "42aa9027a29dd645912dd084d5cf4a63f092e04fbde0c856ededcbe731d1c676",
+    "possession/features.py": "56ac029f1ed867c314befb651c84f3c952bbc14eae40c542f2bf10807be6e8ae",
+    "possession/model.py": "82b22fb14af5825836a7c3c67fd8667f2cc13277a5fda30a3e5745003b29b33e",
+    "possession/duration.py": "bc1867c97796106389ccbed56ebd2a2401b3c76a7f9d246f439c7dcbc37a9e23",
+    "experiments/physical_boundary_snap.py": "f400a7844965733d6fc4f55be9cfafcd43fe9b885816888db31fda1a9548ddc5",
+    "experiments/align_broadcast.py": "340cb854ba163c072629e3a73649e989d4064955dd2a7d83e19e2d50d70f4e30",
+    "features": "9c3630e3921bcf423a6904c6cbfde8a4587799b4922ad0d61db08359912f6d8d",
+    "labels": "bda559851bad48e556896b357b9727b474f325877c83ed925a0af28f674f05bd",
+    "prior": "76e94ca6791a4c90b293bb12ec3818ee6344f047e86fb78bc51c1ef255fb6ddb"
+  },
+  "feature_count": 143,
+  "lag_frames": [
+    -50,
+    -25,
+    -10,
+    10,
+    25,
+    50
+  ],
+  "signals": [
+    "contact_H",
+    "contact_A",
+    "stable_contact_H",
+    "stable_contact_A",
+    "distance_H",
+    "distance_A",
+    "ball_speed",
+    "observed",
+    "broadcast_contact_H",
+    "broadcast_contact_A",
+    "broadcast_visible"
+  ],
+  "folds": 5,
+  "embargo": 250,
+  "stride": 3,
+  "offline_future_context": true,
+  "selection_optimism": true,
+  "snapped_heldout_frames": 6
+}

@@ -1,0 +1,330 @@
+{
+  "results": {
+    "nested_probability_calibration_only": {
+      "spell_f1_mean": 0.6428571428571427,
+      "macro_f1": 0.8919037386538128,
+      "n_pred_spells": 11
+    },
+    "nested_calibration_and_timing": {
+      "spell_f1_mean": 0.6428571428571427,
+      "macro_f1": 0.887606004506542,
+      "n_pred_spells": 11
+    }
+  },
+  "folds": [
+    {
+      "outer_fold": 0,
+      "scale": 0.6148737393841134,
+      "log_scale": -0.48633833406737137,
+      "dead_intercept": -0.07556285558846498,
+      "calibration_frames": 5750,
+      "regularized_objective": 0.46535667746064435,
+      "bias_frames": {
+        "into_dead": -6,
+        "out_of_dead": -6
+      },
+      "offset_statistics": {
+        "into_dead": {
+          "count": 2,
+          "median": -6.0,
+          "mean": -6.0,
+          "minimum": -15,
+          "maximum": 3
+        },
+        "out_of_dead": {
+          "count": 4,
+          "median": -6.5,
+          "mean": 19.75,
+          "minimum": -28,
+          "maximum": 120
+        }
+      },
+      "inner_folds": [
+        {
+          "inner_fold": 1,
+          "offset_counts": {
+            "into_dead": 0,
+            "out_of_dead": 1
+          }
+        },
+        {
+          "inner_fold": 2,
+          "offset_counts": {
+            "into_dead": 0,
+            "out_of_dead": 0
+          }
+        },
+        {
+          "inner_fold": 3,
+          "offset_counts": {
+            "into_dead": 1,
+            "out_of_dead": 1
+          }
+        },
+        {
+          "inner_fold": 4,
+          "offset_counts": {
+            "into_dead": 1,
+            "out_of_dead": 2
+          }
+        }
+      ],
+      "moved_dead_edges_full_context": 8,
+      "skipped_crossing_edges": 0
+    },
+    {
+      "outer_fold": 1,
+      "scale": 0.5565776125109545,
+      "log_scale": -0.5859486525624465,
+      "dead_intercept": 0.10530307249043869,
+      "calibration_frames": 5500,
+      "regularized_objective": 0.5182473927503386,
+      "bias_frames": {
+        "into_dead": -10,
+        "out_of_dead": -42
+      },
+      "offset_statistics": {
+        "into_dead": {
+          "count": 3,
+          "median": -10.0,
+          "mean": -19.666666666666668,
+          "minimum": -43,
+          "maximum": -6
+        },
+        "out_of_dead": {
+          "count": 3,
+          "median": -42.0,
+          "mean": -36.333333333333336,
+          "minimum": -100,
+          "maximum": 33
+        }
+      },
+      "inner_folds": [
+        {
+          "inner_fold": 0,
+          "offset_counts": {
+            "into_dead": 0,
+            "out_of_dead": 0
+          }
+        },
+        {
+          "inner_fold": 2,
+          "offset_counts": {
+            "into_dead": 0,
+            "out_of_dead": 0
+          }
+        },
+        {
+          "inner_fold": 3,
+          "offset_counts": {
+            "into_dead": 1,
+            "out_of_dead": 1
+          }
+        },
+        {
+          "inner_fold": 4,
+          "offset_counts": {
+            "into_dead": 2,
+            "out_of_dead": 2
+          }
+        }
+      ],
+      "moved_dead_edges_full_context": 8,
+      "skipped_crossing_edges": 0
+    },
+    {
+      "outer_fold": 2,
+      "scale": 0.5867745272796655,
+      "log_scale": -0.5331146431993876,
+      "dead_intercept": 0.32924064727010666,
+      "calibration_frames": 5500,
+      "regularized_objective": 0.5119004406115771,
+      "bias_frames": {
+        "into_dead": -17,
+        "out_of_dead": -6
+      },
+      "offset_statistics": {
+        "into_dead": {
+          "count": 2,
+          "median": -17.0,
+          "mean": -17.0,
+          "minimum": -24,
+          "maximum": -10
+        },
+        "out_of_dead": {
+          "count": 4,
+          "median": -5.5,
+          "mean": -13.25,
+          "minimum": -52,
+          "maximum": 10
+        }
+      },
+      "inner_folds": [
+        {
+          "inner_fold": 0,
+          "offset_counts": {
+            "into_dead": 0,
+            "out_of_dead": 0
+          }
+        },
+        {
+          "inner_fold": 1,
+          "offset_counts": {
+            "into_dead": 1,
+            "out_of_dead": 1
+          }
+        },
+        {
+          "inner_fold": 3,
+          "offset_counts": {
+            "into_dead": 0,
+            "out_of_dead": 1
+          }
+        },
+        {
+          "inner_fold": 4,
+          "offset_counts": {
+            "into_dead": 1,
+            "out_of_dead": 2
+          }
+        }
+      ],
+      "moved_dead_edges_full_context": 8,
+      "skipped_crossing_edges": 0
+    },
+    {
+      "outer_fold": 3,
+      "scale": 0.6238352582906993,
+      "log_scale": -0.4718689546187803,
+      "dead_intercept": 1.228154227538607,
+      "calibration_frames": 5500,
+      "regularized_objective": 0.5145117245490513,
+      "bias_frames": {
+        "into_dead": 0,
+        "out_of_dead": 16
+      },
+      "offset_statistics": {
+        "into_dead": {
+          "count": 1,
+          "median": 5.0,
+          "mean": 5.0,
+          "minimum": 5,
+          "maximum": 5
+        },
+        "out_of_dead": {
+          "count": 2,
+          "median": 16.0,
+          "mean": 16.0,
+          "minimum": 8,
+          "maximum": 24
+        }
+      },
+      "inner_folds": [
+        {
+          "inner_fold": 0,
+          "offset_counts": {
+            "into_dead": 0,
+            "out_of_dead": 0
+          }
+        },
+        {
+          "inner_fold": 1,
+          "offset_counts": {
+            "into_dead": 1,
+            "out_of_dead": 1
+          }
+        },
+        {
+          "inner_fold": 2,
+          "offset_counts": {
+            "into_dead": 0,
+            "out_of_dead": 0
+          }
+        },
+        {
+          "inner_fold": 4,
+          "offset_counts": {
+            "into_dead": 0,
+            "out_of_dead": 1
+          }
+        }
+      ],
+      "moved_dead_edges_full_context": 5,
+      "skipped_crossing_edges": 0
+    },
+    {
+      "outer_fold": 4,
+      "scale": 0.4009437674076838,
+      "log_scale": -0.913934092412372,
+      "dead_intercept": 0.06733074531302381,
+      "calibration_frames": 5750,
+      "regularized_objective": 0.6627583144754878,
+      "bias_frames": {
+        "into_dead": 0,
+        "out_of_dead": 0
+      },
+      "offset_statistics": {
+        "into_dead": {
+          "count": 1,
+          "median": -13.0,
+          "mean": -13.0,
+          "minimum": -13,
+          "maximum": -13
+        },
+        "out_of_dead": {
+          "count": 0,
+          "median": null,
+          "mean": null,
+          "minimum": null,
+          "maximum": null
+        }
+      },
+      "inner_folds": [
+        {
+          "inner_fold": 0,
+          "offset_counts": {
+            "into_dead": 0,
+            "out_of_dead": 0
+          }
+        },
+        {
+          "inner_fold": 1,
+          "offset_counts": {
+            "into_dead": 1,
+            "out_of_dead": 0
+          }
+        },
+        {
+          "inner_fold": 2,
+          "offset_counts": {
+            "into_dead": 0,
+            "out_of_dead": 0
+          }
+        },
+        {
+          "inner_fold": 3,
+          "offset_counts": {
+            "into_dead": 0,
+            "out_of_dead": 0
+          }
+        }
+      ],
+      "moved_dead_edges_full_context": 0,
+      "skipped_crossing_edges": 0
+    }
+  ],
+  "changed_oof_frames": 68,
+  "source_sha256": {
+    "experiments/nested_calibration_timing.py": "6b356053c1e315db24a497f3e9103aab13821429b7c548845b3aab68436193a5",
+    "experiments/nested_probability_calibration.py": "6a5d7e36e40356d52943f7e31511f74e35da32970ff4b33b59abde6464573e16",
+    "experiments/dead_boundary_calibration.py": "3956ba11b19a95d3770a1992b2916110b94a11ded1ef158f92842a59ad3d4cea",
+    "experiments/physical_boundary_snap.py": "f400a7844965733d6fc4f55be9cfafcd43fe9b885816888db31fda1a9548ddc5",
+    "possession/features.py": "56ac029f1ed867c314befb651c84f3c952bbc14eae40c542f2bf10807be6e8ae",
+    "possession/model.py": "82b22fb14af5825836a7c3c67fd8667f2cc13277a5fda30a3e5745003b29b33e",
+    "possession/duration.py": "bc1867c97796106389ccbed56ebd2a2401b3c76a7f9d246f439c7dcbc37a9e23"
+  },
+  "feature_sha256": "c87c85c5e71bc3393ab27d786cd9d907fa6303d864c7e25e92e275329662d4e0",
+  "prior_sha256": "76e94ca6791a4c90b293bb12ec3818ee6344f047e86fb78bc51c1ef255fb6ddb",
+  "base_cache_sha256": "5af6229dc1ea8c059dd078f93f6eb75d613dc1b5fafa0bf6e21e2d81fd11ab24",
+  "protocol": "Sameoutertrain-onlyinnerOOF references learnregularized2parameter probabilitycalibration. Then calibratedinnerfullcontexts duration5+fixedHAsnap yieldtypedbinaryDtimingoffsetmatches inallowedinnercore/bothneighborsoutertrain. Medianmin2 clipped\u00b150. ApplybothcalibrationandDoffsetstolabel-excludedoutermodel. No newparameters/grid; outerlabelperturbation leavescalibratorparametersandoffsetsexactunchanged. ExistingDedgeordering/positivity/labelsequenceandpureHApositionschecked."
+}

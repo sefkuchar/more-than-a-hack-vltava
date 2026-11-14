@@ -1,0 +1,182 @@
+{
+  "source": {
+    "checkpoint_sha256": "55757d9dca9777d60356ba368dc315867ea1ae38e90c332e935b9c5be72d83c9",
+    "upstream_commit": "1b7c6f85a6b78c92e4543fde72ca2b86a933f997",
+    "code_sha256": "ea93d4f69fe1aba3054a9f54cf68c67cf42f48d40803ab38b310a3925b01c8da",
+    "attempted_windows": 59,
+    "accepted_windows": 31,
+    "covered_frames": 5125,
+    "left_team": 0,
+    "windows": [
+      {
+        "start": 11810,
+        "quality": 0.899090909090909,
+        "keeper_unanchored_fraction": 0.5
+      },
+      {
+        "start": 11935,
+        "quality": 0.899090909090909,
+        "keeper_unanchored_fraction": 0.5
+      },
+      {
+        "start": 12060,
+        "quality": 0.9090909090909091,
+        "keeper_unanchored_fraction": 0.5
+      },
+      {
+        "start": 12185,
+        "quality": 0.9063636363636363,
+        "keeper_unanchored_fraction": 0.5
+      },
+      {
+        "start": 12810,
+        "quality": 0.9072727272727272,
+        "keeper_unanchored_fraction": 0.98
+      },
+      {
+        "start": 12935,
+        "quality": 0.9090909090909091,
+        "keeper_unanchored_fraction": 1.0
+      },
+      {
+        "start": 13060,
+        "quality": 0.8981818181818182,
+        "keeper_unanchored_fraction": 1.0
+      },
+      {
+        "start": 13185,
+        "quality": 0.8909090909090909,
+        "keeper_unanchored_fraction": 0.9299999999999999
+      },
+      {
+        "start": 13435,
+        "quality": 0.9027272727272727,
+        "keeper_unanchored_fraction": 0.49
+      },
+      {
+        "start": 13560,
+        "quality": 0.8836363636363636,
+        "keeper_unanchored_fraction": 0.46
+      },
+      {
+        "start": 13685,
+        "quality": 0.8781818181818182,
+        "keeper_unanchored_fraction": 0.36
+      },
+      {
+        "start": 14185,
+        "quality": 0.9063636363636363,
+        "keeper_unanchored_fraction": 0.5
+      },
+      {
+        "start": 14310,
+        "quality": 0.9090909090909091,
+        "keeper_unanchored_fraction": 0.5
+      },
+      {
+        "start": 14435,
+        "quality": 0.9090909090909091,
+        "keeper_unanchored_fraction": 0.5
+      },
+      {
+        "start": 14560,
+        "quality": 0.9090909090909091,
+        "keeper_unanchored_fraction": 0.5
+      },
+      {
+        "start": 14685,
+        "quality": 0.9063636363636363,
+        "keeper_unanchored_fraction": 0.47
+      },
+      {
+        "start": 14935,
+        "quality": 0.9090909090909091,
+        "keeper_unanchored_fraction": 0.09
+      },
+      {
+        "start": 15185,
+        "quality": 0.8781818181818182,
+        "keeper_unanchored_fraction": 0.15
+      },
+      {
+        "start": 15560,
+        "quality": 0.9081818181818182,
+        "keeper_unanchored_fraction": 0.5
+      },
+      {
+        "start": 16060,
+        "quality": 0.9027272727272727,
+        "keeper_unanchored_fraction": 0.5
+      },
+      {
+        "start": 16185,
+        "quality": 0.9063636363636363,
+        "keeper_unanchored_fraction": 0.47
+      },
+      {
+        "start": 16435,
+        "quality": 0.9090909090909091,
+        "keeper_unanchored_fraction": 0.0
+      },
+      {
+        "start": 16560,
+        "quality": 0.9090909090909091,
+        "keeper_unanchored_fraction": 0.14
+      },
+      {
+        "start": 16685,
+        "quality": 0.9090909090909091,
+        "keeper_unanchored_fraction": 0.39
+      },
+      {
+        "start": 16810,
+        "quality": 0.9090909090909091,
+        "keeper_unanchored_fraction": 0.5
+      },
+      {
+        "start": 16935,
+        "quality": 0.9054545454545455,
+        "keeper_unanchored_fraction": 0.5
+      },
+      {
+        "start": 17060,
+        "quality": 0.8872727272727272,
+        "keeper_unanchored_fraction": 0.35
+      },
+      {
+        "start": 17185,
+        "quality": 0.8745454545454545,
+        "keeper_unanchored_fraction": 0.33
+      },
+      {
+        "start": 17310,
+        "quality": 0.8845454545454545,
+        "keeper_unanchored_fraction": 0.32
+      },
+      {
+        "start": 18185,
+        "quality": 0.9090909090909091,
+        "keeper_unanchored_fraction": 0.5
+      },
+      {
+        "start": 18310,
+        "quality": 0.8909090909090909,
+        "keeper_unanchored_fraction": 0.46
+      }
+    ],
+    "rejected_team_window_causes": {
+      "long_edge_gap": 26,
+      "insufficient_seed_observations": 4,
+      "long_interior_gap": 1
+    }
+  },
+  "feature_count": 88,
+  "metrics": {
+    "spell_f1_mean": 0.5379310344827587,
+    "macro_f1": 0.8642655334472421,
+    "n_pred_spells": 12
+  },
+  "status": "evidence_evaluated",
+  "protocol": "Fixed automatedHungarian stitching; no GT segmentation; pretrained perwindowCRF reset; soft extra evidence only; strict5fold60s+10s embargo, samefoldwholecontext HSMM. No target-based parameter search.",
+  "limitation": "Checkpoint trained onJ03WOH, so no externalJ03WOHheldoutclaim. Ten outfieldtracks stitched perteam; gapfill/carry capped5s. Keepers use uncertain NaNspeedcoordinatesnearowngoal orspatialprior; missingnessfeaturesexplicit. No D prediction."
+}

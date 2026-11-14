@@ -562,19 +562,21 @@ def possession_stats(codes, runs):
 
 # -- bootstrap ---------------------------------------------------------------------------------
 
-def bootstrap_macro_f1(gt_codes, pred_codes, runs, n_draws,
-                       seed=BOOTSTRAP_SEED, percentiles=BOOTSTRAP_PERCENTILES):
-    """Block-bootstrap interval for macro-F1, resampling whole GT segments.
+def bootstrap_macro_f1_scores(gt_codes, pred_codes, runs, n_draws,
+                              seed=BOOTSTRAP_SEED):
+    """Per-draw block-bootstrap macro-F1, resampling whole GT segments.
 
     Segments, not frames, because frames inside a possession are not independent observations.
-    Returns (low, high) or (None, None) when disabled.
+    Returns an empty array when disabled or when there are no GT segments. Exposing the draws
+    (instead of only the interval) lets a caller run a paired bootstrap: two submissions scored
+    with the same seed see the same segment resamples, so their per-draw difference is paired.
     """
     if not n_draws:
-        return None, None
+        return np.empty(0, dtype=np.float64)
 
     gt_segments = segments(gt_codes, runs)
     if not gt_segments:
-        return None, None
+        return np.empty(0, dtype=np.float64)
 
     # Per-segment prediction histogram, so a draw is a matrix add rather than a rescan of 199k
     # frames: contributions[i, p] = frames of segment i the submission called p.
@@ -591,27 +593,36 @@ def bootstrap_macro_f1(gt_codes, pred_codes, runs, n_draws,
         cm3 = np.zeros((N_SCORED, N_LABELS), dtype=np.int64)
         np.add.at(cm3, gt_of_segment[picks], contributions[picks])
         scores[draw] = macro_f1(cm3)
+    return scores
+
+
+def bootstrap_macro_f1(gt_codes, pred_codes, runs, n_draws,
+                       seed=BOOTSTRAP_SEED, percentiles=BOOTSTRAP_PERCENTILES):
+    """Block-bootstrap interval for macro-F1, resampling whole GT segments.
+
+    Returns (low, high) or (None, None) when disabled.
+    """
+    scores = bootstrap_macro_f1_scores(gt_codes, pred_codes, runs, n_draws, seed)
+    if not len(scores):
+        return None, None
     low, high = np.percentile(scores, percentiles)
     return float(low), float(high)
 
 
-def bootstrap_spell_f1(gt_codes, pred_codes, runs, n_draws,
-                       seed=BOOTSTRAP_SEED, percentiles=BOOTSTRAP_PERCENTILES):
-    """Bootstrap interval for spell_f1_mean, resampling whole possessions.
+def bootstrap_spell_f1_scores(gt_codes, pred_codes, runs, n_draws,
+                              seed=BOOTSTRAP_SEED):
+    """Per-draw spell-F1 bootstrap, resampling whole possessions.
 
     Possessions, not segments and not frames, because spell_f1_mean scores each possession as one
-    hit-or-miss observation, and that count is the sample size governing its variance. This is the
-    interval that matters once the board ranks on spellF1; bootstrap_macro_f1 above answers the
-    same question for the frame-level metric.
-
-    Returns (low, high) or (None, None) when disabled.
+    hit-or-miss observation, and that count is the sample size governing its variance. Returns an
+    empty array when disabled or when there are no GT spells.
     """
     if not n_draws:
-        return None, None
+        return np.empty(0, dtype=np.float64)
 
     gt_spells = possession_spells(gt_codes, runs)
     if not gt_spells:
-        return None, None
+        return np.empty(0, dtype=np.float64)
     pred_spells = possession_spells(pred_codes, runs)
     overlaps = spell_overlaps(gt_spells, pred_spells)
     n_gt, n_pred = len(gt_spells), len(pred_spells)
@@ -635,6 +646,21 @@ def bootstrap_spell_f1(gt_codes, pred_codes, runs, n_draws,
             f1s.append(2.0 * true_positive / (2 * true_positive + false_positive + false_negative)
                        if true_positive else 0.0)
         scores[draw] = np.mean(f1s)
+    return scores
+
+
+def bootstrap_spell_f1(gt_codes, pred_codes, runs, n_draws,
+                       seed=BOOTSTRAP_SEED, percentiles=BOOTSTRAP_PERCENTILES):
+    """Bootstrap interval for spell_f1_mean, resampling whole possessions.
+
+    The interval that matters once the board ranks on spellF1; bootstrap_macro_f1 above answers
+    the same question for the frame-level metric.
+
+    Returns (low, high) or (None, None) when disabled.
+    """
+    scores = bootstrap_spell_f1_scores(gt_codes, pred_codes, runs, n_draws, seed)
+    if not len(scores):
+        return None, None
     low, high = np.percentile(scores, percentiles)
     return float(low), float(high)
 

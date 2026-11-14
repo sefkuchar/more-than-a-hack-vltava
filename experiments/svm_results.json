@@ -1,0 +1,16 @@
+[
+  {
+    "method": "rbf_svc",
+    "penalty": 16,
+    "spell_f1_mean": 0.34444444444444444,
+    "macro_f1": 0.6229471524071704,
+    "n_pred_spells": 19
+  },
+  {
+    "method": "rbf_svc",
+    "penalty": 32,
+    "spell_f1_mean": 0.4121212121212121,
+    "macro_f1": 0.6030542585405533,
+    "n_pred_spells": 16
+  }
+]

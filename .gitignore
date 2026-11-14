@@ -1,0 +1,11 @@
+__pycache__/
+.DS_Store
+.venv/
+.venv-ball/
+.cache/
+data/**/*
+!data/README.md
+!data/**/.gitkeep
+evaluation/reports/
+evaluation/scoreboard.csv
+experiments/cache/
