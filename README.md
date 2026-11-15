@@ -14,7 +14,7 @@ source .venv-ball/bin/activate          # Windows: .venv-ball\Scripts\activate
 pip install -r requirements-model.txt   # Python 3.11+, pinned deps
 python -m possession.run                # writes Vltava.csv using models/possession_model.joblib
 python evaluation/validate_submission.py Vltava.csv
-# expected SHA-256: b4730d96c35dcb0cc398680ec1a6329c04fbad2bbc7ffa351429757b2aff5655
+# expected SHA-256: 0586b4350d28ce1420374d162a9fbbdbe5f87e5846caa2c46fb6e26451eb53a6
 ```
 
 Retraining (`python -m possession.train`) additionally needs the IDSSE files listed in

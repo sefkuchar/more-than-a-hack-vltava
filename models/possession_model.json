@@ -4,96 +4,102 @@
     "J03WOH_clean": 34304,
     "J03WOH_corrupt": 34304,
     "J03WQQ_clean": 35587,
-    "J03WQQ_corrupt": 35587
+    "J03WQQ_corrupt": 35587,
+    "J03WN1_clean": 35391,
+    "J03WN1_corrupt": 35391,
+    "J03WPY_clean": 36553,
+    "J03WPY_corrupt": 36553,
+    "J03WR9_clean": 36703,
+    "J03WR9_corrupt": 36703
   },
   "feature_count": 62,
   "calibration_parameters": [
-    -0.015381643068057208,
-    0.22230643162679248
+    0.00042172473815546097,
+    0.3397612523040026
   ],
-  "calibration_objective": 0.4393658380914648,
+  "calibration_objective": 0.42994500915303735,
   "validation_match": "J03WOY",
   "validation_grid": [
     {
       "temperature": 1.0,
       "refine": false,
       "refined_edges": 0,
-      "spell_f1": 0.3961315280464216,
-      "macro_f1": 0.757252535233978
+      "spell_f1": 0.4,
+      "macro_f1": 0.7725306281174973
     },
     {
       "temperature": 2.0,
       "refine": false,
       "refined_edges": 0,
-      "spell_f1": 0.4072434607645875,
-      "macro_f1": 0.7585298230964579
+      "spell_f1": 0.4032323232323233,
+      "macro_f1": 0.7757011810061764
     },
     {
       "temperature": 3.0,
       "refine": false,
       "refined_edges": 0,
-      "spell_f1": 0.4106776180698152,
-      "macro_f1": 0.7599764495478106
+      "spell_f1": 0.4132780082987552,
+      "macro_f1": 0.776420687135498
     },
     {
       "temperature": 5.0,
       "refine": false,
       "refined_edges": 0,
-      "spell_f1": 0.40685224839400436,
-      "macro_f1": 0.7576158542404127
+      "spell_f1": 0.39742489270386266,
+      "macro_f1": 0.7642725846045808
     },
     {
       "temperature": 8.0,
       "refine": false,
       "refined_edges": 0,
-      "spell_f1": 0.39210526315789473,
-      "macro_f1": 0.7567860661655973
+      "spell_f1": 0.3850549450549451,
+      "macro_f1": 0.7647339444390545
     },
     {
       "temperature": 1.0,
       "refine": true,
-      "refined_edges": 47,
-      "spell_f1": 0.39303675048355896,
-      "macro_f1": 0.7549976304812605
+      "refined_edges": 48,
+      "spell_f1": 0.40231660231660227,
+      "macro_f1": 0.7713307477802308
     },
     {
       "temperature": 2.0,
       "refine": true,
       "refined_edges": 39,
-      "spell_f1": 0.40321931589537224,
-      "macro_f1": 0.7562434489102229
+      "spell_f1": 0.4,
+      "macro_f1": 0.7741355721807742
     },
     {
       "temperature": 3.0,
       "refine": true,
       "refined_edges": 36,
-      "spell_f1": 0.40246406570841886,
-      "macro_f1": 0.757287514514696
+      "spell_f1": 0.4066390041493776,
+      "macro_f1": 0.7750779518580249
     },
     {
       "temperature": 5.0,
       "refine": true,
-      "refined_edges": 32,
-      "spell_f1": 0.4051391862955033,
-      "macro_f1": 0.7554360702604012
+      "refined_edges": 33,
+      "spell_f1": 0.3948497854077253,
+      "macro_f1": 0.76359122475482
     },
     {
       "temperature": 8.0,
       "refine": true,
-      "refined_edges": 28,
-      "spell_f1": 0.39210526315789473,
-      "macro_f1": 0.7551582500222027
+      "refined_edges": 27,
+      "spell_f1": 0.3832967032967033,
+      "macro_f1": 0.7637621547084454
     }
   ],
   "selected": {
     "temperature": 3.0,
     "refine": false,
     "refined_edges": 0,
-    "spell_f1": 0.4106776180698152,
-    "macro_f1": 0.7599764495478106
+    "spell_f1": 0.4132780082987552,
+    "macro_f1": 0.776420687135498
   },
   "target_ball_visibility": 0.593074274347369,
   "provided_game_labels_used": false,
   "sklearn_version": "1.8.0",
-  "model_sha256": "bf30965b6c9897dd4c7a8e76edc557d5383adc31d3e19b97e7faeb9a33621a4e"
+  "model_sha256": "20613a6cb9b99f8686d5914894d4e505218d66a3725b60bb9f01dc4c1dc5aa4f"
 }

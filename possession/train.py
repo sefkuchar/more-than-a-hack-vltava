@@ -1,6 +1,6 @@
 """Train the possession model on external IDSSE matches only (rules of 23 Oct 2026).
 
-* Classifier: IDSSE J03WOH + J03WQQ (DFL/Sportec provider labels, other games).
+* Classifier: IDSSE J03WOH, J03WQQ, J03WN1, J03WPY, J03WR9 (DFL/Sportec provider labels, other games).
 * Calibration, decoder temperature and boundary refinement: chosen on IDSSE J03WOY,
   a third match the classifier never sees.
 * Labels follow CHALLENGE.md's controlled-possession definition: provider spells shorter

@@ -1,7 +1,7 @@
 # Team Vltava: ball possession, technical document
 
 **More than a Hack 2027, Phase 1** · Repository: <https://github.com/sefkuchar/more-than-a-hack-vltava>
-· Submission: `Vltava.csv` (SHA-256 `b4730d96c35dcb0cc398680ec1a6329c04fbad2bbc7ffa351429757b2aff5655`)
+· Submission: `Vltava.csv` (SHA-256 `0586b4350d28ce1420374d162a9fbbdbe5f87e5846caa2c46fb6e26451eb53a6`)
 
 ## 1. Approach
 
@@ -39,6 +39,9 @@ selection. The only labelled data is:
 |---|---|---|---|---|
 | IDSSE J03WOH (Düsseldorf–Regensburg, 2. Bundesliga 2022/23) | [IDSSE / DFL-Sportec open data](https://doi.org/10.1038/s41597-025-04505-y), CC-BY-4.0, [mirror](https://huggingface.co/datasets/pysport/idsse-data) | Provider (Sportec Solutions for the DFL): per-frame `BallStatus` and `BallPossession` in the official position data | 137,214 frames | Classifier training; duration prior |
 | IDSSE J03WQQ (Düsseldorf–St. Pauli) | same | same | 142,345 frames | Classifier training; duration prior |
+| IDSSE J03WN1 (Bundesliga 2022/23) | same | same | 141,561 frames | Classifier training; duration prior |
+| IDSSE J03WPY (2. Bundesliga 2022/23) | same | same | 146,211 frames | Classifier training; duration prior |
+| IDSSE J03WR9 (2. Bundesliga 2022/23) | same | same | 146,810 frames | Classifier training; duration prior |
 | IDSSE J03WOY (Düsseldorf–Rostock) | same | same | 142,536 frames | Calibration and decoder settings only (held out from the classifier) |
 
 Labels map as follows: `BallStatus = 0` → D; `BallStatus = 1` with `BallPossession` 1 or 2 → H or A.
@@ -54,7 +57,7 @@ definition. We adopted the conversion before running the pipeline check below an
 regardless of the result. The spell-duration prior is refitted on the converted training labels.
 
 Training uses every 4th frame of each training match, twice: once with the clean ball track and
-once with a corrupted copy. That gives 139,782 rows in total.
+once with a corrupted copy. That gives 357,076 rows in total. The seventh IDSSE match, J03WMX, wasn't used: our file-transfer tooling couldn't move its 418 MB tracking file.
 
 **Domain adaptation, no labels involved.** The provided match's automatic tracking sees the ball
 on only 59% of live frames, while IDSSE sees it on almost every frame. So the corrupted copy
@@ -63,7 +66,7 @@ offset, and adds smooth 1 m positional noise. The only thing read from BAR-ATH h
 `isfinite(ball)`.
 
 **Public 5 minutes.** These were used once, at the end, as the pipeline check the rules allow:
-0.5161 spellF1 / 0.7599 macroF1. They played no part in any choice. Before the rules update of
+0.5200 spellF1 / 0.7893 macroF1. They played no part in any choice. Before the rules update of
 23 Oct 2026 we had trained on that window. That model and its training code were removed. The
 `experiments/` and `research/` folders are kept for history only, and the pipeline uses neither.
 
@@ -100,7 +103,7 @@ any of them now.
 - **Restarts.** After a stoppage the decoder starts a new spell. Its team comes from the evidence
   (which team is near the ball), not from a hard-coded restart rule.
 - **Contact refinement** (snapping H/A edges to sustained-contact onsets) was evaluated on the
-  held-out IDSSE match. It did not help there (best 0.4051 with it, 0.4107 without), so it is
+  held-out IDSSE match. It did not help there (best 0.4066 with it, 0.4133 without), so it is
   off.
 - **Abstention.** `X` is written only outside the two halves. Every graded frame is H, A or D.
 
@@ -111,28 +114,37 @@ prediction. Every label in `Vltava.csv` comes out of the pipeline.
 
 | Evaluation | spellF1 | macroF1 |
 |---|---:|---:|
-| Held-out IDSSE J03WOY, converted labels (selection set) | 0.4107 | 0.7600 |
-| Public 5 min, pipeline check only | 0.5161 | 0.7599 |
+| Held-out IDSSE J03WOY, converted labels (selection set) | 0.4133 | 0.7764 |
+| Public 5 min, pipeline check only | 0.5200 | 0.7893 |
 | Organisers' baseline on the public 5 min | 0.3256 | 0.6207 |
 
-Decoder grid on J03WOY (spellF1): temperatures 1, 2, 3, 5 and 8 gave 0.396, 0.407, 0.411,
-0.407 and 0.392 without refinement, and 0.393, 0.403, 0.402, 0.405 and 0.392 with it. We picked
+Decoder grid on J03WOY (spellF1): temperatures 1, 2, 3, 5 and 8 gave 0.400, 0.403, 0.413,
+0.397 and 0.385 without refinement, and 0.402, 0.400, 0.407, 0.395 and 0.383 with it. We picked
 temperature 3 without refinement.
 
-An earlier version of this submission trained on IDSSE's raw touch-level labels. It scored
-0.3070 on J03WOY with those raw labels, and 0.4848 / 0.7849 on the public-window check.
+**Version history, every version selected on J03WOY only.**
+
+| Version | J03WOY spellF1 / macroF1 | Public check spellF1 / macroF1 |
+|---|---|---|
+| v1: raw touch-level labels, 2 training matches | 0.3070 / 0.7513 (raw labels) | 0.4848 / 0.7849 |
+| v2: controlled-possession labels, 2 training matches | 0.4107 / 0.7600 | 0.5161 / 0.7599 |
+| **v3: controlled-possession labels, 5 training matches (submitted)** | **0.4133 / 0.7764** | 0.5200 / 0.7893 |
+
+We decided in advance to adopt v3 only if it beat v2 on J03WOY, which it did on both metrics.
+
+
 
 Limitations:
 
 - **Label convention mismatch.** Even after conversion, IDSSE spells (mean about 11 s) are
   shorter than the challenge's (about 14 s on the public window). Our 2 s control threshold is a
   reading of the written definition, not a measured property of the ground truth. The full
-  submission predicts 221 live spells with a mean of 16.5 s.
+  submission predicts 224 live spells with a mean of 16.2 s.
 - **Domain shift.** The external matches are German second division with near-complete optical
   tracking. The provided match has fragmented automatic tracking and identity switches. Ball
   corruption covers only part of that gap.
-- **Small external sample.** Two training matches. IDSSE has seven, and with more time we would
-  train on six and validate on the seventh.
+- **Small external sample.** Five training matches and one validation match, all from one
+  provider and two German leagues.
 - **With more time** we would add a ball-imputation feature trained on IDSSE with block masking;
   learn D boundaries from restart geometry; and test pitch-control or reachability features. All
   of these would be selected on external validation only.
@@ -141,14 +153,16 @@ Reproduction. You need Python 3.11+ (verified under 3.14), the challenge bundle 
 for retraining only, the IDSSE files. Put these in `./data/external/`, unrenamed, from
 <https://huggingface.co/datasets/pysport/idsse-data>:
 
-- `DFL_04_03_positions_raw_observed_DFL-COM-000002_DFL-MAT-{J03WOH,J03WQQ,J03WOY}.xml`
-- `DFL_02_01_matchinformation_DFL-COM-000002_DFL-MAT-{J03WOH,J03WQQ,J03WOY}.xml`
+- `DFL_04_03_positions_raw_observed_DFL-COM-000002_DFL-MAT-{J03WOH,J03WQQ,J03WOY,J03WPY,J03WR9}.xml`
+- `DFL_02_01_matchinformation_DFL-COM-000002_DFL-MAT-{J03WOH,J03WQQ,J03WOY,J03WPY,J03WR9}.xml`
+- `DFL_04_03_positions_raw_observed_DFL-COM-000001_DFL-MAT-J03WN1.xml` and
+  `DFL_02_01_matchinformation_DFL-COM-000001_DFL-MAT-J03WN1.xml`
 
 ```bash
 python -m venv .venv-ball
 source .venv-ball/bin/activate          # Windows: .venv-ball\Scripts\activate
 pip install -r requirements-model.txt   # pinned; scikit-learn must be 1.8.0
-python -m possession.train              # optional: rebuilds the model and duration prior (~6 min)
+python -m possession.train              # optional: rebuilds the model and duration prior (~10 min)
 python -m possession.run                # writes Vltava.csv (~1 min, 4 CPU cores)
 python evaluation/validate_submission.py Vltava.csv
 ```

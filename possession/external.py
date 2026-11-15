@@ -17,7 +17,7 @@ from possession.physics import ball_motion
 
 ROOT = Path(__file__).resolve().parents[1]
 EXTERNAL_DIR = ROOT / 'data/external'
-TRAIN_MATCHES = ('J03WOH', 'J03WQQ')
+TRAIN_MATCHES = ('J03WOH', 'J03WQQ', 'J03WN1', 'J03WPY', 'J03WR9')
 VALIDATION_MATCH = 'J03WOY'
 TARGET_PITCH = np.array([105.3, 68.0])
 CODES = {'H': 0, 'A': 1, 'D': 2, 'X': 3}
