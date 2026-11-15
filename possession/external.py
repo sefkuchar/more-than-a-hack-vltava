@@ -96,3 +96,61 @@ def segments(half):
     edges = np.flatnonzero(np.diff(half)) + 1
     bounds = np.r_[0, edges, len(half)]
     return list(zip(bounds[:-1], bounds[1:]))
+
+
+# CHALLENGE.md: possession changes only on *controlled* possession ("a player keeps the ball
+# for a few seconds"); touches, deflections and duels without control do not count, and while
+# the ball is loose possession stays with the last team that had it. The provider's
+# BallPossession flags every touch, so live spells shorter than this are given back to the team
+# in control before them. The value comes from that sentence, not from any score.
+CONTROL_SECONDS = 2.0
+
+
+def controlled_labels(labels, half, seconds=CONTROL_SECONDS, fps=25):
+    """Merge uncontrolled live spells (< seconds) into the surrounding controlling team."""
+    out = np.array(labels, dtype=np.int8, copy=True)
+    limit = int(round(seconds * fps))
+    for start, stop in segments(half):
+        seq = out[start:stop]
+        while True:
+            edges = np.r_[0, np.flatnonzero(np.diff(seq)) + 1, len(seq)]
+            runs = list(zip(edges[:-1], edges[1:]))
+            changed = False
+            for i, (a, b) in enumerate(runs):
+                if seq[a] > 1 or b - a >= limit:
+                    continue
+                before = seq[runs[i - 1][0]] if i > 0 else 3
+                after = seq[runs[i + 1][0]] if i + 1 < len(runs) else 3
+                target = before if before < 2 else after if after < 2 else None
+                if target is not None and target != seq[a]:
+                    seq[a:b] = target
+                    changed = True
+                    break
+            if not changed:
+                break
+        out[start:stop] = seq
+    return out
+
+
+def fit_duration_prior(label_arrays, half_arrays, fps=25):
+    """Two-component log-normal mixtures of complete spell durations (half edges censored)."""
+    from sklearn.mixture import GaussianMixture
+    samples = {'possession': [], 'dead': []}
+    for labels, half in zip(label_arrays, half_arrays):
+        for start, stop in segments(half):
+            seq = labels[start:stop]
+            edges = np.r_[0, np.flatnonzero(np.diff(seq)) + 1, len(seq)]
+            for a, b in zip(edges[1:-2], edges[2:-1]):
+                if seq[a] < 3:
+                    samples['dead' if seq[a] == 2 else 'possession'].append(int(b - a))
+    groups = []
+    for group in ('possession', 'dead'):
+        d = np.array(samples[group])
+        model = GaussianMixture(n_components=2, reg_covar=.25, random_state=0).fit(np.log(d).reshape(-1, 1))
+        groups.append(dict(group=group, count=int(len(d)), mean_duration_seconds=float(d.mean() / fps),
+                           median_duration_seconds=float(np.median(d) / fps),
+                           weights=model.weights_.tolist(), log_frame_means=model.means_[:, 0].tolist(),
+                           log_frame_sigmas=np.sqrt(model.covariances_[:, 0, 0]).tolist()))
+    return {'schema_version': 1, 'fps': fps, 'groups': groups,
+            'source': 'IDSSE training matches, controlled-possession labels',
+            'attribution': 'Bassek et al.; DFL/Sportec IDSSE, CC-BY-4.0.'}

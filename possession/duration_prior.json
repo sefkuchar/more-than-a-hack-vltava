@@ -4,50 +4,41 @@
   "groups": [
     {
       "group": "possession",
-      "count": 401,
-      "mean_duration_seconds": 7.148827930174564,
-      "median_duration_seconds": 3.92,
+      "count": 542,
+      "mean_duration_seconds": 11.475571955719555,
+      "median_duration_seconds": 7.68,
       "weights": [
-        0.5109965138729733,
-        0.48900348612702677
+        0.5802550453448206,
+        0.41974495465517947
       ],
       "log_frame_means": [
-        5.016212261591441,
-        4.138312687466109
+        5.144916164186701,
+        5.504924011739546
       ],
       "log_frame_sigmas": [
-        1.104970510055549,
-        1.2737095007925325
+        0.927909490715254,
+        0.9939879164603009
       ]
     },
     {
       "group": "dead",
-      "count": 99,
-      "mean_duration_seconds": 25.70787878787879,
-      "median_duration_seconds": 19.04,
+      "count": 196,
+      "mean_duration_seconds": 24.72918367346939,
+      "median_duration_seconds": 19.24,
       "weights": [
-        0.7276727683906667,
-        0.27232723160933325
+        0.5958181931831791,
+        0.4041818068168208
       ],
       "log_frame_means": [
-        6.264813559459326,
-        5.733568472704107
+        6.286675034012346,
+        5.874974847689433
       ],
       "log_frame_sigmas": [
-        0.9443973971011418,
-        0.9887801689009744
+        0.8913980909034076,
+        0.9631796700994146
       ]
     }
   ],
-  "source_match": "DFL-MAT-J03WOH; Fortuna D\u00fcsseldorf\u2013SSV Jahn Regensburg, 2022-08-26",
-  "source_url": "https://huggingface.co/datasets/pysport/idsse-data",
-  "source_doi": "https://doi.org/10.1038/s41597-025-04505-y",
-  "attribution": "Bassek et al.; DFL/Sportec IDSSE, CC-BY-4.0. Statistical model fitted to complete within-half spell durations.",
-  "fit": {
-    "n_components": 2,
-    "covariance_type": "full",
-    "reg_covar": 0.25,
-    "random_state": 0
-  },
-  "training_input_sha256": "26182d65fd52ee3df65010335a0538d1c59c283c91e9d0d3dac6b3bc39a09b0a"
+  "source": "IDSSE training matches, controlled-possession labels",
+  "attribution": "Bassek et al.; DFL/Sportec IDSSE, CC-BY-4.0."
 }
