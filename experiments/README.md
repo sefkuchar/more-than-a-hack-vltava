@@ -9,3 +9,6 @@ The submission is produced only by `possession/train.py` (IDSSE external matches
 `possession/run.py`. The only modules imported from this folder are
 `experiments/load_idsse.py` (a parser for the public IDSSE XML) and, optionally,
 `experiments/align_broadcast.py` (label-free, not used by the current model).
+
+The historical prediction files (`experiments/*validation_predictions.csv`) and old models were
+removed from the repository; scripts that read them will not run as-is.

@@ -17,3 +17,4 @@ evaluation/results/*.csv
 !evaluation/results/baseline_*.csv
 /Vltava.csv
 /Vltava.json
+experiments/*predictions.csv

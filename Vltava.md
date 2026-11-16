@@ -74,10 +74,10 @@ offset, and adds smooth 1 m positional noise. The only thing read from BAR-ATH h
 
 | Asset | Used? | How |
 |---|---|---|
-| Tactical tracking (ATD) | Yes, core | Ball and player positions, team slots, visibility |
-| Tactical homography | Yes | Pitch coordinates and boundary distance |
+| Tactical tracking (ATD `.xml` + `.txt`) | Yes, the only provided input | Ball and player positions (normalised coordinates scaled to the 105.3 × 68 m pitch), team slots, visibility, boundary distance |
+| Tactical homography | **No** | Not needed: the tracking is already in pitch coordinates |
 | Smart Tagging | **No** (dropped) | IDSSE has no equivalent, so a model trained on other games can't learn from it |
-| Broadcast tracking + homography | **No** (dropped) | Same reason. Our earlier cross-camera features also relied on thresholds chosen with public labels |
+| Broadcast tracking, broadcast homography | **No** (dropped) | Same reason. Our earlier cross-camera features also relied on thresholds chosen with public labels |
 | Videos | No | Not needed |
 | IDSSE (external) | Yes | See §2 |
 
@@ -114,7 +114,7 @@ prediction. Every label in `Vltava.csv` comes out of the pipeline.
 
 | Evaluation | spellF1 | macroF1 |
 |---|---:|---:|
-| Held-out IDSSE J03WOY, converted labels (selection set) | 0.4133 | 0.7764 |
+| Held-out IDSSE J03WOY, converted labels (selection set; see note) | 0.4133 | 0.7764 |
 | Public 5 min, pipeline check only | 0.5200 | 0.7893 |
 | Organisers' baseline on the public 5 min | 0.3256 | 0.6207 |
 
@@ -131,6 +131,12 @@ temperature 3 without refinement.
 | **v3: controlled-possession labels, 5 training matches (submitted)** | **0.4133 / 0.7764** | 0.5200 / 0.7893 |
 
 We decided in advance to adopt v3 only if it beat v2 on J03WOY, which it did on both metrics.
+
+**How to read these scores.** J03WOY was used to fit the calibration, pick the decoder
+temperature and choose between versions. So its score is a *validation/selection* score, and it
+is optimistically biased, not an unbiased test result. The public five minutes are a pipeline
+check only. They drove no model change. We have no unbiased estimate for the full match, which
+the organisers score.
 
 
 
@@ -149,7 +155,8 @@ Limitations:
   learn D boundaries from restart geometry; and test pitch-control or reachability features. All
   of these would be selected on external validation only.
 
-Reproduction. You need Python 3.11+ (verified under 3.14), the challenge bundle in `./data`, and
+Reproduction. You need Python 3.11+ (verified under 3.13 and 3.14), the challenge bundle in `./data`
+(only `tactical/BAR-ATH_tactical_atd.xml` and `.txt` are read), and
 for retraining only, the IDSSE files. Put these in `./data/external/`, unrenamed, from
 <https://huggingface.co/datasets/pysport/idsse-data>:
 
